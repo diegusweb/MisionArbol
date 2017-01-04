@@ -12,6 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.diegusweb.dev.misionarbol.fragments.BusquedaFragment;
+import com.diegusweb.dev.misionarbol.fragments.MenuFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -82,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (itemDrawer.getItemId()) {
             case R.id.item_inicio:
-                fragmentoGenerico = new InitFragment();
+                fragmentoGenerico = new BusquedaFragment();
                 break;
             case R.id.item_cuenta:
-                //fragmentoGenerico = new MenuFragment();
+                fragmentoGenerico = new MenuFragment();
                 break;
             case R.id.item_categorias:
                 // Fragmento para la sección Categorías
