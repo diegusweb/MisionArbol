@@ -12,4 +12,7 @@
     <dimen name="header_height">120dp</dimen>
     <dimen name="perfil_image_size">64dp</dimen>
 
+    <dimen name="espacio_norma_1">16dp</dimen>
+    <dimen name="espacio_norma_2">8dp</dimen>
+
 </resources>
