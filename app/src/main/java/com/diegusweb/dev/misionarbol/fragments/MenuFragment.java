@@ -47,7 +47,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onItemClick(View itemView, int position) {
                 String name = adaptador.getItem(position).getNombre();
-                int id = adaptador.getItem(position).getIdDrawable();
+                int id = adaptador.getItem(position).getId();
                 Toast.makeText(getActivity(),  "diego was clicked! " + name, Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getActivity(), RouteActivity.class);
