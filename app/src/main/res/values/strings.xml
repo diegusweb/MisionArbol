@@ -5,10 +5,11 @@
     <string name="action_search">Buscar</string>
     <string name="action_carrito">Añadir al carrito</string>
 
-    <string name="item_inicio">Inicio</string>
-    <string name="item_cuenta">Mi Cuenta</string>
-    <string name="item_categorias">Categorías</string>
-    <string name="item_configuracion">Configuración</string>
+    <string name="item_init">Tomar Foto</string>
+    <string name="item_how_work">Como Funciona?</string>
+    <string name="item_contact">Contacto - Redes</string>
+    <string name="item_setting">Configuración</string>
+    <string name="item_my_photos">Mis Registros</string>
 
     <string name="titulo_comidas_populares">Lo más pedido</string>
 
@@ -32,5 +33,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="titulo_tab_map">MAPA</string>
-    <string name="titulo_tab_list">LISTAS</string>
+    <string name="titulo_tab_list">BIBLIOTECA</string>
 </resources>

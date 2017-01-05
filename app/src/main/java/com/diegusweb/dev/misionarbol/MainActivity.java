@@ -84,18 +84,19 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         switch (itemDrawer.getItemId()) {
-            case R.id.item_inicio:
+            case R.id.item_init:
                 fragmentoGenerico = new BusquedaFragment();
                 break;
-            case R.id.item_cuenta:
+            case R.id.item_contact:
                 fragmentoGenerico = new MenuFragment();
                 break;
-            case R.id.item_categorias:
+            case R.id.item_how_work:
                 // Fragmento para la sección Categorías
                 break;
-            case R.id.item_configuracion:
+            case R.id.item_setting:
                 // Iniciar actividad de configuración
                 break;
+
         }
         if (fragmentoGenerico != null) {
             fragmentManager
