@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.diegusweb.dev.misionarbol.Adapter.AdapterSections;
+import com.diegusweb.dev.misionarbol.adapter.AdapterSections;
 import com.diegusweb.dev.misionarbol.R;
 
 /**

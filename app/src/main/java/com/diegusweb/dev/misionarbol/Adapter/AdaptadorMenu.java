@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.Adapter;
+package com.diegusweb.dev.misionarbol.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.diegusweb.dev.misionarbol.Models.Comida;
+import com.diegusweb.dev.misionarbol.models.Comida;
 
 import java.util.ArrayList;
 import java.util.List;

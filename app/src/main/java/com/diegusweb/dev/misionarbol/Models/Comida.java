@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.Models;
+package com.diegusweb.dev.misionarbol.models;
 
 import com.diegusweb.dev.misionarbol.R;
 

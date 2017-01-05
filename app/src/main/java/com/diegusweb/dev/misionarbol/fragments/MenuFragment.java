@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.diegusweb.dev.misionarbol.Adapter.AdaptadorMenu;
+import com.diegusweb.dev.misionarbol.adapter.AdaptadorMenu;
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.RouteActivity;
@@ -48,7 +48,7 @@ public class MenuFragment extends Fragment {
             public void onItemClick(View itemView, int position) {
                 String name = adaptador.getItem(position).getNombre();
                 int id = adaptador.getItem(position).getId();
-                Toast.makeText(getActivity(),  "diego was clicked! " + name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),  "Arbol was clicked! " + name, Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getActivity(), RouteActivity.class);
                 i.putExtra("STRING_I_NEED", id);

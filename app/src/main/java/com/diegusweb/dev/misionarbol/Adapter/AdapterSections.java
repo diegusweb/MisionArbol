@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.Adapter;
+package com.diegusweb.dev.misionarbol.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

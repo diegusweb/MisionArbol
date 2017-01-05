@@ -1,13 +1,46 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MapFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/containerMap">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.gms.maps.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        class="com.google.android.gms.maps.SupportMapFragment" />
 
-</FrameLayout>
+
+    <!--<ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="45dp"
+        android:src="@drawable/id_map_marker" />-->
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:tint="@android:color/white"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:src="@android:drawable/ic_menu_camera"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+</RelativeLayout>
+
+
+
