@@ -15,6 +15,8 @@ import com.diegusweb.dev.misionarbol.models.Comida;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.diegusweb.dev.misionarbol.R;
+
 /**
  * Created by HP on 05/01/2017.
  */
@@ -52,7 +54,7 @@ public class AdapterThree extends RecyclerView.Adapter<AdapterThree.ViewHolder> 
         public ViewHolder(final View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre_comida);
-            precio = (TextView) itemView.findViewById(R.id.precio_comida);
+            //precio = (TextView) itemView.findViewById(R.id.precio_comida);
             imagen = (ImageView) itemView.findViewById(R.id.miniatura_comida);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +99,7 @@ public class AdapterThree extends RecyclerView.Adapter<AdapterThree.ViewHolder> 
                 .centerCrop()
                 .into(viewHolder.imagen);
         viewHolder.nombre.setText(item.getNombre());
-        viewHolder.precio.setText("$" + item.getPrecio());
+        //viewHolder.precio.setText("$" + item.getPrecio());
 
 
 

@@ -19,6 +19,7 @@ import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.RouteActivity;
 import com.diegusweb.dev.misionarbol.adapter.AdaptadorMenu;
+import com.diegusweb.dev.misionarbol.adapter.AdapterThree;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +28,7 @@ public class ThreeLibraryFragment extends Fragment {
 
     private RecyclerView reciclador;
     private GridLayoutManager layoutManager;
-    private AdaptadorMenu adaptador;
+    private AdapterThree adaptador;
 
     public ThreeLibraryFragment() {
         // Required empty public constructor
@@ -38,15 +39,15 @@ public class ThreeLibraryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adaptador = new AdaptadorMenu(getActivity());
+        adaptador = new AdapterThree(getActivity());
 
-        adaptador.setOnItemClickListener(new AdaptadorMenu.OnItemClickListener() {
+        adaptador.setOnItemClickListener(new AdapterThree.OnItemClickListener() {
 
             @Override
             public void onItemClick(View itemView, int position) {
                 String name = adaptador.getItem(position).getNombre();
                 int id = adaptador.getItem(position).getId();
-                Toast.makeText(getActivity(),  "Arbol was clicked! " + name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),  "Arbolde was clicked! " + name, Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getActivity(), RouteActivity.class);
                 i.putExtra("STRING_I_NEED", id);
