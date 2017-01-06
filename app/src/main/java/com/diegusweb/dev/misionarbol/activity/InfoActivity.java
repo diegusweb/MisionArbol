@@ -43,8 +43,8 @@ public class InfoActivity extends AppCompatActivity {
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
         if (!prefManager.isFirstTimeLaunch()) {
-            launchHomeScreen();
-            finish();
+            //launchHomeScreen();
+            //finish();
         }
 
         // Making notification bar transparent
