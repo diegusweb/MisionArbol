@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.models.Comida;
+import com.diegusweb.dev.misionarbol.models.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,87 +20,55 @@ import java.util.List;
  * Created by HP on 05/01/2017.
  */
 
-public class AdapterTree extends RecyclerView.Adapter<AdapterTree.ViewHolder> {
+public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> {
 
+    private List<Tree> moviesList;
 
-    List<Comida> tranportsLists = new ArrayList<>();
-    private ArrayList<Comida> arraylist;
-
-    public AdapterTree(Context context) {
-
-    }
-
-    // Define listener member variable
-    private AdapterTree.OnItemClickListener listener;
-
-    // Define the listener interface
-    public interface OnItemClickListener {
-        void onItemClick(View itemView, int position);
-    }
-
-    // Define the method that allows the parent activity or fragment to define the listener
-    public void setOnItemClickListener(AdapterTree.OnItemClickListener listener) {
-        this.listener = listener;
-    }
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        // Campos respectivos de un item
-        public TextView nombre;
-        public TextView precio;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView nombre, precio;
         public ImageView imagen;
 
-        public ViewHolder(final View itemView) {
+        public MyViewHolder(final View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre_comida);
             //precio = (TextView) itemView.findViewById(R.id.precio_comida);
             imagen = (ImageView) itemView.findViewById(R.id.miniatura_comida);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    if (listener != null)
-                        listener.onItemClick(itemView, getLayoutPosition());
-                }
-            });
         }
+    }
+
+    public AdapterTree(List<Tree> moviesList) {
+        this.moviesList = moviesList;
+    }
+
+    @Override
+    public AdapterTree.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_three_layout, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(AdapterTree.MyViewHolder holder, int position) {
+        Tree movie = moviesList.get(position);
+        Glide.with(holder.itemView.getContext())
+                .load(movie.getImage())
+                .centerCrop()
+                .into(holder.imagen);
+        holder.nombre.setText(movie.getName());
+
+        //holder.year.setText(movie.getYear());
+
     }
 
     @Override
     public int getItemCount() {
-        return Comida.COMIDAS_POPULARES.size();
+        return moviesList.size();
     }
-
 
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-    public Comida getItem(int position) {
-        return Comida.COMIDAS_POPULARES.get(position);
-    }
-
-    @Override
-    public AdapterTree.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.row_three_layout, viewGroup, false);
-        return new AdapterTree.ViewHolder(v);
-    }
-
-    @Override
-    public void onBindViewHolder(AdapterTree.ViewHolder viewHolder, int i) {
-        Comida item = Comida.COMIDAS_POPULARES.get(i);
-
-        Glide.with(viewHolder.itemView.getContext())
-                .load(item.getIdDrawable())
-                .centerCrop()
-                .into(viewHolder.imagen);
-        viewHolder.nombre.setText(item.getNombre());
-        //viewHolder.precio.setText("$" + item.getPrecio());
-
-
-
-    }
 }

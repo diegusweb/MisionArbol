@@ -19,6 +19,12 @@ import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.RouteActivity;
 import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
+import com.diegusweb.dev.misionarbol.models.Tree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +35,9 @@ public class TreeLibraryFragment extends Fragment {
     private GridLayoutManager layoutManager;
     private AdapterTree adaptador;
 
+    private List<Tree> movieList = new ArrayList<>();
+
+
     public TreeLibraryFragment() {
         // Required empty public constructor
     }
@@ -38,23 +47,25 @@ public class TreeLibraryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adaptador = new AdapterTree(getActivity());
+        adaptador = new AdapterTree(movieList);
 
-        adaptador.setOnItemClickListener(new AdapterTree.OnItemClickListener() {
+        /*adaptador.setOnItemClickListener(new AdapterTree.OnItemClickListener() {
 
             @Override
             public void onItemClick(View itemView, int position) {
                 String name = adaptador.getItem(position).getNombre();
                 int id = adaptador.getItem(position).getId();
-                Toast.makeText(getActivity(),  "Arbolde was clicked! " + name, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),  "Arbolde was clicked! " + name, Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getActivity(), RouteActivity.class);
-                i.putExtra("STRING_I_NEED", id);
+                i.putExtra("STRING_I_NEED", "123");
 
 
                 startActivity(i);
             }
-        });
+        });*/
+
+        prepareMovieData();
     }
 
     @Override
@@ -80,6 +91,40 @@ public class TreeLibraryFragment extends Fragment {
         reciclador.setLayoutManager(new LinearLayoutManager(getActivity()));
         //poniendo adaptador
         reciclador.setAdapter(adaptador);
+        reciclador.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), reciclador, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Tree movie = movieList.get(position);
+
+                int id = movie.getId();
+                //Toast.makeText(getActivity(), movie.getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), RouteActivity.class);
+                i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+    }
+
+    private void prepareMovieData() {
+        Tree movie = new Tree(1,"Molle", R.drawable.molle,"dexription1");
+        movieList.add(movie);
+
+        movie = new Tree(2,"jacaranda", R.drawable.jacaranda,"dexription2");
+        movieList.add(movie);
+
+        movie = new Tree(3,"sauce", R.drawable.sauce_lloron,"dexription3");
+        movieList.add(movie);
+
+        movie = new Tree(4,"Eucalipto", R.drawable.eucalipto,"dexription4");
+        movieList.add(movie);
+
+        adaptador.notifyDataSetChanged();
+
     }
 
 }
