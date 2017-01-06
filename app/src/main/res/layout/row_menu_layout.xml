@@ -14,16 +14,16 @@
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/precio_comida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:layout_marginBottom="32dp"
-        android:paddingLeft="@dimen/espacio_norma_1"
-        android:text="Large Text"
-        android:textColor="@android:color/white"
-        android:textSize="48sp"
-        android:textStyle="italic" />
+    android:id="@+id/precio_comida"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left|bottom"
+    android:layout_marginBottom="32dp"
+    android:paddingLeft="@dimen/espacio_norma_1"
+    android:text="Large Text"
+    android:textColor="@android:color/white"
+    android:textSize="48sp"
+    android:textStyle="italic" />
 
     <TextView
         android:id="@+id/nombre_comida"

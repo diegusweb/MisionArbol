@@ -19,6 +19,21 @@
             android:id="@+id/item_setting"
             android:icon="@drawable/configuracion"
             android:title="@string/item_setting" />
+        <item
+            android:id="@+id/item_photos"
+            android:icon="@drawable/configuracion"
+            android:title="@string/item_my_photos" />
     </group>
+
+    <item>
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:title="@string/nav_recomender" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:title="@string/nav_privacy_policy" />
+        </menu>
+    </item>
 
 </menu>
