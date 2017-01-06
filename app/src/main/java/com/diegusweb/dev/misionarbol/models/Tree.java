@@ -1,5 +1,10 @@
 package com.diegusweb.dev.misionarbol.models;
 
+import com.diegusweb.dev.misionarbol.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by HP on 05/01/2017.
  */
@@ -9,12 +14,15 @@ public class Tree {
     private int id;
     private String name;
     private String description;
-    private int idDrawable;
+    private int image;
 
-    public Tree(String description, int id, int idDrawable, String name) {
+    public Tree() {
+    }
+
+    public Tree(int id, String name, int image,String description) {
         this.description = description;
         this.id = id;
-        this.idDrawable = idDrawable;
+        this.image = image;
         this.name = name;
     }
 
@@ -42,12 +50,12 @@ public class Tree {
         this.id = id;
     }
 
-    public int getIdDrawable() {
-        return idDrawable;
+    public int getImage() {
+        return image;
     }
 
-    public void setIdDrawable(int idDrawable) {
-        this.idDrawable = idDrawable;
+    public void setImage(int idDrawable) {
+        this.image = image;
     }
 
 

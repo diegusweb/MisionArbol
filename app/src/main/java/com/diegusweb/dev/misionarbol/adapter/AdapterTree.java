@@ -15,24 +15,22 @@ import com.diegusweb.dev.misionarbol.models.Comida;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.diegusweb.dev.misionarbol.R;
-
 /**
  * Created by HP on 05/01/2017.
  */
 
-public class AdapterThree extends RecyclerView.Adapter<AdapterThree.ViewHolder> {
+public class AdapterTree extends RecyclerView.Adapter<AdapterTree.ViewHolder> {
 
 
     List<Comida> tranportsLists = new ArrayList<>();
     private ArrayList<Comida> arraylist;
 
-    public AdapterThree(Context context) {
+    public AdapterTree(Context context) {
 
     }
 
     // Define listener member variable
-    private AdapterThree.OnItemClickListener listener;
+    private AdapterTree.OnItemClickListener listener;
 
     // Define the listener interface
     public interface OnItemClickListener {
@@ -40,7 +38,7 @@ public class AdapterThree extends RecyclerView.Adapter<AdapterThree.ViewHolder> 
     }
 
     // Define the method that allows the parent activity or fragment to define the listener
-    public void setOnItemClickListener(AdapterThree.OnItemClickListener listener) {
+    public void setOnItemClickListener(AdapterTree.OnItemClickListener listener) {
         this.listener = listener;
     }
 
@@ -84,14 +82,14 @@ public class AdapterThree extends RecyclerView.Adapter<AdapterThree.ViewHolder> 
     }
 
     @Override
-    public AdapterThree.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public AdapterTree.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.row_three_layout, viewGroup, false);
-        return new AdapterThree.ViewHolder(v);
+        return new AdapterTree.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(AdapterThree.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(AdapterTree.ViewHolder viewHolder, int i) {
         Comida item = Comida.COMIDAS_POPULARES.get(i);
 
         Glide.with(viewHolder.itemView.getContext())

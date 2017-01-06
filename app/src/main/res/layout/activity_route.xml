@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -12,21 +13,10 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!-- <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-         xmlns:tools="http://schemas.android.com/tools"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_centerHorizontal="true"
-         android:layout_centerVertical="true"
-         android:id="@+id/mapRoute"
-         tools:context=".MapsActivity"
-         android:name="com.google.android.gms.maps.SupportMapFragment" />-->
-
-    <fragment
-        android:id="@+id/mapRoute"
-        android:name="com.google.android.gms.maps.MapFragment"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
 
 
 

@@ -41,6 +41,11 @@
             android:name="com.diegusweb.dev.misionarbol.activity.InfoActivity"
             android:label="Info"
             ></activity>
+
+        <activity
+            android:name="com.diegusweb.dev.misionarbol.activity.RouteActivity"
+            android:label="Detail"
+            android:theme="@style/Theme.RicoPaRico"></activity>
     </application>
 
 </manifest>

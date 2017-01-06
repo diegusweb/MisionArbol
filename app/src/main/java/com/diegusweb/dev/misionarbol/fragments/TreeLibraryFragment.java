@@ -18,8 +18,7 @@ import android.widget.Toast;
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.RouteActivity;
-import com.diegusweb.dev.misionarbol.adapter.AdaptadorMenu;
-import com.diegusweb.dev.misionarbol.adapter.AdapterThree;
+import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +27,7 @@ public class TreeLibraryFragment extends Fragment {
 
     private RecyclerView reciclador;
     private GridLayoutManager layoutManager;
-    private AdapterThree adaptador;
+    private AdapterTree adaptador;
 
     public TreeLibraryFragment() {
         // Required empty public constructor
@@ -39,9 +38,9 @@ public class TreeLibraryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adaptador = new AdapterThree(getActivity());
+        adaptador = new AdapterTree(getActivity());
 
-        adaptador.setOnItemClickListener(new AdapterThree.OnItemClickListener() {
+        adaptador.setOnItemClickListener(new AdapterTree.OnItemClickListener() {
 
             @Override
             public void onItemClick(View itemView, int position) {
@@ -53,7 +52,7 @@ public class TreeLibraryFragment extends Fragment {
                 i.putExtra("STRING_I_NEED", id);
 
 
-                //startActivity(i);
+                startActivity(i);
             }
         });
     }
