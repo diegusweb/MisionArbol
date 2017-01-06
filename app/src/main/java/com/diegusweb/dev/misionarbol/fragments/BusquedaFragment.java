@@ -48,7 +48,7 @@ public class BusquedaFragment extends Fragment {
     private void poblarViewPager(ViewPager viewPager) {
         AdapterSections adapter = new AdapterSections(getFragmentManager());
         adapter.addFragment(new MapFragment(), getString(R.string.titulo_tab_map));
-        adapter.addFragment(new ThreeLibraryFragment(), getString(R.string.titulo_tab_list));
+        adapter.addFragment(new TreeLibraryFragment(), getString(R.string.titulo_tab_list));
         //adapter.addFragment(new FragmentoTarjetas(), getString(R.string.titulo_tab_tarjetas));
         viewPager.setAdapter(adapter);
     }

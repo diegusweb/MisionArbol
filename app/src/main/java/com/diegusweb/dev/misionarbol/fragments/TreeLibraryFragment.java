@@ -24,13 +24,13 @@ import com.diegusweb.dev.misionarbol.adapter.AdapterThree;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ThreeLibraryFragment extends Fragment {
+public class TreeLibraryFragment extends Fragment {
 
     private RecyclerView reciclador;
     private GridLayoutManager layoutManager;
     private AdapterThree adaptador;
 
-    public ThreeLibraryFragment() {
+    public TreeLibraryFragment() {
         // Required empty public constructor
     }
 

@@ -36,6 +36,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.diegusweb.dev.misionarbol.activity.InfoActivity"
+            android:label="Info"
+            ></activity>
     </application>
 
 </manifest>
