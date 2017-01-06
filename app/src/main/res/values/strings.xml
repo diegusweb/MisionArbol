@@ -21,4 +21,6 @@
 
     <string name="nav_recomender">Recomendar</string>
     <string name="nav_privacy_policy">Aviso Legal</string>
+    <string name="nav_logout">Cerrar Sesion</string>
+
 </resources>

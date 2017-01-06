@@ -3,6 +3,8 @@ package com.diegusweb.dev.misionarbol.fragments;
 
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -36,6 +38,8 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
 
     Marker marker;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,8 +63,19 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
 
         //setInfoCurrent();
 
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         return v;
     }
+
+
 
     @Override
     public boolean onQueryTextSubmit(String query) {
