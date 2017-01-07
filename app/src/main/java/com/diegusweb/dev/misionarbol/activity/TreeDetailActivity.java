@@ -8,19 +8,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.diegusweb.dev.misionarbol.R;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.Marker;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.Route;
 
 /**
  * Created by HP on 03/01/2017.
  */
 
-public class RouteActivity extends AppCompatActivity {
+public class TreeDetailActivity extends AppCompatActivity {
 
     private  int newString;
 
@@ -28,7 +21,7 @@ public class RouteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route);
+        setContentView(R.layout.activity_tree_detail);
 
         agregarToolbar();
 

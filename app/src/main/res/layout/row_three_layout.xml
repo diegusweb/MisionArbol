@@ -7,24 +7,18 @@
     card_view:cardElevation="2dp"
     card_view:cardCornerRadius="5dp">
 
-
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/miniatura_comida"
+        />
 
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:id="@+id/miniatura_comida"
-            />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/nombre_comida"
@@ -32,8 +26,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:paddingTop="@dimen/album_title_padding"
-            android:textColor="@color/accentColor"
+            android:paddingTop="120dp"
+            android:textColor="@color/accent"
             android:textSize="@dimen/three_title" />
 
         <TextView
@@ -42,21 +36,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nombre_comida"
+            android:paddingTop="20dp"
             android:paddingBottom="@dimen/songs_count_padding_bottom"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textSize="@dimen/three_desp_min" />
 
-            <ImageView
+           <!-- <ImageView
                 android:id="@+id/overflow"
                 android:layout_width="@dimen/ic_album_overflow_width"
                 android:layout_height="@dimen/ic_album_overflow_height"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_dots" />
+                android:src="@drawable/ic_dots" /> -->
 
-        </RelativeLayout>
 
     </LinearLayout>
 

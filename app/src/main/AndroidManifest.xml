@@ -43,7 +43,7 @@
             ></activity>
 
         <activity
-            android:name="com.diegusweb.dev.misionarbol.activity.RouteActivity"
+            android:name="com.diegusweb.dev.misionarbol.activity.TreeDetailActivity"
             android:label="Detail"
             android:theme="@style/Theme.RicoPaRico"></activity>
     </application>

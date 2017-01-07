@@ -6,25 +6,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.activity.RouteActivity;
+import com.diegusweb.dev.misionarbol.activity.TreeDetailActivity;
 import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,16 +28,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class TreeLibraryFragment extends Fragment {
 
     private RecyclerView reciclador;
-    private GridLayoutManager layoutManager;
     private AdapterTree adaptador;
-
     private List<Tree> movieList = new ArrayList<>();
-
 
     public TreeLibraryFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,23 +41,7 @@ public class TreeLibraryFragment extends Fragment {
 
         adaptador = new AdapterTree(movieList);
 
-        /*adaptador.setOnItemClickListener(new AdapterTree.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(View itemView, int position) {
-                String name = adaptador.getItem(position).getNombre();
-                int id = adaptador.getItem(position).getId();
-                //Toast.makeText(getActivity(),  "Arbolde was clicked! " + name, Toast.LENGTH_SHORT).show();
-
-                Intent i = new Intent(getActivity(), RouteActivity.class);
-                i.putExtra("STRING_I_NEED", "123");
-
-
-                startActivity(i);
-            }
-        });*/
-
-        prepareMovieData();
+        prepareTreeDataSample();
     }
 
     @Override
@@ -82,12 +58,12 @@ public class TreeLibraryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_three_library, container, false);
 
         reciclador = (RecyclerView) root.findViewById(R.id.recicladorThree);
-        setupArtistList();
+        setupTreeList();
         // setDummyContent();
         return root;
     }
 
-    private void setupArtistList(){
+    private void setupTreeList(){
         reciclador.setLayoutManager(new LinearLayoutManager(getActivity()));
         //poniendo adaptador
         reciclador.setAdapter(adaptador);
@@ -98,7 +74,7 @@ public class TreeLibraryFragment extends Fragment {
 
                 int id = movie.getId();
                 //Toast.makeText(getActivity(), movie.getName() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getActivity(), RouteActivity.class);
+                Intent i = new Intent(getActivity(), TreeDetailActivity.class);
                 i.putExtra("STRING_I_NEED", id);
                 startActivity(i);
             }
@@ -110,7 +86,7 @@ public class TreeLibraryFragment extends Fragment {
         }));
     }
 
-    private void prepareMovieData() {
+    private void prepareTreeDataSample() {
         Tree movie = new Tree(1,"Molle", R.drawable.molle,"dexription1");
         movieList.add(movie);
 
