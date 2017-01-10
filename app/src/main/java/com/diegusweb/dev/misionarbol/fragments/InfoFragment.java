@@ -7,8 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.activity.InfoActivity;
+import com.diegusweb.dev.misionarbol.activity.howSlider.InfoActivity;
 
 /**
  * Created by HP on 06/01/2017.

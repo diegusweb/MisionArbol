@@ -22,7 +22,7 @@
 
 
     <color name="window_background">#FFF5F5F5</color>
-    <color name="primaryColor">#346D7D</color>
+    <color name="primaryColor">#00B33B</color>
     <color name="primaryDarkColor">#1F515F</color>
     <color name="accentColor">#03A9F4</color>
     <color name="barFindColor">#e0f2f1</color>

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.diegusweb.dev.misionarbol.adapter.AdaptadorMenu;
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.activity.TreeDetailActivity;
+import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.

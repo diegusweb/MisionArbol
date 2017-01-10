@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.activity.TreeDetailActivity;
+import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
 import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
 import com.diegusweb.dev.misionarbol.models.Tree;
 

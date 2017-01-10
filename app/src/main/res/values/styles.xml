@@ -13,6 +13,7 @@
     </style>
 
     <style name="Theme.RicoPaRico.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
