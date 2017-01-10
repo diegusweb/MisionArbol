@@ -12,10 +12,21 @@
         <item name="android:windowBackground">@color/window_background</item>
     </style>
 
+    <style name="Theme.RicoPaRico.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Theme.ConNavigationDrawer" parent="Base.AppTheme"/>
 
     <style name="Theme.RicoPaRico.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.RicoPaRico.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.RicoPaRico.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/iron</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
 </resources>
