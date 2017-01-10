@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.activity;
+package com.diegusweb.dev.misionarbol.activity.howSlider;
 
 import android.content.Context;
 import android.content.Intent;

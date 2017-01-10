@@ -26,9 +26,10 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:paddingTop="120dp"
+            android:paddingTop="100dp"
             android:textColor="@color/accent"
-            android:textSize="@dimen/three_title" />
+            android:textSize="40sp"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/count"
@@ -36,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nombre_comida"
-            android:paddingTop="20dp"
+            android:paddingTop="15dp"
             android:paddingBottom="@dimen/songs_count_padding_bottom"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
-    tools:context="com.diegusweb.dev.findfacil.login.ui.LoginActivity">
+    tools:context="com.diegusweb.dev.misionarbol.activity.login.LoginActivity">
 
 
 

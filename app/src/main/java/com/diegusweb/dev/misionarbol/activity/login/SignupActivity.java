@@ -52,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
         String password = inputPassword.getText().toString();
 
 
-        User arr = new User();
+        /*User arr = new User();
         arr.setEmail(email);
         arr.setPassword(password);
         arr.setFirstName("Diego");
@@ -65,15 +65,15 @@ public class SignupActivity extends AppCompatActivity {
             TransactionManager
                     .getInstance()
                     .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(arr)));
-        }
+        }*/
     }
 
-    private int getUsers() {
+   /* private int getUsers() {
         List<User> users =  SQLite.select()
                 .from(User.class)
                 .where(User_Table.email.eq("diedf@dd.com"))
                 .queryList();
 
         return users.size();
-    }
+    }*/
 }
