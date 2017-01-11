@@ -32,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:tint="@android:color/white"
-        app:backgroundTint="@color/colorPrimaryDark"
-        android:src="@android:drawable/ic_menu_camera"
+        app:backgroundTint="@color/primaryColor"
+        android:src="@drawable/icon_logo"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

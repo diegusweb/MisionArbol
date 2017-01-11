@@ -10,7 +10,7 @@ tools:context="com.diegusweb.dev.misionarbol.activity.login.SignupActivity">
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/green_wallpaper"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
@@ -18,8 +18,8 @@ tools:context="com.diegusweb.dev.misionarbol.activity.login.SignupActivity">
 
 
     <ImageView android:src="@drawable/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_width="@dimen/logo_w_h"
+        android:layout_height="@dimen/logo_w_h"
         android:layout_marginBottom="24dp"
         android:layout_gravity="center_horizontal" />
 
