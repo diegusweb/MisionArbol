@@ -10,12 +10,12 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circle_image"
         android:layout_width="@dimen/perfil_image_size"
         android:layout_height="@dimen/perfil_image_size"
         android:layout_marginBottom="0dp"
+        android:layout_marginTop="2dp"
         android:scaleType="centerCrop"
         android:src="@drawable/perfil"
         app:border_color="@android:color/white"
@@ -25,12 +25,12 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|right"
+        android:gravity="top|left"
         android:layout_marginBottom="8dp"
-        android:text="Busbo App V.1"
+        android:layout_marginTop="10dp"
+        android:text="MisionArbol"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textStyle="bold" />
-
 
 
 </LinearLayout>
