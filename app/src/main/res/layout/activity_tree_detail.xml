@@ -8,6 +8,7 @@
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         app:expandedTitleMarginStart="60dp">
 
         <android.support.design.widget.AppBarLayout
@@ -60,6 +61,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
+                    android:layout_marginBottom="26dp"
+                    android:text="Android Material Design Support Library: Expanding/Collapsing ActionBar/Toolbar and more animations when scrolling screen"
+                    android:textColor="#666" />
+
+                <TableRow
+                    android:id="@+id/hr"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#444"></TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="26dp"
                     android:text="Android Material Design Support Library: Expanding/Collapsing ActionBar/Toolbar and more animations when scrolling screen"
                     android:textColor="#666" />
 

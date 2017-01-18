@@ -31,7 +31,7 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
         public MyViewHolder(final View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre_comida);
-            //precio = (TextView) itemView.findViewById(R.id.precio_comida);
+            precio = (TextView) itemView.findViewById(R.id.precio_comida);
             imagen = (ImageView) itemView.findViewById(R.id.miniatura_comida);
         }
     }
@@ -57,7 +57,7 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
                 .into(holder.imagen);
         holder.nombre.setText(movie.getName());
 
-        //holder.year.setText(movie.getYear());
+        holder.precio.setText("Demooo");
 
     }
 

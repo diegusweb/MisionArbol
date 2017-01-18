@@ -23,7 +23,7 @@
     <!-- app primary colors -->
     <color name="window_background">#FFF5F5F5</color>
     <color name="primaryColor">#00B33B</color>
-    <color name="primaryDarkColor">#1F515F</color>
+    <color name="primaryDarkColor">#006000</color>
     <color name="accentColor">#fff</color>
     <color name="barFindColor">#e0f2f1</color>
     <color name="btnColor">#A5A5A5</color>
