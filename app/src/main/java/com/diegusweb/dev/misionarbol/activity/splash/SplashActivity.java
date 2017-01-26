@@ -6,6 +6,8 @@ import android.os.Bundle;
 import com.diegusweb.dev.misionarbol.R;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
+import com.diegusweb.dev.misionarbol.activity.login.LoginActivity;
+import com.diegusweb.dev.misionarbol.models.Login;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(3000);
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {

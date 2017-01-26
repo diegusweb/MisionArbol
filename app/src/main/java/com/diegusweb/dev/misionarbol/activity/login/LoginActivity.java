@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -12,6 +13,10 @@ import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.api.ApiClient;
+import com.diegusweb.dev.misionarbol.api.ApiInterface;
+import com.diegusweb.dev.misionarbol.models.Login;
+import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,10 +29,14 @@ import com.raizlabs.android.dbflow.runtime.transaction.process.ProcessModelInfo;
 import com.raizlabs.android.dbflow.runtime.transaction.process.SaveModelTransaction;
 
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -73,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                navigateToMainScreen();
-
+                //navigateToMainScreen();
+                Log.d("Login", "demoooo");
             }
 
             @Override
@@ -159,6 +168,33 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setEnabled(false);
         //Toast.makeText(getBaseContext(), "Login Success", Toast.LENGTH_LONG).show();
 
+
+        String email = txtEmail.getText().toString();
+        String password = txtPassword.getText().toString();
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<Login> call = apiService.authenticate(email, password);
+        call.enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                Login mLoginObject = response.body();
+                if(mLoginObject.error != null){
+                    progressDialog.hide();
+                    btn_login.setEnabled(true);
+                    Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
+                }else{
+                    progressDialog.hide();
+                    navigateToMainScreen();
+                    Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+
+            }
+        });
     }
 
     public boolean validate() {
