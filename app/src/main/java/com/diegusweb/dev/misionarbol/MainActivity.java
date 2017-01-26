@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.diegusweb.dev.misionarbol.fragments.BusquedaFragment;
 import com.diegusweb.dev.misionarbol.fragments.InfoFragment;
+import com.diegusweb.dev.misionarbol.fragments.ListFragment;
 import com.diegusweb.dev.misionarbol.fragments.MenuFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentoGenerico = new MenuFragment();
                 break;
             case R.id.item_how_work:
-                fragmentoGenerico = new InfoFragment();
+                fragmentoGenerico = new ListFragment();
                 // Fragmento para la sección Categorías
                 break;
             case R.id.item_setting:

@@ -1,10 +1,12 @@
 package com.diegusweb.dev.misionarbol.api;
 
-import com.diegusweb.dev.misionarbol.ApiResponse.MoviesResponse;
+import com.diegusweb.dev.misionarbol.models.TestItems;
+
+import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -12,9 +14,11 @@ import retrofit2.http.Query;
  */
 
 public interface ApiInterface {
-    @GET("movie/top_rated")
-    Call<MoviesResponse> getTopRatedMovies(@Query("api_key") String apiKey);
+    @GET("/search/users")
+    Call<TestItems> getUsersNamedTom(@Query("q") String name);
 
-    @GET("movie/{id}")
-    Call<MoviesResponse> getMovieDetails(@Path("id") int id, @Query("api_key") String apiKey);
+    @GET("v1/items")
+    Call<List<TestItems>> getListTestItems();
+
+
 }
