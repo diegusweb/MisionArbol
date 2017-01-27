@@ -7,9 +7,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.R;
-import com.raizlabs.android.dbflow.runtime.TransactionManager;
-import com.raizlabs.android.dbflow.runtime.transaction.process.ProcessModelInfo;
-import com.raizlabs.android.dbflow.runtime.transaction.process.SaveModelTransaction;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;

@@ -5,13 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 /**
  * Created by HP on 26/01/2017.
  */
 
 @Table(database = ArbolDatabase.class)
-public class User {
+public class User extends BaseModel {
 
     @SerializedName("user_id")
     @Column

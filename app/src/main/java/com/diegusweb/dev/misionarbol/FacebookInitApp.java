@@ -2,10 +2,12 @@ package com.diegusweb.dev.misionarbol;
 
 import android.app.Application;
 import android.content.Intent;
+import android.util.Log;
 
 import com.diegusweb.dev.misionarbol.activity.login.LoginActivity;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 /**
@@ -17,7 +19,7 @@ public class FacebookInitApp extends Application {
     public void onCreate() {
         super.onCreate();
         initFacebook();
-        //initDb();
+        initDb();
     }
 
     @Override
@@ -31,7 +33,9 @@ public class FacebookInitApp extends Application {
     }
 
     private void initDb() {
-        FlowManager.init(this);
+        //FlowManager.init(this);
+        Log.d("Demo","ENTOOOOOOO");
+        FlowManager.init(new FlowConfig.Builder(this).build());
     }
 
     private void initFacebook() {

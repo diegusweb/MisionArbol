@@ -8,6 +8,8 @@ import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.activity.login.LoginActivity;
 import com.diegusweb.dev.misionarbol.models.Login;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -17,6 +19,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        // This instantiates DBFlow
+       // FlowManager.init(new FlowConfig.Builder(this).build());
 
         Thread myThread = new Thread(){
             @Override
