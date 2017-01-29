@@ -18,8 +18,9 @@ public class FacebookInitApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initFacebook();
         initDb();
+        initFacebook();
+
     }
 
     @Override
@@ -34,8 +35,12 @@ public class FacebookInitApp extends Application {
 
     private void initDb() {
         //FlowManager.init(this);
+
+        FlowManager.init (
+                new FlowConfig.Builder (this)
+                        .openDatabasesOnInit (true)
+                        .build ());
         Log.d("Demo","ENTOOOOOOO");
-        FlowManager.init(new FlowConfig.Builder(this).build());
     }
 
     private void initFacebook() {

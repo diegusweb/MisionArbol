@@ -8,6 +8,9 @@ import com.raizlabs.android.dbflow.annotation.Database;
 
 @Database(name = ArbolDatabase.NAME, version = ArbolDatabase.VERSION)
 public class ArbolDatabase {
-    public static final int VERSION = 1;
+
     public static final String NAME = "ArbolDB";
+
+    public static final int VERSION = 1;
+
 }

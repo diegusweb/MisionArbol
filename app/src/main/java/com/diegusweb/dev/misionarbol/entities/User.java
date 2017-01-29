@@ -34,6 +34,9 @@ public class User extends BaseModel {
     @Column
     private String fb;
 
+    public User(){
+
+    }
 
     public int getUserId() {
         return userId;

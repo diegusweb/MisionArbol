@@ -15,6 +15,7 @@ import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
+import com.diegusweb.dev.misionarbol.entities.User;
 import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.facebook.AccessToken;
@@ -179,8 +180,13 @@ public class LoginActivity extends AppCompatActivity {
                 if(mLoginObject.error != null){
                     progressDialog.hide();
                     btn_login.setEnabled(true);
+
                     Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
                 }else{
+                    User user = new User();
+                    user.setToken(mLoginObject.token);
+
+                    user.save();
                     progressDialog.hide();
                     navigateToMainScreen();
                     Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
