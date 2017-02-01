@@ -16,6 +16,7 @@ import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.entities.User;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.InfoUser;
 import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.TestItems;
@@ -185,11 +186,12 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
                 }else{
 
-
+                    InfoConstants.API_TOKEN = mLoginObject.token;
                     //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
 
                     ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-                    Call<InfoUser> calls = apiService.getInfoUser(mLoginObject.token, txtEmail.getText().toString());
+                    Call<InfoUser> calls = apiService.getInfoUser(InfoConstants.API_TOKEN , txtEmail.getText().toString());
+
                     calls.enqueue(new Callback<InfoUser>() {
                         @Override
                         public void onResponse(Call<InfoUser> call, Response<InfoUser> response) {
@@ -199,7 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setFirstName(mInfoUser.getFirt_name());
                                 user.setLastName(mInfoUser.getLast_name());
                                 user.setEmail(mInfoUser.getEmail());
-                                user.setToken(mLoginObject.token);
+                                user.setToken(InfoConstants.API_TOKEN);
 
                                 user.save();
                                 progressDialog.hide();
@@ -233,7 +235,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public boolean getUserAccountInfo(final String tokenUsers, String email)
+    /*public boolean getUserAccountInfo(final String tokenUsers, String email)
     {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<InfoUser> call = apiService.getInfoUser(tokenUsers, email);
@@ -265,7 +267,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-    }
+    }*/
 
     public boolean validate() {
         boolean valid = true;
