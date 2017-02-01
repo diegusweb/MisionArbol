@@ -1,5 +1,6 @@
 package com.diegusweb.dev.misionarbol.api;
 
+import com.diegusweb.dev.misionarbol.models.InfoUser;
 import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.TestItems;
 
@@ -31,6 +32,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("v1/authenticate")
     Call<Login> authenticate(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("v1/authenticate/getuser")
+    Call<InfoUser> getInfoUser(@Field("token") String token, @Field("email") String email);
 
     /*@POST("/user/create")
     Call<Item> createUser(@Body String name, @Body String email);

@@ -16,6 +16,7 @@ import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.entities.User;
+import com.diegusweb.dev.misionarbol.models.InfoUser;
 import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.facebook.AccessToken;
@@ -183,13 +184,44 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
                 }else{
-                    User user = new User();
-                    user.setToken(mLoginObject.token);
 
-                    user.save();
-                    progressDialog.hide();
-                    navigateToMainScreen();
-                    Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
+
+                    //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
+
+                    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                    Call<InfoUser> calls = apiService.getInfoUser(mLoginObject.token, txtEmail.getText().toString());
+                    calls.enqueue(new Callback<InfoUser>() {
+                        @Override
+                        public void onResponse(Call<InfoUser> call, Response<InfoUser> response) {
+                            InfoUser mInfoUser = response.body();
+                            if(mInfoUser.getEmail() != null){
+                                User user = new User();
+                                user.setFirstName(mInfoUser.getFirt_name());
+                                user.setLastName(mInfoUser.getLast_name());
+                                user.setEmail(mInfoUser.getEmail());
+                                user.setToken(mLoginObject.token);
+
+                                user.save();
+                                progressDialog.hide();
+                                Toast.makeText(getBaseContext(), "SAVE", Toast.LENGTH_LONG).show();
+
+                            }
+                            else{
+                                Toast.makeText(getBaseContext(), "ERROR", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<InfoUser> call, Throwable t) {
+
+                        }
+                    });
+
+                    //progressDialog.hide();
+
+                    //navigateToMainScreen();
+                    //Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -199,6 +231,40 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean getUserAccountInfo(final String tokenUsers, String email)
+    {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<InfoUser> call = apiService.getInfoUser(tokenUsers, email);
+        call.enqueue(new Callback<InfoUser>() {
+            @Override
+            public void onResponse(Call<InfoUser> call, Response<InfoUser> response) {
+                InfoUser mInfoUser = response.body();
+                if(mInfoUser.getEmail() != null){
+                    User user = new User();
+                    user.setFirstName(mInfoUser.getFirt_name());
+                    user.setLastName(mInfoUser.getLast_name());
+                    user.setEmail(mInfoUser.getEmail());
+                    user.setToken(tokenUsers);
+
+                    user.save();
+                    Toast.makeText(getBaseContext(), "SAVE", Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "ERROR", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<InfoUser> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
     public boolean validate() {
