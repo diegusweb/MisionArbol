@@ -187,31 +187,42 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
-                Login mLoginObject = response.body();
-                if(mLoginObject.error != null){
-                    progressDialog.hide();
-                    btn_login.setEnabled(true);
-
-                    Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
-                }else{
-
-                    InfoConstants.API_TOKEN = mLoginObject.token;
+                Login mLoginObject = response.body();	
+				
+				if (mLoginObject==null) {
+					//404 or the response cannot be converted to GitHubUser.
+					ResponseBody responseBody = response.errorBody();
+					if (responseBody!=null) {
+						try {
+							//mTextView.setText("responseBody = "+responseBody.string());
+							Toast.makeText(getBaseContext(), "responseBody = "+responseBody.string(), Toast.LENGTH_LONG).show();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					} else {
+						//mTextView.setText("responseBody = null");
+						Toast.makeText(getBaseContext(), "responseBody = null", Toast.LENGTH_LONG).show();
+					}
+				} else {
+					//200
+					InfoConstants.API_TOKEN = mLoginObject.token;
 
                     Log.d("demo", InfoConstants.API_TOKEN.toString());
                     //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
 
                     getUserAccountInfo();
-                    progressDialog.hide();
-
-                    //navigateToMainScreen();
-                    //Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
-                }
-
+                    
+				}
+				
+				progressDialog.hide();
+				
             }
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
-
+				//mTextView.setText("t = "+t.getMessage());
+				Toast.makeText(getBaseContext(), "t = "+t.getMessage(), Toast.LENGTH_LONG).show();
+                 progressDialog.hide();
             }
         });
     }

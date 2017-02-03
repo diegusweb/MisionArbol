@@ -48,6 +48,42 @@ public class SignupActivity extends AppCompatActivity {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 
+		
+		
+		//call api register
+		ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<Login> call = apiService.signup(email, password);
+		call.enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                Login mLoginObject = response.body();
+                if(mLoginObject.error != null){
+                    progressDialog.hide();
+                    btn_login.setEnabled(true);
+
+                    Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
+                }else{
+
+                    InfoConstants.API_TOKEN = mLoginObject.token;
+
+                    Log.d("demo", InfoConstants.API_TOKEN.toString());
+                    //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
+
+                    getUserAccountInfo();
+                    progressDialog.hide();
+
+                    //navigateToMainScreen();
+                    //Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+
+            }
+        });
+		//------------
 
         /*User arr = new User();
         arr.setEmail(email);
