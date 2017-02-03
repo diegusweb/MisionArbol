@@ -47,40 +47,37 @@ public class SignupActivity extends AppCompatActivity {
     public void btnSignup(){
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-
-		
-		
+	
 		//call api register
 		ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Login> call = apiService.signup(email, password);
 		call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
-                Login mLoginObject = response.body();
-                if(mLoginObject.error != null){
-                    progressDialog.hide();
-                    btn_login.setEnabled(true);
-
-                    Toast.makeText(getBaseContext(), mLoginObject.error, Toast.LENGTH_LONG).show();
-                }else{
-
-                    InfoConstants.API_TOKEN = mLoginObject.token;
-
-                    Log.d("demo", InfoConstants.API_TOKEN.toString());
-                    //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
-
-                    getUserAccountInfo();
-                    progressDialog.hide();
-
-                    //navigateToMainScreen();
-                    //Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
-                }
+                Login model = response.body();
+                
+				 if (model==null) {
+					//404 or the response cannot be converted to GitHubUser.
+					ResponseBody responseBody = response.errorBody();
+					if (responseBody!=null) {
+						try {
+							Toast.makeText(getBaseContext(), "responseBody = "+responseBody.string(), Toast.LENGTH_LONG).show();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					} else {
+						Toast.makeText(getBaseContext(), "responseBody = null", Toast.LENGTH_LONG).show();
+					}
+				} else {
+					//200
+					
+				}
 
             }
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
-
+				Toast.makeText(getBaseContext(), "t = "+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 		//------------
