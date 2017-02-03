@@ -17,6 +17,7 @@ import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.entities.User;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
+import com.diegusweb.dev.misionarbol.models.GithubUser;
 import com.diegusweb.dev.misionarbol.models.InfoUser;
 import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.TestItems;
@@ -146,6 +147,10 @@ public class LoginActivity extends AppCompatActivity {
         }else{
 
             onLoginSuccess();
+
+            //getUserAccountInfo("chris@cotch.io");
+
+            //getUserGitHubTest();
         }
     }
 
@@ -156,6 +161,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
 
     public void onLoginSuccess() {
         //progressBar.setVisibility(View.VISIBLE);
@@ -187,39 +194,11 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
 
                     InfoConstants.API_TOKEN = mLoginObject.token;
+
+                    Log.d("demo", InfoConstants.API_TOKEN.toString());
                     //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
 
-                    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-                    Call<InfoUser> calls = apiService.getInfoUser(InfoConstants.API_TOKEN , txtEmail.getText().toString());
-
-                    calls.enqueue(new Callback<InfoUser>() {
-                        @Override
-                        public void onResponse(Call<InfoUser> call, Response<InfoUser> response) {
-                            InfoUser mInfoUser = response.body();
-                            if(mInfoUser.getEmail() != null){
-                                User user = new User();
-                                user.setFirstName(mInfoUser.getFirt_name());
-                                user.setLastName(mInfoUser.getLast_name());
-                                user.setEmail(mInfoUser.getEmail());
-                                user.setToken(InfoConstants.API_TOKEN);
-
-                                user.save();
-                                progressDialog.hide();
-                                Toast.makeText(getBaseContext(), "SAVE", Toast.LENGTH_LONG).show();
-
-                            }
-                            else{
-                                Toast.makeText(getBaseContext(), "ERROR", Toast.LENGTH_LONG).show();
-                            }
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<InfoUser> call, Throwable t) {
-
-                        }
-                    });
-
+                    getUserAccountInfo();
                     //progressDialog.hide();
 
                     //navigateToMainScreen();
@@ -235,27 +214,46 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /*public boolean getUserAccountInfo(final String tokenUsers, String email)
-    {
+    public void getUserGitHubTest(){
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<InfoUser> call = apiService.getInfoUser(tokenUsers, email);
+        Call<GithubUser> call = apiService.getUser("diegusweb");
+        call.enqueue(new Callback<GithubUser>() {
+            @Override
+            public void onResponse(Call<GithubUser> call, Response<GithubUser> response) {
+                int code = response.code();
+                if (code == 200) {
+                    GithubUser user = response.body();
+                    Toast.makeText(getApplication(), "Got the user: " + user.email + " -- " +user.following, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplication(), "Did not work: " + String.valueOf(code), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GithubUser> call, Throwable t) {
+                Toast.makeText(getApplication(), "Nope", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getUserAccountInfo()
+    {
+        //Log.d("demo", "getUserAccountInfo "+ InfoConstants.API_TOKEN);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<InfoUser> call = apiService.getInfoUser(InfoConstants.API_TOKEN);
         call.enqueue(new Callback<InfoUser>() {
             @Override
             public void onResponse(Call<InfoUser> call, Response<InfoUser> response) {
                 InfoUser mInfoUser = response.body();
-                if(mInfoUser.getEmail() != null){
-                    User user = new User();
-                    user.setFirstName(mInfoUser.getFirt_name());
-                    user.setLastName(mInfoUser.getLast_name());
-                    user.setEmail(mInfoUser.getEmail());
-                    user.setToken(tokenUsers);
-
-                    user.save();
-                    Toast.makeText(getBaseContext(), "SAVE", Toast.LENGTH_LONG).show();
-
+                int code = response.code();
+                if (code == 200) {
+                    Log.d("demo", "body "+response.body());
+                    Log.d("demo", "errorBody "+response.errorBody());
+                    Log.d("demo", "isSuccessful "+response.isSuccessful());
+                    Log.d("demo", "id "+ mInfoUser.id);
                 }
                 else{
-                    Toast.makeText(getBaseContext(), "ERROR", Toast.LENGTH_LONG).show();
+                    Log.d("demo", "code "+code);
                 }
 
             }
@@ -267,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-    }*/
+    }
 
     public boolean validate() {
         boolean valid = true;

@@ -1,5 +1,6 @@
 package com.diegusweb.dev.misionarbol.api;
 
+import com.diegusweb.dev.misionarbol.models.GithubUser;
 import com.diegusweb.dev.misionarbol.models.InfoUser;
 import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.TestItems;
@@ -23,24 +24,25 @@ import retrofit2.http.Query;
  */
 
 public interface ApiInterface {
-    @GET("/search/users")
-    Call<TestItems> getUsersNamedTom(@Query("q") String name);
+    /*@GET("/search/users")
+    Call<TestItems> getUsersNamedTom(@Query("q") String name);*/
 
     @GET("v1/items")
     Call<List<TestItems>> getListTestItems();
 
-    @FormUrlEncoded
-    @POST("v1/authenticate")
-    Call<Login> authenticate(@Field("email") String email, @Field("password") String password);
+    @GET("v1/authenticate")
+    Call<Login> authenticate(@Query("email") String email, @Query("password") String password);
 
-    @FormUrlEncoded
-    @POST("v1/authenticate/getuser")
-    Call<InfoUser> getInfoUser(@Field("token") String token, @Field("email") String email);
+    //@FormUrlEncoded
+    @GET("v1/authenticate/user")
+    Call<InfoUser> getInfoUser(@Query("token") String token);
 
-    /*@POST("/user/create")
-    Call<Item> createUser(@Body String name, @Body String email);
+    //@Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("v1/items/getuser")
+    Call<InfoUser> getInfoUserTest(@Query("email") String email);
 
-    @PUT("/user/{id}/update")
-    Call<Item> updateUser(@Path("id") String id , @Body Item user);*/
+    //Test
+    @GET("/users/{user}")
+    Call<GithubUser> getUser(@Path("user") String user);
 
 }

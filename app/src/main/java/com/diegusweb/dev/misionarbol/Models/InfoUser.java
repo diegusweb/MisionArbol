@@ -6,21 +6,62 @@ package com.diegusweb.dev.misionarbol.models;
 
 public class InfoUser {
 
-    private int id;
-    private String firt_name;
-    private String last_name;
-    private String email;
-    private String type;
-    private boolean active;
+    public String id;
+    public String firt_name;
+    public String last_name;
+    public String email;
 
-    public InfoUser(boolean active, String email, String firt_name, int id, String last_name, String type) {
+    @Override
+    public String toString() {
+        return(email);
+    }
+
+   /* public InfoUser(String updated_at, boolean active, String created_at, String email, String firt_name, int id, String last_name, String phone_cel, String phone_house, String type) {
+        this.updated_at = updated_at;
         this.active = active;
+        this.created_at = created_at;
         this.email = email;
         this.firt_name = firt_name;
         this.id = id;
         this.last_name = last_name;
+        this.phone_cel = phone_cel;
+        this.phone_house = phone_house;
         this.type = type;
     }
+
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getPhone_cel() {
+        return phone_cel;
+    }
+
+    public void setPhone_cel(String phone_cel) {
+        this.phone_cel = phone_cel;
+    }
+
+    public String getPhone_house() {
+        return phone_house;
+    }
+
+    public void setPhone_house(String phone_house) {
+        this.phone_house = phone_house;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
 
     public String getType() {
         return type;
@@ -69,6 +110,6 @@ public class InfoUser {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
-
+*/
 
 }
