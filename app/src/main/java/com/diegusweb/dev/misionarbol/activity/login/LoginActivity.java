@@ -16,6 +16,7 @@ import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.entities.User;
+import com.diegusweb.dev.misionarbol.entities.User_Table;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.GithubUser;
 import com.diegusweb.dev.misionarbol.models.InfoUser;
@@ -28,6 +29,7 @@ import com.facebook.FacebookException;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 
 import java.util.Arrays;
@@ -199,7 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                     //getUserAccountInfo(mLoginObject.token, txtEmail.getText().toString());
 
                     getUserAccountInfo();
-                    //progressDialog.hide();
+                    progressDialog.hide();
 
                     //navigateToMainScreen();
                     //Toast.makeText(getBaseContext(), mLoginObject.token, Toast.LENGTH_LONG).show();
@@ -251,6 +253,28 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("demo", "errorBody "+response.errorBody());
                     Log.d("demo", "isSuccessful "+response.isSuccessful());
                     Log.d("demo", "id "+ mInfoUser.id);
+
+                    List<User> users = SQLite.select().
+                            from(User.class).
+                            where(User_Table.email.is(mInfoUser.email)).
+                            queryList();
+
+                    if(users.isEmpty()){
+
+                        User user = new User();
+                        user.setUserId(Integer.parseInt(mInfoUser.id));
+                        user.setFirstName(mInfoUser.firt_name);
+                        user.setLastName(mInfoUser.last_name);
+                        user.setEmail(mInfoUser.email);
+                        user.setToken(InfoConstants.API_TOKEN);
+                        user.save();
+
+                        Log.d("demo", "isEmpty "+code);
+                        navigateToMainScreen();
+                    }
+                    else{
+                        Log.d("demo", "no isEmpty "+code);
+                    }
                 }
                 else{
                     Log.d("demo", "code "+code);
