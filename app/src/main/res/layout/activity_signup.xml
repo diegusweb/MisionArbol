@@ -5,6 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
+    android:id="@+id/root"
 tools:context="com.diegusweb.dev.misionarbol.activity.login.SignupActivity">
 
 <LinearLayout
@@ -28,10 +29,26 @@ tools:context="com.diegusweb.dev.misionarbol.activity.login.SignupActivity">
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/nombre"
+            android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nombre"
+            android:hint="Nombre"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@android:color/white" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"

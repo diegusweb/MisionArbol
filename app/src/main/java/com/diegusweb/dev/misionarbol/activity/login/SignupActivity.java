@@ -1,12 +1,15 @@
 package com.diegusweb.dev.misionarbol.activity.login;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
@@ -95,6 +98,10 @@ public class SignupActivity extends AppCompatActivity {
 				} else {
 					//200
                      progressDialog.hide();
+                     Snackbar.make(findViewById(R.id.root), "Cuenta Creada", Snackbar.LENGTH_LONG)
+                             .show();
+
+                     navigateToMainScreen();
 				}
 
             }
@@ -120,6 +127,14 @@ public class SignupActivity extends AppCompatActivity {
                     .getInstance()
                     .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(arr)));
         }*/
+    }
+
+    private void navigateToMainScreen() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
    /* private int getUsers() {
