@@ -1,5 +1,6 @@
 package com.diegusweb.dev.misionarbol.activity.login;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,15 +8,30 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.api.ApiClient;
+import com.diegusweb.dev.misionarbol.api.ApiInterface;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
+import com.diegusweb.dev.misionarbol.models.Login;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
+
+    @Bind(R.id.first_name)
+    EditText inputFirstName;
+
+    @Bind(R.id.last_name)
+    EditText imputLastName;
 
     @Bind(R.id.email)
     EditText inputEmail;
@@ -45,12 +61,20 @@ public class SignupActivity extends AppCompatActivity {
 
     @OnClick(R.id.sign_up_button)
     public void btnSignup(){
+        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
+                R.style.Theme_RicoPaRico_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.show();
+
+        String firstName = inputFirstName.getText().toString();
+        String LastName = imputLastName.getText().toString();
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 	
 		//call api register
 		ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<Login> call = apiService.signup(email, password);
+        Call<Login> call = apiService.signup(firstName, LastName, password, email);
 		call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
@@ -70,7 +94,7 @@ public class SignupActivity extends AppCompatActivity {
 					}
 				} else {
 					//200
-					
+                     progressDialog.hide();
 				}
 
             }

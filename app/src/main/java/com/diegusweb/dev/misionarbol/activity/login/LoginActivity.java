@@ -32,12 +32,14 @@ import com.facebook.login.widget.LoginButton;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -278,13 +280,18 @@ public class LoginActivity extends AppCompatActivity {
                         user.setLastName(mInfoUser.last_name);
                         user.setEmail(mInfoUser.email);
                         user.setToken(InfoConstants.API_TOKEN);
-                        user.save();
+                        //user.save();
+
+                        InfoConstants.USER_EMAIL = mInfoUser.email;
+                        InfoConstants.USER_NAME = mInfoUser.firt_name +" "+mInfoUser.last_name;
+
 
                         Log.d("demo", "isEmpty "+code);
                         navigateToMainScreen();
                     }
                     else{
                         Log.d("demo", "no isEmpty "+code);
+                        navigateToMainScreen();
                     }
                 }
                 else{

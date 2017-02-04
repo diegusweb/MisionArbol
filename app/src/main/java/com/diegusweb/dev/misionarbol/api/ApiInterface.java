@@ -45,7 +45,7 @@ public interface ApiInterface {
     @GET("/users/{user}")
     Call<GithubUser> getUser(@Path("user") String user);
 	
-	@POST("api/{email}/{password}")
-    Call<Login> registration(@Path("email") String email, @Path("password") String password);
+	@POST("v1/authenticate/signup")
+    Call<Login> signup(@Query("first_name") String first_name, @Query("last_name") String last_name, @Query("password") String password, @Query("email") String email);
 
 }
