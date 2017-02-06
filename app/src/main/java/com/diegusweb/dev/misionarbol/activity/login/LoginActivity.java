@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+
         if(AccessToken.getCurrentAccessToken() != null){
             navigateToMainScreen();
         }
