@@ -16,14 +16,59 @@
         class="com.google.android.gms.maps.SupportMapFragment" />
 
 
-    <!--<ImageView
+    <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:paddingBottom="45dp"
-        android:src="@drawable/id_map_marker" />-->
+        android:src="@drawable/id_map_marker" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/barFindColor"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1">
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="DIRECCION DE DESTINO"
+                    android:textSize="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_below="@+id/direccion"
+                    android:id="@+id/textView" />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buscando Direccion...."
+                    android:textSize="14dp"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/cardview_dark_background"
+                    android:paddingLeft="16dp"
+                    android:id="@+id/direccion" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
 
 
     <android.support.design.widget.FloatingActionButton

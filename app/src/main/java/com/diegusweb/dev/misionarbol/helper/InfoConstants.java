@@ -17,5 +17,15 @@ public class InfoConstants {
 
     public static String USER_NAME = "";
 
+    public static double latDes = 0;
+    public static double lonDes = 0;
+
+    public static double latCurrent = 0;
+    public static double lonCurrent = 0;
+
+    public  static final int zoomMap = 17;
+
+    public static String CITY = "";
+    public static String COUNTRY = "";
 
 }

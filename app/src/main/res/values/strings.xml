@@ -79,4 +79,7 @@
     <string name="nombre">Nombre</string>
     <string name="email">Email</string>
 
+    <string name="snackbar_text">ACTIVO</string>
+    <string name="snackbar_cancel">INABILITADO</string>
+
 </resources>
