@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +98,10 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                MyDialogFragment dialogFragment = new MyDialogFragment ();
+                dialogFragment.show(fm, "Foto");
+
                 Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
