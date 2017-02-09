@@ -30,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.activity.report.ReportActivity;
+import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -98,9 +100,14 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                MyDialogFragment dialogFragment = new MyDialogFragment ();
-                dialogFragment.show(fm, "Foto");
+               // FragmentManager fm = getFragmentManager();
+                //MyDialogFragment dialogFragment = new MyDialogFragment ();
+                //dialogFragment.show(fm, "Foto");
+
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
+
 
                 Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
