@@ -208,20 +208,6 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
 
                         fab.show();
 
-                       /* Button clickButtons = (Button) getActivity().findViewById(R.id.clickButton);
-                        clickButtons.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                Log.d("Tiogo", String.valueOf(longitude + " " + latitude));
-                                Log.d("Tiogo1", String.valueOf(InfoConstants.lonDes + " " + InfoConstants.latDes));
-
-                               // Intent i = new Intent(getActivity(), FindListActivity.class);
-                                //i.putExtra("STRING_I_NEED", id);
-
-                               // startActivity(i);
-                            }
-                        });*/
 
                     }
                 } catch (Exception e) {
