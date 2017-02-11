@@ -16,16 +16,16 @@
         class="com.google.android.gms.maps.SupportMapFragment" />
 
 
-    <ImageView
+   <!-- <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:paddingBottom="45dp"
-        android:src="@drawable/id_map_marker" />
+        android:src="@drawable/id_map_marker" />-->
 
-    <LinearLayout
+    <!--<LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -68,7 +68,7 @@
 
         </TableLayout>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
     <android.support.design.widget.FloatingActionButton

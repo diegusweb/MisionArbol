@@ -32,6 +32,12 @@
          tools:context=".MapsActivity"
          android:name="com.google.android.gms.maps.SupportMapFragment" />-->
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
+
     <TextView
         android:id="@+id/text_product_name"
         android:layout_width="match_parent"

@@ -30,10 +30,14 @@
 
     <style name="Theme.RicoPaRico.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Theme.RicoPaRico.Dark.Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/white</item>
-        <item name="android:textColorPrimary">@color/iron</item>
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="Theme.RicoPaRico.Dark.Dialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#FFC107</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!-- Used for the background -->
+        <item name="android:background">#4CAF50</item>
+
     </style>
 
 </resources>

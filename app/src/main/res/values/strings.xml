@@ -82,4 +82,7 @@
     <string name="snackbar_text">ACTIVO</string>
     <string name="snackbar_cancel">INABILITADO</string>
 
+    <string name="ok">ACTIVO</string>
+    <string name="cancel">INABILITADO</string>
+
 </resources>

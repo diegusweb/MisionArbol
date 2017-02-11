@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:padding="10dp"
     android:orientation="vertical"
     android:weightSum="1">
@@ -18,7 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seleccione rigen"
-        android:textSize="20dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp" />
 
@@ -35,7 +33,7 @@
             android:background="@color/primaryColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="13dp"
             android:text="Galeria" />
 
         <Button
@@ -44,7 +42,7 @@
             android:layout_width="wrap_content"
             android:background="@color/primaryColor"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="13dp"
             android:text="Camara" />
 
         <Button
@@ -53,7 +51,7 @@
             android:background="@color/primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="13dp"
             android:text="Cancelar" />
     </LinearLayout>
 
