@@ -105,9 +105,6 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                 //i.putExtra("STRING_I_NEED", id);
                 startActivity(i);
 
-
-                Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 
