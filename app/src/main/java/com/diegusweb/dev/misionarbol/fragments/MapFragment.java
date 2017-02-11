@@ -100,9 +100,6 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // FragmentManager fm = getFragmentManager();
-                //MyDialogFragment dialogFragment = new MyDialogFragment ();
-                //dialogFragment.show(fm, "Foto");
 
                 Intent i = new Intent(getActivity(), ReportActivity.class);
                 //i.putExtra("STRING_I_NEED", id);
