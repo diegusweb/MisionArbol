@@ -109,6 +109,7 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         try {
             // When an Image is picked
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
@@ -123,9 +124,9 @@ public class ReportActivity extends AppCompatActivity {
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 mediaPath = cursor.getString(columnIndex);
-                str1.setText(mediaPath);
+                //str1.setText(mediaPath);
                 // Set the Image in ImageView for Previewing the Media
-                imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
+                imageView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
                 cursor.close();
 
             } // When an Video is picked
@@ -142,9 +143,9 @@ public class ReportActivity extends AppCompatActivity {
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 
                 mediaPath1 = cursor.getString(columnIndex);
-                str2.setText(mediaPath1);
+                //str2.setText(mediaPath1);
                 // Set the Video Thumb in ImageView Previewing the Media
-                imgView.setImageBitmap(getThumbnailPathForLocalFile(ReportActivity.this, selectedVideo));
+                imageView.setImageBitmap(getThumbnailPathForLocalFile(ReportActivity.this, selectedVideo));
                 cursor.close();
 
             } else {

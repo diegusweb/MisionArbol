@@ -58,7 +58,7 @@ public interface ApiInterface {
                        @Query("email") String email);
 
     @Multipart
-    @POST("retrofit_example/upload_image.php")
+    @POST("v1/uploadImage")
     Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
                                     @Part("file") RequestBody name);
 
