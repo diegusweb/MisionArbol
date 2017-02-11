@@ -197,8 +197,8 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                         //String city = addresses.get(0).getLocality();
                         //String country = addresses.get(0).getCountryName();
 
-                        TextView text = (TextView) getActivity().findViewById(R.id.direccion);
-                        text.setText(address);
+                       // TextView text = (TextView) getActivity().findViewById(R.id.direccion);
+                       // text.setText(address);
 
                         fab.show();
 
