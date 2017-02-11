@@ -1,7 +1,9 @@
 package com.diegusweb.dev.misionarbol.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -36,6 +38,16 @@ public class MyDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        Button camera = (Button) rootView.findViewById(R.id.camara);
+        camera.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,0);
             }
         });
 

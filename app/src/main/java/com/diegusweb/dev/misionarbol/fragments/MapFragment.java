@@ -157,12 +157,11 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         //Marker ubicacion actual
         googleMap.addMarker(new MarkerOptions()
                 .position(NYC)
-                .alpha(0f)
                 .title("Ubicacion Actual"))
                 .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
 
         //marcador para destino
-        marker = googleMap.addMarker(new MarkerOptions()
+        /*marker = googleMap.addMarker(new MarkerOptions()
                 .position(NYC)
                 .title("Ubicacion Destino")
                 .snippet("Deslize el mapa para buscar direccion.")
@@ -170,7 +169,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                 .draggable(false)
                 .alpha(0f)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.id_map_marker))
-                .draggable(true).visible(true));
+                .draggable(true).visible(true));*/
 
         // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NYC, 17));
         final CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -230,7 +229,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                 }
 
                 // Update your Marker's position to the center of the Map.
-                marker.setPosition(centerOfMap);
+              //  marker.setPosition(centerOfMap);
             }
         });
 
