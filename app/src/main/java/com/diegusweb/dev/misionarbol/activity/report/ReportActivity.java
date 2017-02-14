@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +57,15 @@ public class ReportActivity extends AppCompatActivity {
         agregarToolbar();
 
         dialogOpen();
+
+        Button boton = (Button) findViewById(R.id.btnUbicaion);
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ReportActivity.this, MapActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void dialogOpen(){
@@ -114,7 +124,11 @@ public class ReportActivity extends AppCompatActivity {
             // When an Image is picked
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
 
-                // Get the Image from data
+                super.onActivityResult(requestCode, resultCode, data);
+                Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+                imageView.setImageBitmap(bitmap);
+
+               /* // Get the Image from data
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
@@ -127,7 +141,7 @@ public class ReportActivity extends AppCompatActivity {
                 //str1.setText(mediaPath);
                 // Set the Image in ImageView for Previewing the Media
                 imageView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
-                cursor.close();
+                cursor.close();*/
 
             } // When an Video is picked
             else if (requestCode == 1 && resultCode == RESULT_OK && null != data) {

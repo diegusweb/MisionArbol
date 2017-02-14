@@ -70,7 +70,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
 
     FloatingActionButton fab;
 
-
+    private static final int MY_LOCATION_REQUEST_CODE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,7 +120,9 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         String provider = locationManager.getBestProvider(criteria, true);
 
 
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+       if (ActivityCompat.checkSelfPermission(getActivity(),
+               Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
+               Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -130,6 +132,9 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
+
+
         Location myLocation = locationManager.getLastKnownLocation(provider);
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
@@ -155,7 +160,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                 .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
 
         //marcador para destino
-        /*marker = googleMap.addMarker(new MarkerOptions()
+        marker = googleMap.addMarker(new MarkerOptions()
                 .position(NYC)
                 .title("Ubicacion Destino")
                 .snippet("Deslize el mapa para buscar direccion.")
@@ -163,7 +168,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                 .draggable(false)
                 .alpha(0f)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.id_map_marker))
-                .draggable(true).visible(true));*/
+                .draggable(true).visible(true));
 
         // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NYC, 17));
         final CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -209,7 +214,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                 }
 
                 // Update your Marker's position to the center of the Map.
-              //  marker.setPosition(centerOfMap);
+                marker.setPosition(centerOfMap);
             }
         });
 
@@ -241,6 +246,19 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         }
 
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == MY_LOCATION_REQUEST_CODE) {
+            if (permissions.length == 1 &&
+                    permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //googleMap.setMyLocationEnabled(true);
+            } else {
+                // Permission was denied. Display an error message.
+            }
+        }
     }
 
 
