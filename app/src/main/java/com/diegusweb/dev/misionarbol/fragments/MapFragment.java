@@ -115,6 +115,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
 
         // googleMap.setMyLocationEnabled(true);
 
+
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, true);

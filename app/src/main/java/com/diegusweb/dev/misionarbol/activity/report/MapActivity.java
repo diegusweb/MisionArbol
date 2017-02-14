@@ -3,6 +3,8 @@ package com.diegusweb.dev.misionarbol.activity.report;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -12,10 +14,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -26,9 +30,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
+import java.util.Locale;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -69,7 +77,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap)
     {
         mGoogleMap=googleMap;
-        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -132,11 +140,69 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         markerOptions.position(latLng);
         markerOptions.title("Current Position");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+        //mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         //move map camera
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+
+
+        //marcador para destino
+        mCurrLocationMarker = mGoogleMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .title("Ubicacion Destino")
+                .snippet("Deslize el mapa para buscar direccion.")
+                .flat(true)
+                .draggable(false)
+                .alpha(0f)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.id_map_marker))
+                .draggable(true).visible(true));
+
+        // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NYC, 17));
+        final CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(latLng)      // Sets the center of the map to Mountain View
+                .zoom(InfoConstants.zoomMap)                   // Sets the zoom
+                //.bearing(90)                // Sets the orientation of the camera to east
+                .tilt(20)                   // Sets the tilt of the camera to 30 degrees
+                .build();
+        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+        mGoogleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(CameraPosition position) {
+                LatLng centerOfMap = mGoogleMap.getCameraPosition().target;
+                try {
+                    Geocoder gcd = new Geocoder(getApplication(), Locale.getDefault());
+                    List<Address> addresses = gcd.getFromLocation(centerOfMap.latitude, centerOfMap.longitude, 1);
+
+                    InfoConstants.latDes = centerOfMap.latitude;
+                    InfoConstants.lonDes = centerOfMap.longitude;
+
+                    if (addresses.size() > 0) {
+                        String address = addresses.get(0).getAddressLine(0);
+                        String city = addresses.get(0).getLocality();
+                        String state = addresses.get(0).getAdminArea();
+                        String country = addresses.get(0).getCountryName();
+                        String postalCode = addresses.get(0).getPostalCode();
+                        Log.d("Actual1", address +" / "+city+"/"+country+"/"+state+"/"+postalCode);
+                        // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+                        //String city = addresses.get(0).getLocality();
+                        //String country = addresses.get(0).getCountryName();
+
+                        // TextView text = (TextView) getActivity().findViewById(R.id.direccion);
+                        // text.setText(address);
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                // Update your Marker's position to the center of the Map.
+                mCurrLocationMarker.setPosition(centerOfMap);
+            }
+        });
 
         //optionally, stop location updates if only current location is needed
         if (mGoogleApiClient != null) {
