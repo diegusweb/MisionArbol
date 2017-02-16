@@ -61,12 +61,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private MapView mapView;
     private GoogleMap googleMapa;
 
+    FloatingActionButton fab;
+
+
     private static final int MY_LOCATION_REQUEST_CODE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
@@ -79,8 +81,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mapView.onResume();
         mapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
 
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.hide();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
 
+            }
+        });
+
+        fab.show();
 
     }
 
