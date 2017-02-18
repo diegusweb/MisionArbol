@@ -3,6 +3,7 @@ package com.diegusweb.dev.misionarbol.api;
 import com.diegusweb.dev.misionarbol.models.GithubUser;
 import com.diegusweb.dev.misionarbol.models.InfoUser;
 import com.diegusweb.dev.misionarbol.models.Login;
+import com.diegusweb.dev.misionarbol.models.PointsTree;
 import com.diegusweb.dev.misionarbol.models.ServerResponse;
 import com.diegusweb.dev.misionarbol.models.TestItems;
 
@@ -48,8 +49,8 @@ public interface ApiInterface {
     Call<InfoUser> getInfoUserTest(@Query("email") String email);
 
     //Test
-    @GET("/users/{user}")
-    Call<GithubUser> getUser(@Path("user") String user);
+  //  @GET("/users/{user}")
+    //Call<GithubUser> getUser(@Path("user") String user);
 	
 	@POST("v1/authenticate/signup")
     Call<Login> signup(@Query("first_name") String first_name,
@@ -61,6 +62,9 @@ public interface ApiInterface {
     @POST("v1/uploadImage")
     Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
                                     @Part("file") RequestBody name);
+
+    @GET("/v1/points")
+    Call<List<PointsTree>> getPointTree();
 
 
 }
