@@ -3,6 +3,8 @@ package com.diegusweb.dev.misionarbol.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -33,7 +35,12 @@ import android.widget.Toast;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.report.ReportActivity;
 import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
+import com.diegusweb.dev.misionarbol.adapter.AdapteTestItems;
+import com.diegusweb.dev.misionarbol.api.ApiClient;
+import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
+import com.diegusweb.dev.misionarbol.models.PointsTree;
+import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,6 +60,10 @@ import java.util.Locale;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -60,6 +71,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private MapView mapView;
     private GoogleMap googleMapa;
+
+    List<PointsTree> RouteLists = new ArrayList<>();
+    private ArrayList<PointsTree> arraylist;
 
     FloatingActionButton fab;
 
@@ -132,12 +146,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         googleMapa.setMyLocationEnabled(true);
        // googleMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(augsburg, 13));
 
+        getPointsForMap();
 
     }
 
-    public void onLocationChanged(Location location) {
-
-
+    public void onLocationChanged(Location location)
+    {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
         // create marker
@@ -148,6 +162,109 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         //googleMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 17));
         googleMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+
+
+
+    }
+
+    public void getPointsForMap()
+    {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        Log.d("Resultados","otrooo");
+
+        Call<List<PointsTree>> call = apiService.getPointTree();
+        call.enqueue(new Callback<List<PointsTree>>() {
+            @Override
+            public void onResponse(Call<List<PointsTree>> call, Response<List<PointsTree>> response) {
+                List<PointsTree> demo = response.body();
+
+                Log.d("LISTAAAAA ", "num"+demo.size());
+
+                /*if(response.isSuccessful()) {
+                    List<TestItems> changesList = response.body();
+                    changesList.forEach(change -> System.out.println(change.getTitle()));
+                } else {
+                    System.out.println(response.errorBody());
+                }*/
+
+                setLines(demo);
+
+                StringBuilder builder = new StringBuilder();
+                TestItems movie;
+
+                for (PointsTree repo: demo) {
+                    builder.append(repo.getTitle() + "->" + repo.getId());
+
+                    movie = new TestItems("asdas",repo.getId(), repo.getTitle());
+                }
+                Toast.makeText(getActivity(), builder.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<PointsTree>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void setLines(List<PointsTree> routes){
+
+        this.arraylist = new ArrayList<PointsTree>();
+        this.arraylist.addAll(routes);
+
+
+        List<LatLng> pointsIda = new ArrayList<LatLng>();
+        List<LatLng> pointsVuelta = new ArrayList<LatLng>();
+
+        List<Marker> markers = new ArrayList<Marker>();
+
+        int height = 150;
+        int width = 150;
+
+
+        for (int i = 0; i < this.arraylist.size(); i++) {
+
+            LatLng LOWER = new LatLng(this.arraylist.get(i).getLat(), this.arraylist.get(i).getLng());
+            //pointsIda.add(LOWER);
+
+
+            if(this.arraylist.get(i).getType_id() == 1){
+                BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_green);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+                Marker marker = googleMapa.addMarker(new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .title("Arbol Magnifico")
+                        .position(LOWER)); //...
+
+                markers.add(marker);
+            }
+
+            if(this.arraylist.get(i).getType_id() == 2){
+                BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_dead);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+                Marker marker = googleMapa.addMarker(new MarkerOptions()
+                        .title("Arbol Seco")
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .position(LOWER)); //...
+
+                markers.add(marker);
+            }
+
+
+
+
+
+
+
+        }
+
+// after loop:
+        markers.size();
 
     }
 }

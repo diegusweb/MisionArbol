@@ -49,8 +49,8 @@ public interface ApiInterface {
     Call<InfoUser> getInfoUserTest(@Query("email") String email);
 
     //Test
-  //  @GET("/users/{user}")
-    //Call<GithubUser> getUser(@Path("user") String user);
+    @GET("/users/{user}")
+    Call<GithubUser> getUser(@Path("user") String user);
 	
 	@POST("v1/authenticate/signup")
     Call<Login> signup(@Query("first_name") String first_name,
@@ -63,7 +63,7 @@ public interface ApiInterface {
     Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
                                     @Part("file") RequestBody name);
 
-    @GET("/v1/points")
+    @GET("v1/points")
     Call<List<PointsTree>> getPointTree();
 
 

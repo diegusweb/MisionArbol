@@ -7,19 +7,23 @@ import java.lang.reflect.Array;
  */
 
 public class PointsTree {
+
+
+
     private int id;
     private String name;
     //private InfoUser user;
+    private int type_id;
     private String title;
     private String description;
     private String path;
-    private String status;
-    private String lat;
-    private String lng;
+    private int status;
+    private double lat;
+    private double lng;
     private String country;
     private String city;
 
-    public PointsTree(String city, String country, String description, int id, String lat, String lng, String name, String path, String status, String title) {
+    public PointsTree(String city, String country, String description, int id, double lat, double lng, String name, String path, int status, String title) {
         this.city = city;
         this.country = country;
         this.description = description;
@@ -30,6 +34,12 @@ public class PointsTree {
         this.path = path;
         this.status = status;
         this.title = title;
+    }
+
+    public  int  getType_id() {
+        return type_id;
+    }public void setType_id(int type_id) {
+        this.type_id = type_id;
     }
 
     public String getTitle() {
@@ -72,19 +82,19 @@ public class PointsTree {
         this.id = id;
     }
 
-    public String getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public String getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public void setLng(String lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 
@@ -104,13 +114,14 @@ public class PointsTree {
         this.path = path;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
+
 
 
 }
