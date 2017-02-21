@@ -8,12 +8,10 @@ import java.lang.reflect.Array;
 
 public class PointsTree {
 
-
-
     private int id;
     private String name;
-    //private InfoUser user;
-    private int type_id;
+    private InfoUser user_id;
+    private Type type_id;
     private String title;
     private String description;
     private String path;
@@ -23,7 +21,7 @@ public class PointsTree {
     private String country;
     private String city;
 
-    public PointsTree(String city, String country, String description, int id, double lat, double lng, String name, String path, int status, String title) {
+    public PointsTree(String city, String country, String description, int id, double lat, double lng, String name, String path, int status, String title, Type type_id, InfoUser user_id) {
         this.city = city;
         this.country = country;
         this.description = description;
@@ -34,20 +32,16 @@ public class PointsTree {
         this.path = path;
         this.status = status;
         this.title = title;
-    }
-
-    public  int  getType_id() {
-        return type_id;
-    }public void setType_id(int type_id) {
         this.type_id = type_id;
+        this.user_id = user_id;
     }
 
-    public String getTitle() {
-        return title;
+    public InfoUser getUser_id() {
+        return user_id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setUser_id(InfoUser user_id) {
+        this.user_id = user_id;
     }
 
     public String getCity() {
@@ -121,6 +115,27 @@ public class PointsTree {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Type getType_id() {
+        return type_id;
+    }
+
+    public void setType_id(Type type_id) {
+        this.type_id = type_id;
+    }
+
+
+
+
+
 
 
 

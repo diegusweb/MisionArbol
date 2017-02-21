@@ -229,36 +229,57 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             //pointsIda.add(LOWER);
 
 
-            if(this.arraylist.get(i).getType_id() == 1){
+            if(this.arraylist.get(i).getType_id().getId() == 1){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_green);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .title("Arbol Magnifico")
+                        .title(this.arraylist.get(i).getType_id().getTitle() )
                         .position(LOWER)); //...
 
                 markers.add(marker);
             }
 
-            if(this.arraylist.get(i).getType_id() == 2){
+            if(this.arraylist.get(i).getType_id().getId() == 2){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_dead);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
-                        .title("Arbol Seco")
+                        .title(this.arraylist.get(i).getType_id().getTitle() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .position(LOWER)); //...
 
                 markers.add(marker);
             }
 
+            if(this.arraylist.get(i).getType_id().getId() == 5){
+                BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_trunk);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
+                Marker marker = googleMapa.addMarker(new MarkerOptions()
+                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .position(LOWER)); //...
 
+                markers.add(marker);
+            }
 
+            if(this.arraylist.get(i).getType_id().getId() == 4){
+                BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_plant);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
+                Marker marker = googleMapa.addMarker(new MarkerOptions()
+                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .position(LOWER)); //...
+
+                markers.add(marker);
+            }
 
 
         }
