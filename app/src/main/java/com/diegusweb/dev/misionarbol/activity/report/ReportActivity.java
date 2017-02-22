@@ -25,12 +25,16 @@ import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.adapter.AdapteTestItems;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.fragments.MyDialogFragment;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.ServerResponse;
+import com.diegusweb.dev.misionarbol.models.TestItems;
 
 import java.io.File;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -64,6 +68,40 @@ public class ReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ReportActivity.this, MapActivity.class);
                 startActivity(i);
+            }
+        });
+
+        Button botonAceptar = (Button) findViewById(R.id.btnAcetar);
+        botonAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent i = new Intent(ReportActivity.this, MapActivity.class);
+                //startActivity(i);
+
+                uploadServer();
+            }
+        });
+    }
+
+    public void uploadServer(){
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        Log.d("Resultados","otrooo");
+
+        Call<ServerResponse>  call = apiService.uploadFile("demoo",13, 1, "descriptionvv",1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
+        call.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse StudentData = response.body();
+
+                Log.d("LISTAAAAA ", "num"+StudentData);
+
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
             }
         });
     }
@@ -207,41 +245,5 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
-    // Uploading Image/Video
-    private void uploadFile() {
-        progressDialog.show();
 
-        // Map is used to multipart the file using okhttp3.RequestBody
-        File file = new File(mediaPath);
-
-        // Parsing any Media type file
-        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
-
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<ServerResponse> call = apiService.uploadFile(fileToUpload, filename);
-        call.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse serverResponse = response.body();
-                if (serverResponse != null) {
-                    if (serverResponse.getSuccess()) {
-                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    assert serverResponse != null;
-                    Log.v("Response", serverResponse.toString());
-                }
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-
-            }
-        });
-    }
 }

@@ -52,13 +52,27 @@
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAcetar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:layout_alignBaseline="@+id/btnUbicaion"
+            android:layout_alignBottom="@+id/btnUbicaion"
+            android:layout_toRightOf="@+id/btnUbicaion"
+            android:layout_toEndOf="@+id/btnUbicaion" />
+
         <Button
             android:id="@+id/btnUbicaion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:text="AGREGAR"
             android:layout_centerVertical="true"
-            android:text="AGREGAR" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="96dp"
+            android:layout_marginStart="96dp" />
     </RelativeLayout>
 
     <RelativeLayout

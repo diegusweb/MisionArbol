@@ -77,6 +77,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         int id = item.getItemId();
         if (id == R.id.action_accept_point) {
+            this.finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -197,6 +198,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     InfoConstants.latDes = centerOfMap.latitude;
                     InfoConstants.lonDes = centerOfMap.longitude;
 
+
                     if (addresses.size() > 0) {
                         String address = addresses.get(0).getAddressLine(0);
                         String city = addresses.get(0).getLocality();
@@ -211,6 +213,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                         // TextView text = (TextView) getActivity().findViewById(R.id.direccion);
                         // text.setText(address);
+
+                        InfoConstants.CITY = city;
+                        InfoConstants.COUNTRY = country;
 
 
                     }
