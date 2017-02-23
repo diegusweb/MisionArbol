@@ -81,4 +81,8 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
+    <color name="accent_dark">#ff2929</color>
+    <color name="secondary_text">#727272</color>
+    <color name="white_overlay">#F3F3F3</color>
 </resources>

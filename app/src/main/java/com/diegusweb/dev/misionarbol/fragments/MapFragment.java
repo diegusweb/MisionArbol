@@ -16,9 +16,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import android.Manifest;
@@ -41,6 +43,7 @@ import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.PointsTree;
 import com.diegusweb.dev.misionarbol.models.TestItems;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -75,7 +78,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     List<PointsTree> RouteLists = new ArrayList<>();
     private ArrayList<PointsTree> arraylist;
 
-    FloatingActionButton fab;
+    //FloatingActionButton fab;
 
 
     private static final int MY_LOCATION_REQUEST_CODE = 1;
@@ -95,7 +98,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mapView.onResume();
         mapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        /*fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.hide();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +111,38 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        fab.show();
+        fab.show();*/
+
+
+        final FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.frame_layout);
+        frameLayout.getBackground().setAlpha(0);
+        final FloatingActionsMenu fabMenu = (FloatingActionsMenu) view.findViewById(R.id.fab_menu);
+        fabMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                frameLayout.getBackground().setAlpha(240);
+                frameLayout.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        fabMenu.collapse();
+                        return true;
+                    }
+                });
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                frameLayout.getBackground().setAlpha(0);
+                frameLayout.setOnTouchListener(null);
+            }
+        });
+
+        view.findViewById(R.id.fab_photo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
