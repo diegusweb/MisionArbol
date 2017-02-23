@@ -17,6 +17,8 @@ public class InfoConstants {
 
     public static String USER_NAME = "";
 
+    public static int USER_ID = 12;
+
     public static double latDes = 0;
     public static double lonDes = 0;
 
@@ -24,5 +26,8 @@ public class InfoConstants {
 
     public static String CITY = "";
     public static String COUNTRY = "";
+
+    public static int TYPE_SELECT = 0;
+
 
 }

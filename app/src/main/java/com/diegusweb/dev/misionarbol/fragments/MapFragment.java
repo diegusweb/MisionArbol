@@ -140,7 +140,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         view.findViewById(R.id.fab_photo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                InfoConstants.TYPE_SELECT = 1;
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
             }
         });
 

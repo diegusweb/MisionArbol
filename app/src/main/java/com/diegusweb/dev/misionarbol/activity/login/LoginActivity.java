@@ -44,6 +44,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.diegusweb.dev.misionarbol.helper.InfoConstants.USER_ID;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Bind(R.id.btnLogin)
@@ -267,6 +269,9 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("demo", "errorBody "+response.errorBody());
                     Log.d("demo", "isSuccessful "+response.isSuccessful());
                     Log.d("demo", "id "+ mInfoUser.id);
+
+                    //constnat ID user
+                    USER_ID = Integer.parseInt(mInfoUser.id);
 
                     List<User> users = SQLite.select().
                             from(User.class).

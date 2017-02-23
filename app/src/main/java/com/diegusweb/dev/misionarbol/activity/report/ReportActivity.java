@@ -89,7 +89,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Log.d("Resultados","otrooo");
 
-        Call<ServerResponse>  call = apiService.uploadFile("demoo",13, 1, "descriptionvv",1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
+        Call<ServerResponse>  call = apiService.uploadFile("demoo",InfoConstants.USER_ID, InfoConstants.TYPE_SELECT, "descriptionvv",1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
