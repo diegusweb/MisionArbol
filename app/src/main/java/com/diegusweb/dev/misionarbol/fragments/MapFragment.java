@@ -148,6 +148,39 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        view.findViewById(R.id.fab_event).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(getActivity(), "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                InfoConstants.TYPE_SELECT = 2;
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
+            }
+        });
+
+        view.findViewById(R.id.fab_photo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(getActivity(), "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                InfoConstants.TYPE_SELECT = 3;
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
+            }
+        });
+
+        view.findViewById(R.id.fab_others).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(getActivity(), "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                InfoConstants.TYPE_SELECT = 4;
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

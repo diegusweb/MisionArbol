@@ -164,7 +164,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         //move map camera
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(InfoConstants.zoomMap));
 
 
         //marcador para destino

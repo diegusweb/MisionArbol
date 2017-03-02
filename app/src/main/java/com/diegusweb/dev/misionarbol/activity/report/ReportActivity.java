@@ -11,12 +11,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,7 +36,10 @@ import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.ServerResponse;
 import com.diegusweb.dev.misionarbol.models.TestItems;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -52,6 +58,11 @@ public class ReportActivity extends AppCompatActivity {
     String[] mediaColumns = {MediaStore.Video.Media._ID};
     ProgressDialog progressDialog;
     TextView str1, str2;
+    FileOutputStream fo;
+
+    ImageView image_ic_delete;
+
+    ImageView image_ic_input_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +82,30 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-        Button botonAceptar = (Button) findViewById(R.id.btnAcetar);
-        botonAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Intent i = new Intent(ReportActivity.this, MapActivity.class);
-                //startActivity(i);
+        image_ic_delete = (ImageView)findViewById(R.id.image_ic_delete);
+        image_ic_input_add = (ImageView)findViewById(R.id.image_ic_input_add);
 
-                uploadServer();
-            }
-        });
+        image_ic_input_add.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.save, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action_save_report) {
+            uploadServer();
+
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void uploadServer(){
@@ -89,7 +114,10 @@ public class ReportActivity extends AppCompatActivity {
 
         Log.d("Resultados","otrooo");
 
-        Call<ServerResponse>  call = apiService.uploadFile("demoo",InfoConstants.USER_ID, InfoConstants.TYPE_SELECT, "descriptionvv",1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
+        TextView descr = (TextView)findViewById(R.id.txtDescription);
+        String value = descr.getText().toString();
+
+        Call<ServerResponse>  call = apiService.uploadFile("demoo",InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -107,9 +135,6 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     public void dialogOpen(){
-        //FragmentManager fm = getFragmentManager();
-       // MyDialogFragment dialogFragment = new MyDialogFragment ();
-       // dialogFragment.show(getSupportFragmentManager(), "Foto");
 
         imageView = (ImageView)findViewById(R.id.imageView);
 
@@ -163,23 +188,28 @@ public class ReportActivity extends AppCompatActivity {
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
 
                 super.onActivityResult(requestCode, resultCode, data);
-                Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-                imageView.setImageBitmap(bitmap);
+                Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
+                imageView.setImageBitmap(bitmapPhoto);
 
-               /* // Get the Image from data
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                bitmapPhoto.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+                File destination = new File(Environment.getExternalStorageDirectory(),"temp.jpg");
 
-                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                assert cursor != null;
-                cursor.moveToFirst();
 
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                mediaPath = cursor.getString(columnIndex);
-                //str1.setText(mediaPath);
-                // Set the Image in ImageView for Previewing the Media
-                imageView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
-                cursor.close();*/
+                /*RequestBody photo = RequestBody.create(MediaType.parse("application/image"), destination);
+                RequestBody body = new MultipartBuilder()
+                        .type(MultipartBuilder.FORM)
+                        .addFormDataPart("photo", destination.getName(), photo)
+                        .build();*/
+
+                try {
+                    fo = new FileOutputStream(destination);
+                    fo.write(bytes.toByteArray());
+                    fo.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
             } // When an Video is picked
             else if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
@@ -208,6 +238,30 @@ public class ReportActivity extends AppCompatActivity {
         }
 
     }
+
+   /* private void setPic() {
+        // Get the dimensions of the View
+        int targetW = imageView.getWidth();
+        int targetH = imageView.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        imageView.setImageBitmap(bitmap);
+    }*/
 
     // Providing Thumbnail For Selected Image
     public Bitmap getThumbnailPathForLocalFile(Activity context, Uri fileUri) {
