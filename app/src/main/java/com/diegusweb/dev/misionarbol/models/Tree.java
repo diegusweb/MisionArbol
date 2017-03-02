@@ -12,26 +12,18 @@ import java.util.List;
 public class Tree {
 
     private int id;
-    private String name;
+    private String title;
     private String description;
-    private int image;
+    private String path;
 
     public Tree() {
     }
 
-    public Tree(int id, String name, int image,String description) {
+    public Tree(int id, String path, int image,String description) {
         this.description = description;
         this.id = id;
-        this.image = image;
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.title = title;
+        this.path = path;
     }
 
     public String getDescription() {
@@ -50,12 +42,20 @@ public class Tree {
         this.id = id;
     }
 
-    public int getImage() {
-        return image;
+    public String getPath() {
+        return path;
     }
 
-    public void setImage(int idDrawable) {
-        this.image = image;
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 

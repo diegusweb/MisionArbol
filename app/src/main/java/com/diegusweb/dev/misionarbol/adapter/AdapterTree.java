@@ -52,10 +52,11 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
     public void onBindViewHolder(AdapterTree.MyViewHolder holder, int position) {
         Tree movie = moviesList.get(position);
         Glide.with(holder.itemView.getContext())
-                .load(movie.getImage())
+                .load(movie.getPath())
                 .centerCrop()
                 .into(holder.imagen);
-        holder.nombre.setText(movie.getName());
+
+        holder.nombre.setText(movie.getTitle());
 
         holder.precio.setText("Demooo");
 

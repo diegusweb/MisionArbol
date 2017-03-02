@@ -6,21 +6,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
 import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
+import com.diegusweb.dev.misionarbol.api.ApiClient;
+import com.diegusweb.dev.misionarbol.api.ApiInterface;
+import com.diegusweb.dev.misionarbol.models.PointsTree;
+import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +41,11 @@ public class TreeLibraryFragment extends Fragment {
     private RecyclerView reciclador;
     private AdapterTree adaptador;
     private List<Tree> movieList = new ArrayList<>();
+    private ArrayList<Tree> arraylist;
+
+    private ArrayList<Tree> data;
+
+    private SwipeRefreshLayout swipeContainer;
 
     public TreeLibraryFragment() {
         // Required empty public constructor
@@ -41,8 +57,11 @@ public class TreeLibraryFragment extends Fragment {
 
         adaptador = new AdapterTree(movieList);
 
-        prepareTreeDataSample();
+        getLibraryTreeMap();
+
+
     }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -59,9 +78,33 @@ public class TreeLibraryFragment extends Fragment {
 
         reciclador = (RecyclerView) root.findViewById(R.id.recicladorThree);
         setupTreeList();
+
+        swipeContainer = (SwipeRefreshLayout) root.findViewById(R.id.swipeRefreshLayout);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+
+            public void onRefresh() {
+                fetchTimelineAsync(0);
+            }
+        });
+
+        // Configure the refreshing colors
+
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         // setDummyContent();
         return root;
     }
+
+    public void fetchTimelineAsync(int page) {
+        getLibraryTreeMap();
+        Toast.makeText(getActivity(), " is selected!", Toast.LENGTH_SHORT).show();
+
+    }
+
 
     private void setupTreeList(){
         reciclador.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -86,21 +129,54 @@ public class TreeLibraryFragment extends Fragment {
         }));
     }
 
-    private void prepareTreeDataSample() {
-        Tree movie = new Tree(1,"Molle", R.drawable.molle,"dexription1");
-        movieList.add(movie);
+    public void getLibraryTreeMap()
+    {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        movie = new Tree(2,"jacaranda", R.drawable.jacaranda,"dexription2");
-        movieList.add(movie);
+        Call<List<Tree>> call = apiService.getTreeLibrary();
+        call.enqueue(new Callback<List<Tree>>() {
+            @Override
+            public void onResponse(Call<List<Tree>> call, Response<List<Tree>> response) {
+                List<Tree> demo = response.body();
 
-        movie = new Tree(3,"sauce", R.drawable.sauce_lloron,"dexription3");
-        movieList.add(movie);
+                Log.d("LISTAAAAA ", "num"+demo.size());
 
-        movie = new Tree(4,"Eucalipto", R.drawable.eucalipto,"dexription4");
-        movieList.add(movie);
+
+
+                setLines(demo);
+
+                StringBuilder builder = new StringBuilder();
+                TestItems movie;
+
+                for (Tree repo: demo) {
+                    builder.append(repo.getTitle() + "->" + repo.getId());
+
+                    movie = new TestItems("asdas",repo.getId(), repo.getTitle());
+                }
+                Toast.makeText(getActivity(), builder.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Tree>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void setLines(List<Tree> routes) {
+
+        //this.arraylist = new ArrayList<Tree>();
+        //this.arraylist.addAll(routes);
+        movieList.clear();
+
+        //data = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
+        movieList.addAll(routes);
 
         adaptador.notifyDataSetChanged();
 
+        swipeContainer.setRefreshing(false);
     }
+
+
 
 }

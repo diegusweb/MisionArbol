@@ -6,6 +6,7 @@ import com.diegusweb.dev.misionarbol.models.Login;
 import com.diegusweb.dev.misionarbol.models.PointsTree;
 import com.diegusweb.dev.misionarbol.models.ServerResponse;
 import com.diegusweb.dev.misionarbol.models.TestItems;
+import com.diegusweb.dev.misionarbol.models.Tree;
 
 import java.util.List;
 
@@ -75,6 +76,9 @@ public interface ApiInterface {
 
     @GET("v1/points")
     Call<List<PointsTree>> getPointTree();
+
+    @GET("v1/tree")
+    Call<List<Tree>> getTreeLibrary();
 
 
 }
