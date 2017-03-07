@@ -58,8 +58,6 @@ public class TreeLibraryFragment extends Fragment {
         adaptador = new AdapterTree(movieList);
 
         getLibraryTreeMap();
-
-
     }
 
 
@@ -100,7 +98,7 @@ public class TreeLibraryFragment extends Fragment {
     }
 
     public void fetchTimelineAsync(int page) {
-        getLibraryTreeMap();
+        //getLibraryTreeMap();
         Toast.makeText(getActivity(), " is selected!", Toast.LENGTH_SHORT).show();
 
     }
@@ -137,23 +135,9 @@ public class TreeLibraryFragment extends Fragment {
         call.enqueue(new Callback<List<Tree>>() {
             @Override
             public void onResponse(Call<List<Tree>> call, Response<List<Tree>> response) {
-                List<Tree> demo = response.body();
+                List<Tree> alTree = response.body();
 
-                Log.d("LISTAAAAA ", "num"+demo.size());
-
-
-
-                setLines(demo);
-
-                StringBuilder builder = new StringBuilder();
-                TestItems movie;
-
-                for (Tree repo: demo) {
-                    builder.append(repo.getTitle() + "->" + repo.getId());
-
-                    movie = new TestItems("asdas",repo.getId(), repo.getTitle());
-                }
-                Toast.makeText(getActivity(), builder.toString(), Toast.LENGTH_SHORT).show();
+                //setTreeList(alTree);
             }
 
             @Override
@@ -163,20 +147,11 @@ public class TreeLibraryFragment extends Fragment {
         });
     }
 
-    private void setLines(List<Tree> routes) {
-
-        //this.arraylist = new ArrayList<Tree>();
-        //this.arraylist.addAll(routes);
+    private void setTreeList(List<Tree> alTree)
+    {
         movieList.clear();
-
-        //data = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
-        movieList.addAll(routes);
-
+        movieList.addAll(alTree);
         adaptador.notifyDataSetChanged();
-
         swipeContainer.setRefreshing(false);
     }
-
-
-
 }

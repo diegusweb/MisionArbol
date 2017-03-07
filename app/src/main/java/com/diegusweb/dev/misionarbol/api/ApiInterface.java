@@ -61,7 +61,7 @@ public interface ApiInterface {
 
    // @Multipart
     @POST("v1/points")
-    Call<ServerResponse> uploadFile(@Query("title") String title,
+    Call<ServerResponse> uploadFile_(@Query("title") String title,
                                     @Query("type_id") int type_id,
                                     @Query("user_id") int user_id,
                                     @Query("description") String description,
@@ -79,6 +79,13 @@ public interface ApiInterface {
 
     @GET("v1/tree")
     Call<List<Tree>> getTreeLibrary();
+
+    @GET("v1/tree/{id}")
+    Call<Tree> getTreeId(@Path("id") int id);
+
+    @Multipart
+    @POST("retrofit_tutorial/retrofit_client.php")
+    Call<ServerResponse> uploadFile(@Part MultipartBody.Part file, @Part("file") RequestBody name);
 
 
 }

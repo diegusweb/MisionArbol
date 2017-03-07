@@ -100,7 +100,8 @@ public class ReportActivity extends AppCompatActivity {
 
         int id = item.getItemId();
         if (id == R.id.action_save_report) {
-            uploadServer();
+            //uploadServer();
+            uploadFile();
 
             this.finish();
             return true;
@@ -117,7 +118,7 @@ public class ReportActivity extends AppCompatActivity {
         TextView descr = (TextView)findViewById(R.id.txtDescription);
         String value = descr.getText().toString();
 
-        Call<ServerResponse>  call = apiService.uploadFile("demoo",InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
+        Call<ServerResponse>  call = apiService.uploadFile_("demoo",InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -154,7 +155,7 @@ public class ReportActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @TargetApi(11)
                             public void onClick(DialogInterface dialog, int id) {
-
+                                InfoConstants.SELECT_OPTION = 1;
                                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(intent,0);
                             }
@@ -163,7 +164,7 @@ public class ReportActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @TargetApi(11)
                             public void onClick(DialogInterface dialog, int id) {
-
+                                InfoConstants.SELECT_OPTION = 2;
                                 Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 startActivityForResult(galleryIntent, 0);
@@ -187,27 +188,29 @@ public class ReportActivity extends AppCompatActivity {
             // When an Image is picked
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
 
-                super.onActivityResult(requestCode, resultCode, data);
-                Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
-                imageView.setImageBitmap(bitmapPhoto);
 
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmapPhoto.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-                File destination = new File(Environment.getExternalStorageDirectory(),"temp.jpg");
+                if(InfoConstants.SELECT_OPTION == 2){
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
+                    Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                    assert cursor != null;
+                    cursor.moveToFirst();
 
-                /*RequestBody photo = RequestBody.create(MediaType.parse("application/image"), destination);
-                RequestBody body = new MultipartBuilder()
-                        .type(MultipartBuilder.FORM)
-                        .addFormDataPart("photo", destination.getName(), photo)
-                        .build();*/
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    mediaPath = cursor.getString(columnIndex);
+                    // Set the Image in ImageView for Previewing the Media
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
+                    cursor.close();
+                }
+                else{
+                    Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
+                    imageView.setImageBitmap(bitmapPhoto);
 
-                try {
-                    fo = new FileOutputStream(destination);
-                    fo.write(bytes.toByteArray());
-                    fo.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                    bitmapPhoto.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+                    File destination = new File(Environment.getExternalStorageDirectory(),"temp.jpg");
+
                 }
 
 
@@ -239,29 +242,44 @@ public class ReportActivity extends AppCompatActivity {
 
     }
 
-   /* private void setPic() {
-        // Get the dimensions of the View
-        int targetW = imageView.getWidth();
-        int targetH = imageView.getHeight();
 
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
+    // Uploading Image/Video
+    private void uploadFile() {
+       // progressDialog.show();
 
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+        // Map is used to multipart the file using okhttp3.RequestBody
+        File file = new File(mediaPath);
 
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
+        // Parsing any Media type file
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
 
-        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        imageView.setImageBitmap(bitmap);
-    }*/
+        ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
+        Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename);
+        call.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse serverResponse = response.body();
+                if (serverResponse != null) {
+                    if (serverResponse.getSuccess()) {
+                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    assert serverResponse != null;
+                    Log.v("Response", serverResponse.toString());
+                }
+               // progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+            }
+        });
+    }
 
     // Providing Thumbnail For Selected Image
     public Bitmap getThumbnailPathForLocalFile(Activity context, Uri fileUri) {

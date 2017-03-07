@@ -5,11 +5,15 @@ package com.diegusweb.dev.misionarbol.helper;
  */
 
 public class InfoConstants {
-    public static final String BASE_URL = "http://10.0.0.12:8075/2017/laravel/misionarbol/public/api/";
+    //public static final String BASE_URL = "http://10.0.0.11:8075/2017/laravel/misionarbol/public/api/";
+
+    public static final String BASE_URL = "http://10.0.0.11:8075/2017/laravel/";
 
     public static final String BASE_URL_TEST = "https://api.github.com";
 
     public static final String PATH_VERSION = "/2.0";
+
+    public static int SELECT_OPTION = 1;
 
     public static String API_TOKEN = "";
 
