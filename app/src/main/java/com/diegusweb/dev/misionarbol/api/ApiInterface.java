@@ -84,8 +84,18 @@ public interface ApiInterface {
     Call<Tree> getTreeId(@Path("id") int id);
 
     @Multipart
-    @POST("retrofit_tutorial/retrofit_client.php")
-    Call<ServerResponse> uploadFile(@Part MultipartBody.Part file, @Part("file") RequestBody name);
+    @POST("v1/points")
+    Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
+                                    @Part("file") RequestBody name,
+                                    @Query("title") String title,
+                                    @Query("type_id") int type_id,
+                                    @Query("user_id") int user_id,
+                                    @Query("description") String description,
+                                    @Query("status") int status,
+                                    @Query("lat") Double lat,
+                                    @Query("lng") Double lng,
+                                    @Query("country") String country,
+                                    @Query("city") String city);
 
 
 }

@@ -199,7 +199,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     System.out.println(response.errorBody());
                 }*/
 
-                //setLines(demo);
+                setLines(demo);
             }
 
             @Override

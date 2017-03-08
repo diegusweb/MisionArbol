@@ -255,8 +255,11 @@ public class ReportActivity extends AppCompatActivity {
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
 
+        TextView descr = (TextView)findViewById(R.id.txtDescription);
+        String value = descr.getText().toString();
+
         ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
-        Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename);
+        Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename,"demoo",InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
