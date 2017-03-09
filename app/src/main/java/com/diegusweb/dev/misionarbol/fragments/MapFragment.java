@@ -56,9 +56,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     List<PointsTree> RouteLists = new ArrayList<>();
     private ArrayList<PointsTree> arraylist;
 
-    //FloatingActionButton fab;
-
-
     private static final int MY_LOCATION_REQUEST_CODE = 1;
 
     @Override
@@ -97,6 +94,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onMenuCollapsed() {
                 frameLayout.getBackground().setAlpha(0);
                 frameLayout.setOnTouchListener(null);
+                getPointsForMap();
             }
         });
 
@@ -177,14 +175,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onLocationChanged(Location location)
     {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+        googleMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f));
     }
 
     public void getPointsForMap()
     {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-        Log.d("Resultados","otrooo");
 
         Call<List<PointsTree>> call = apiService.getPointTree();
         call.enqueue(new Callback<List<PointsTree>>() {
@@ -192,14 +188,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onResponse(Call<List<PointsTree>> call, Response<List<PointsTree>> response) {
                 List<PointsTree> demo = response.body();
 
-                /*if(response.isSuccessful()) {
-                    List<TestItems> changesList = response.body();
-                    changesList.forEach(change -> System.out.println(change.getTitle()));
+                if(response.isSuccessful()) {
+                    setLines(demo);
                 } else {
                     System.out.println(response.errorBody());
-                }*/
-
-                setLines(demo);
+                }
             }
 
             @Override
@@ -212,6 +205,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void setLines(List<PointsTree> routes){
 
         this.arraylist = new ArrayList<PointsTree>();
+
+        if(!this.arraylist.isEmpty()){
+            this.arraylist.clear();
+            this.arraylist = null;
+        }
         this.arraylist.addAll(routes);
 
         List<Marker> markers = new ArrayList<Marker>();
@@ -233,6 +231,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .snippet("Population: 4,137,400")
                         .position(LOWER));
 
                 markers.add(marker);
@@ -246,6 +245,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getType_id().getTitle() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .snippet("Population: 4,137,400")
                         .position(LOWER));
 
                 markers.add(marker);
@@ -259,6 +259,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getType_id().getTitle() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .snippet("Population: 4,137,400")
                         .position(LOWER));
 
                 markers.add(marker);
@@ -272,6 +273,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getType_id().getTitle() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .snippet("Population: 4,137,400")
                         .position(LOWER));
 
                 markers.add(marker);

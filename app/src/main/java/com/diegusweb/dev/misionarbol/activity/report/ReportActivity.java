@@ -111,7 +111,7 @@ public class ReportActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void uploadServer(){
+   /* public void uploadServer(){
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
@@ -135,7 +135,7 @@ public class ReportActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     public void dialogOpen(){
 
@@ -217,7 +217,7 @@ public class ReportActivity extends AppCompatActivity {
 
 
             } // When an Video is picked
-            else if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            /*else if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
 
                 // Get the Video from data
                 Uri selectedVideo = data.getData();
@@ -235,7 +235,8 @@ public class ReportActivity extends AppCompatActivity {
                 imageView.setImageBitmap(getThumbnailPathForLocalFile(ReportActivity.this, selectedVideo));
                 cursor.close();
 
-            } else {
+            } */
+            else {
                 Toast.makeText(this, "You haven't picked Image/Video", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
