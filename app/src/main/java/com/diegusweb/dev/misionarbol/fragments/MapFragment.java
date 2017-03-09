@@ -188,6 +188,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onResponse(Call<List<PointsTree>> call, Response<List<PointsTree>> response) {
                 List<PointsTree> demo = response.body();
 
+
+                //Toast.makeText(getActivity(), "Something went wrong "+demo.size(), Toast.LENGTH_LONG).show();
+
                 if(response.isSuccessful()) {
                     setLines(demo);
                 } else {
@@ -210,6 +213,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             this.arraylist.clear();
             this.arraylist = null;
         }
+
         this.arraylist.addAll(routes);
 
         List<Marker> markers = new ArrayList<Marker>();
@@ -239,6 +243,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
             if(this.arraylist.get(i).getType_id().getId() == 2){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_dead);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+                Marker marker = googleMapa.addMarker(new MarkerOptions()
+                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .snippet("Population: 4,137,400")
+                        .position(LOWER));
+
+                markers.add(marker);
+            }
+
+            if(this.arraylist.get(i).getType_id().getId() == 3){
+                BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_danger);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 

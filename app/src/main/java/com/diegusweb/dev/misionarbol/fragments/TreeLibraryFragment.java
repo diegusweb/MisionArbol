@@ -137,7 +137,7 @@ public class TreeLibraryFragment extends Fragment {
             public void onResponse(Call<List<Tree>> call, Response<List<Tree>> response) {
                 List<Tree> alTree = response.body();
 
-                //setTreeList(alTree);
+                setTreeList(alTree);
             }
 
             @Override
