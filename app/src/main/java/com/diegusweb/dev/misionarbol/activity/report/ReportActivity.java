@@ -64,6 +64,8 @@ public class ReportActivity extends AppCompatActivity {
 
     ImageView image_ic_input_add;
 
+    File destination;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,8 +210,8 @@ public class ReportActivity extends AppCompatActivity {
                     imageView.setImageBitmap(bitmapPhoto);
 
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    bitmapPhoto.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-                    File destination = new File(Environment.getExternalStorageDirectory(),"temp.jpg");
+                    bitmapPhoto.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+                    destination = new File(Environment.getExternalStorageDirectory(),"temp.jpg");
 
                 }
 
@@ -247,8 +249,12 @@ public class ReportActivity extends AppCompatActivity {
     private void uploadFile() {
        // progressDialog.show();
 
+        File file;
         // Map is used to multipart the file using okhttp3.RequestBody
-        File file = new File(mediaPath);
+        if(InfoConstants.SELECT_OPTION == 2)
+            file = new File(mediaPath);
+        else
+            file = destination;
 
         // Parsing any Media type file
         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
