@@ -60,9 +60,9 @@ public class ReportActivity extends AppCompatActivity {
     TextView str1, str2;
     FileOutputStream fo;
 
-    ImageView image_ic_delete;
+    ImageView imageView4;
 
-    ImageView image_ic_input_add;
+    ImageView image_ic_ok;
 
     File destination;
 
@@ -84,10 +84,22 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-        image_ic_delete = (ImageView)findViewById(R.id.image_ic_delete);
-        image_ic_input_add = (ImageView)findViewById(R.id.image_ic_input_add);
+        imageView4 = (ImageView)findViewById(R.id.imageView4);
+        switch (InfoConstants.TYPE_SELECT) {
+            case 1:  imageView4.setImageResource(R.drawable.ic_tree_womder);
+                break;
+            case 2:  imageView4.setImageResource(R.drawable.ic_tree_seco);
+                break;
+            case 3:  imageView4.setImageResource(R.drawable.ic_tree_danger);
+                break;
+            case 4:  imageView4.setImageResource(R.drawable.ic_tree_plantar);
+                break;
+            case 5:  imageView4.setImageResource(R.drawable.ic_tree_tronco);
+                break;
+        }
 
-        image_ic_input_add.setVisibility(View.INVISIBLE);
+        image_ic_ok = (ImageView)findViewById(R.id.image_ic_ok);
+        image_ic_ok.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -102,11 +114,23 @@ public class ReportActivity extends AppCompatActivity {
 
         int id = item.getItemId();
         if (id == R.id.action_save_report) {
-            //uploadServer();
-            uploadFile();
 
-            this.finish();
-            return true;
+            TextView descr = (TextView)findViewById(R.id.txtDescription);
+            String value = descr.getText().toString();
+
+            if(InfoConstants.latDes == 0 || InfoConstants.latDes == 0){
+                Toast.makeText(this, "Falta Ubicacion del nuevo reporte", Toast.LENGTH_LONG).show();
+            }
+            else if(value == null){
+                Toast.makeText(this, "Necesita una Descricion", Toast.LENGTH_LONG).show();
+            }
+            else{
+                uploadFile();
+                this.finish();
+                return true;
+            }
+
+
         }
         return super.onOptionsItemSelected(item);
     }

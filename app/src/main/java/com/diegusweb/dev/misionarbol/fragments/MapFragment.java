@@ -98,7 +98,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        view.findViewById(R.id.fab_photo).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fab_tree_womder).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -109,7 +109,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        view.findViewById(R.id.fab_event).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fab_tree_seco).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InfoConstants.TYPE_SELECT = 2;
@@ -119,7 +119,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        view.findViewById(R.id.fab_photo).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fab_tree_danger).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InfoConstants.TYPE_SELECT = 3;
@@ -129,10 +129,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        view.findViewById(R.id.fab_others).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fab_tree_plantar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InfoConstants.TYPE_SELECT = 4;
+                Intent i = new Intent(getActivity(), ReportActivity.class);
+                //i.putExtra("STRING_I_NEED", id);
+                startActivity(i);
+            }
+        });
+
+        view.findViewById(R.id.fab_tree_tronco).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InfoConstants.TYPE_SELECT = 5;
                 Intent i = new Intent(getActivity(), ReportActivity.class);
                 //i.putExtra("STRING_I_NEED", id);
                 startActivity(i);

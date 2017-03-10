@@ -43,48 +43,59 @@
             fab:fab_labelsPosition="left">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/primary"
-                fab:fab_colorPressed="@color/accent_dark"
-                fab:fab_plusIconColor="@color/white"
-                fab:fab_icon="@drawable/id_map_marker"
-                fab:fab_size="mini"
-                fab:fab_title="Arbol en Peligro" />
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_photo"
+                android:id="@+id/fab_tree_seco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 fab:fab_colorNormal="@color/accent"
                 fab:fab_colorPressed="@color/accent_dark"
                 fab:fab_plusIconColor="@color/white"
-                fab:fab_icon="@drawable/ic_fab_star"
+                fab:fab_icon="@drawable/ic_tree_seco"
                 fab:fab_size="mini"
                 fab:fab_title="Arbol Seco" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_others"
+                android:id="@+id/fab_tree_womder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 fab:fab_colorNormal="@color/accent"
                 fab:fab_colorPressed="@color/accent_dark"
                 fab:fab_plusIconColor="@color/white"
-                fab:fab_icon="@drawable/ic_logo"
+                fab:fab_icon="@drawable/ic_tree_womder"
                 fab:fab_size="mini"
-                fab:fab_title="Arbol Hermoso" />
+                fab:fab_title="Arbol Magnifico" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_ddd"
+                android:id="@+id/fab_tree_plantar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 fab:fab_colorNormal="@color/accent"
                 fab:fab_colorPressed="@color/accent_dark"
                 fab:fab_plusIconColor="@color/white"
-                fab:fab_icon="@drawable/ic_logo"
+                fab:fab_icon="@drawable/ic_tree_plantar"
                 fab:fab_size="mini"
-                fab:fab_title="Sitio para plantar" />
+                fab:fab_title="Sitio para Plantar" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_tree_danger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/accent"
+                fab:fab_colorPressed="@color/accent_dark"
+                fab:fab_plusIconColor="@color/white"
+                fab:fab_icon="@drawable/ic_tree_danger"
+                fab:fab_size="mini"
+                fab:fab_title="Arbol en Peligro" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_tree_tronco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/accent"
+                fab:fab_colorPressed="@color/accent_dark"
+                fab:fab_plusIconColor="@color/white"
+                fab:fab_icon="@drawable/ic_tree_tronco"
+                fab:fab_size="mini"
+                fab:fab_title="Tronco Cortado" />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
     </FrameLayout>
