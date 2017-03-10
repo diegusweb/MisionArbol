@@ -13,10 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,18 +64,21 @@ public class ReportActivity extends AppCompatActivity {
     FileOutputStream fo;
 
     ImageView imageView4;
-
     ImageView image_ic_ok;
 
+
     File destination;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        agregarToolbar();
+        InfoConstants.latDes = 0;
+        InfoConstants.latDes = 0;
 
+        agregarToolbar();
         dialogOpen();
 
         Button boton = (Button) findViewById(R.id.btnUbicaion);
@@ -100,6 +106,9 @@ public class ReportActivity extends AppCompatActivity {
 
         image_ic_ok = (ImageView)findViewById(R.id.image_ic_ok);
         image_ic_ok.setVisibility(View.INVISIBLE);
+
+        imageView= (ImageView)findViewById(R.id.imageView);
+        imageView4.setImageResource(R.drawable.take_photo);
     }
 
     @Override
@@ -113,16 +122,19 @@ public class ReportActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+
         if (id == R.id.action_save_report) {
 
             TextView descr = (TextView)findViewById(R.id.txtDescription);
             String value = descr.getText().toString();
 
-            if(InfoConstants.latDes == 0 || InfoConstants.latDes == 0){
-                Toast.makeText(this, "Falta Ubicacion del nuevo reporte", Toast.LENGTH_LONG).show();
-            }
-            else if(value == null){
-                Toast.makeText(this, "Necesita una Descricion", Toast.LENGTH_LONG).show();
+            if(InfoConstants.latDes == 0 || InfoConstants.latDes == 0 || value == null){
+
+                Snackbar.make(findViewById(android.R.id.content),
+                        Html.fromHtml("<font color=\"#FA3E3E\">Campos Vacios</font>")
+                        , Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
             }
             else{
                 uploadFile();
@@ -135,31 +147,6 @@ public class ReportActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-   /* public void uploadServer(){
-
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-        Log.d("Resultados","otrooo");
-
-        TextView descr = (TextView)findViewById(R.id.txtDescription);
-        String value = descr.getText().toString();
-
-        Call<ServerResponse>  call = apiService.uploadFile_("demoo",InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
-        call.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse StudentData = response.body();
-
-                Log.d("LISTAAAAA ", "num"+StudentData);
-
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-
-            }
-        });
-    }*/
 
     public void dialogOpen(){
 
@@ -261,10 +248,14 @@ public class ReportActivity extends AppCompatActivity {
 
             } */
             else {
-                Toast.makeText(this, "You haven't picked Image/Video", Toast.LENGTH_LONG).show();
+                Snackbar.make(findViewById(android.R.id.content),
+                        Html.fromHtml("<font color=\"#FA3E3E\">No has seleccionado Imagen</font>"), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content),
+                    Html.fromHtml("<font color=\"#FA3E3E\">No has seleccionado Imagen</font>"), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
 
     }
