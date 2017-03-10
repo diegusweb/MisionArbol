@@ -8,6 +8,7 @@
     <item
         android:id="@+id/action_save_report"
         android:title="Guardar"
+        android:icon="@drawable/ic_ok"
         android:orderInCategory="1"
         appcompat:showAsAction="ifRoom"/>
 
