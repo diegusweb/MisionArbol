@@ -107,8 +107,6 @@ public class ReportActivity extends AppCompatActivity {
         image_ic_ok = (ImageView)findViewById(R.id.image_ic_ok);
         image_ic_ok.setVisibility(View.INVISIBLE);
 
-        imageView= (ImageView)findViewById(R.id.imageView);
-        imageView4.setImageResource(R.drawable.take_photo);
     }
 
     @Override

@@ -181,7 +181,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NYC, 17));
         final CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng)      // Sets the center of the map to Mountain View
-                .zoom(InfoConstants.zoomMap)                   // Sets the zoom
+                .zoom(15)                   // Sets the zoom
                 //.bearing(90)                // Sets the orientation of the camera to east
                 .tilt(20)                   // Sets the tilt of the camera to 30 degrees
                 .build();
