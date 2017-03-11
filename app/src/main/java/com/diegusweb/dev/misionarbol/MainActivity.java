@@ -16,6 +16,7 @@ import com.diegusweb.dev.misionarbol.fragments.BusquedaFragment;
 import com.diegusweb.dev.misionarbol.fragments.InfoFragment;
 import com.diegusweb.dev.misionarbol.fragments.ListFragment;
 import com.diegusweb.dev.misionarbol.fragments.MenuFragment;
+import com.diegusweb.dev.misionarbol.fragments.MyReportFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,10 +91,14 @@ public class MainActivity extends AppCompatActivity {
                 fragmentoGenerico = new BusquedaFragment();
                 break;
             case R.id.item_contact:
-                fragmentoGenerico = new MenuFragment();
+                fragmentoGenerico = new ListFragment();
                 break;
             case R.id.item_how_work:
-                fragmentoGenerico = new ListFragment();
+                fragmentoGenerico = new InfoFragment();
+                // Fragmento para la sección Categorías
+                break;
+            case R.id.item_reportes:
+                fragmentoGenerico = new MyReportFragment();
                 // Fragmento para la sección Categorías
                 break;
             case R.id.item_setting:

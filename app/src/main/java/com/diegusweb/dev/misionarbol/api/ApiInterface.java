@@ -98,4 +98,7 @@ public interface ApiInterface {
                                     @Query("city") String city);
 
 
+    //Mis reportes
+    @GET("v1/points/{id}")
+    Call<List<PointsTree>> getReportPoints(@Path("id") int id);
 }

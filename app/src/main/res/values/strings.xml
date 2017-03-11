@@ -9,7 +9,7 @@
     <string name="item_how_work">Como Funciona?</string>
     <string name="item_contact">Contacto - Redes</string>
     <string name="item_setting">Configuración</string>
-    <string name="item_my_photos">Mis Registros</string>
+    <string name="item_my_photos">Mis Reportes</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -17,6 +17,7 @@
 
     <string name="titulo_tab_map">MAPA</string>
     <string name="titulo_tab_list">BIBLIOTECA</string>
+    <string name="titulo_tab_mis_reportes">MIS REPORTES</string>
 
     <string name="nav_recomender">Recomendar</string>
     <string name="nav_privacy_policy">Aviso Legal</string>

@@ -20,7 +20,7 @@
             android:icon="@drawable/configuracion"
             android:title="@string/item_setting" />
         <item
-            android:id="@+id/item_photos"
+            android:id="@+id/item_reportes"
             android:icon="@drawable/configuracion"
             android:title="@string/item_my_photos" />
     </group>
