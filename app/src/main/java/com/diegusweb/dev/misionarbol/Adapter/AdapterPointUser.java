@@ -1,5 +1,8 @@
 package com.diegusweb.dev.misionarbol.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +53,42 @@ public class AdapterPointUser extends RecyclerView.Adapter<AdapterPointUser.MyVi
     @Override
     public void onBindViewHolder(AdapterPointUser.MyViewHolder holder, int position) {
         PointsTree movie = pointsList.get(position);
+
+        if(movie.getType_id().getId() == 1){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.id_marker_green)
+                    .centerCrop()
+                    .into(holder.imagen);
+        }
+
+        if(movie.getType_id().getId() == 2){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.id_marker_dead)
+                    .centerCrop()
+                    .into(holder.imagen);
+        }
+
+        if(movie.getType_id().getId() == 3){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.id_marker_danger)
+                    .centerCrop()
+                    .into(holder.imagen);
+        }
+
+        if(movie.getType_id().getId() == 4){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.id_marker_plant)
+                    .centerCrop()
+                    .into(holder.imagen);
+        }
+
+        if(movie.getType_id().getId() == 5){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.id_marker_trunk)
+                    .centerCrop()
+                    .into(holder.imagen);
+        }
+
 
 
         holder.title.setText(movie.getTitle());
