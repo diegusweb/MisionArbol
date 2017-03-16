@@ -97,7 +97,7 @@ public class MyReportFragment extends Fragment {
     }
 
     public void fetchTimelineAsync(int page) {
-        //getLibraryTreeMap();
+        getLibraryTreeMap();
         Toast.makeText(getActivity(), " is selected!", Toast.LENGTH_SHORT).show();
 
     }
@@ -130,7 +130,7 @@ public class MyReportFragment extends Fragment {
     {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<PointsTree>> call = apiService.getReportPoints(13);
+        Call<List<PointsTree>> call = apiService.getReportPoints(12);
         call.enqueue(new Callback<List<PointsTree>>() {
             @Override
             public void onResponse(Call<List<PointsTree>> call, Response<List<PointsTree>> response) {

@@ -57,11 +57,9 @@ public class ReportActivity extends AppCompatActivity {
 
     ImageView imageView;
     String mediaPath, mediaPath1;
-    ImageView imgView;
     String[] mediaColumns = {MediaStore.Video.Media._ID};
     ProgressDialog progressDialog;
     TextView str1, str2;
-    FileOutputStream fo;
 
     ImageView imageView4;
     ImageView image_ic_ok;

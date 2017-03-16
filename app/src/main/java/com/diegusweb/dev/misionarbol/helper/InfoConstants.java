@@ -1,5 +1,9 @@
 package com.diegusweb.dev.misionarbol.helper;
 
+import com.diegusweb.dev.misionarbol.models.Tree;
+
+import java.util.List;
+
 /**
  * Created by HP on 31/01/2017.
  */
@@ -32,6 +36,9 @@ public class InfoConstants {
     public static String COUNTRY = "";
 
     public static int TYPE_SELECT = 0;
+
+    public static List<Tree> ALL_TREE_LIBRARY = null;
+    public static Tree ONE_TREE_LIBRARY = null;
 
 
 }
