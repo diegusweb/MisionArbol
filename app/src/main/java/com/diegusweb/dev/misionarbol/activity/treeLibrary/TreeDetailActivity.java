@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
@@ -65,12 +66,17 @@ public class TreeDetailActivity extends AppCompatActivity {
         title.setText(InfoConstants.ONE_TREE_LIBRARY.getTitle());
         description.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
 
+        imageView = (ImageView)findViewById(R.id.bgheader);
 
 
+        Glide.with(this)
+                .load(InfoConstants.BASE_URL_IMG+InfoConstants.ONE_TREE_LIBRARY.getPath())
+                .into(imageView);
     }
 
     private void agregarToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(InfoConstants.ONE_TREE_LIBRARY.getTitle());
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();

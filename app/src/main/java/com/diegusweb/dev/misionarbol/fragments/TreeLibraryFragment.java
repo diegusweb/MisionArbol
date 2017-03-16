@@ -99,8 +99,8 @@ public class TreeLibraryFragment extends Fragment {
     }
 
     public void fetchTimelineAsync(int page) {
-        //getLibraryTreeMap();
-        Toast.makeText(getActivity(), " is selected!", Toast.LENGTH_SHORT).show();
+        getLibraryTreeMap();
+        //Toast.makeText(getActivity(), " is selected!", Toast.LENGTH_SHORT).show();
 
     }
 

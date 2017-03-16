@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.Comida;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
@@ -52,7 +53,7 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
     public void onBindViewHolder(AdapterTree.MyViewHolder holder, int position) {
         Tree movie = moviesList.get(position);
         Glide.with(holder.itemView.getContext())
-                .load(movie.getPath())
+                .load(InfoConstants.BASE_URL_IMG+movie.getPath())
                 .centerCrop()
                 .into(holder.imagen);
 
