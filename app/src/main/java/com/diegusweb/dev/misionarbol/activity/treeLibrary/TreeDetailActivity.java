@@ -31,7 +31,7 @@ public class TreeDetailActivity extends AppCompatActivity {
 
     private  int newString;
     ImageView imageView;
-    TextView title, description;
+    TextView nameScientist, descriptionLess, descriptionMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +60,13 @@ public class TreeDetailActivity extends AppCompatActivity {
 
     private void getTreeId(int id){
 
-        title = (TextView)findViewById(R.id.text_product_name);
-        description = (TextView)findViewById(R.id.text_product_stock);
+        nameScientist = (TextView)findViewById(R.id.text_name_scientist);
+        descriptionLess = (TextView)findViewById(R.id.text_description_less);
+        descriptionMore = (TextView)findViewById(R.id.text_product_description);
 
-        title.setText(InfoConstants.ONE_TREE_LIBRARY.getTitle());
-        description.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
+        nameScientist.setText(InfoConstants.ONE_TREE_LIBRARY.getName_scientist());
+        descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription_less());
+        descriptionMore.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
 
         imageView = (ImageView)findViewById(R.id.bgheader);
 
