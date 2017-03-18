@@ -30,7 +30,7 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
 
-    <style name="Theme.ConNavigationDrawer" parent="Base.AppTheme"/>
+    <style name="Theme.ConNavigationDrawer" parent="Base.AppTheme" />
 
     <style name="Theme.RicoPaRico.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

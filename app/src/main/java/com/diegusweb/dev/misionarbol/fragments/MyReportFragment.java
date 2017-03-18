@@ -17,11 +17,13 @@ import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.activity.report.PointDetailActivity;
 import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
 import com.diegusweb.dev.misionarbol.adapter.AdapterPointUser;
 import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.PointsTree;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
@@ -111,10 +113,11 @@ public class MyReportFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 PointsTree movie = movieList.get(position);
+                InfoConstants.ID_TREE_DETAIL = movie;
 
                 int id = movie.getId();
                 //Toast.makeText(getActivity(), movie.getName() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getActivity(), TreeDetailActivity.class);
+                Intent i = new Intent(getActivity(), PointDetailActivity.class);
                 i.putExtra("STRING_I_NEED", id);
                 startActivity(i);
             }

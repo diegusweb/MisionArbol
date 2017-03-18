@@ -85,5 +85,6 @@
 
     <string name="ok">ACTIVO</string>
     <string name="cancel">INABILITADO</string>
+    <string name="title_activity_report_detail">ReportDetailActivity</string>
 
 </resources>
