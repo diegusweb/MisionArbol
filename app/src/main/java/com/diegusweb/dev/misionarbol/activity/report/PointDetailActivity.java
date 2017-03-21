@@ -48,7 +48,7 @@ public class PointDetailActivity extends AppCompatActivity {
         descriptionLess = (TextView)findViewById(R.id.text_description);
 
 
-        nameScientist.setText(InfoConstants.ID_TREE_DETAIL.getTitle());
+        nameScientist.setText("Comentario");
         descriptionLess.setText(InfoConstants.ID_TREE_DETAIL.getDescription());
 
         imageView = (ImageView)findViewById(R.id.bgheader);
@@ -69,7 +69,6 @@ public class PointDetailActivity extends AppCompatActivity {
                 break;
         }
 
-        Log.d("dmeo",InfoConstants.BASE_URL_IMG_POINT+InfoConstants.ID_TREE_DETAIL.getPath());
 
         Glide.with(this)
                 .load(InfoConstants.BASE_URL_IMG_POINT+InfoConstants.ID_TREE_DETAIL.getPath())

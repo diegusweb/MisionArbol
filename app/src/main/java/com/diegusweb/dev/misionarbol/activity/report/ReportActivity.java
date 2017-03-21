@@ -90,15 +90,25 @@ public class ReportActivity extends AppCompatActivity {
 
         imageView4 = (ImageView)findViewById(R.id.imageView4);
         switch (InfoConstants.TYPE_SELECT) {
-            case 1:  imageView4.setImageResource(R.drawable.ic_tree_womder);
+            case 1:
+                InfoConstants.TYPE_NAME = "Arbol Magnifico";
+                imageView4.setImageResource(R.drawable.ic_tree_womder);
                 break;
-            case 2:  imageView4.setImageResource(R.drawable.ic_tree_seco);
+            case 2:
+                InfoConstants.TYPE_NAME = "Arbol Seco";
+                imageView4.setImageResource(R.drawable.ic_tree_seco);
                 break;
-            case 3:  imageView4.setImageResource(R.drawable.ic_tree_danger);
+            case 3:
+                InfoConstants.TYPE_NAME = "Arbol En Peligro";
+                imageView4.setImageResource(R.drawable.ic_tree_danger);
                 break;
-            case 4:  imageView4.setImageResource(R.drawable.ic_tree_plantar);
+            case 4:
+                InfoConstants.TYPE_NAME = "Sitio Para PLantar";
+                imageView4.setImageResource(R.drawable.ic_tree_plantar);
                 break;
-            case 5:  imageView4.setImageResource(R.drawable.ic_tree_tronco);
+            case 5:
+                InfoConstants.TYPE_NAME = "Tronco Cortado";
+                imageView4.setImageResource(R.drawable.ic_tree_tronco);
                 break;
         }
 
@@ -277,7 +287,7 @@ public class ReportActivity extends AppCompatActivity {
         String value = descr.getText().toString();
 
         ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
-        Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename,"demoo",InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
+        Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename, InfoConstants.TYPE_NAME, InfoConstants.TYPE_SELECT, InfoConstants.USER_ID, value,1, InfoConstants.latDes, InfoConstants.lonDes, InfoConstants.COUNTRY, InfoConstants.CITY);
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {

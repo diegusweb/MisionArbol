@@ -20,8 +20,9 @@ public class PointsTree {
     private double lng;
     private String country;
     private String city;
+    private String created_at;
 
-    public PointsTree(String city, String country, String description, int id, double lat, double lng, String name, String path, int status, String title, Type type_id, InfoUser user_id) {
+    public PointsTree(String city, String country, String description, int id, double lat, double lng, String name, String path, int status, String title, Type type_id, InfoUser user_id, String created_at) {
         this.city = city;
         this.country = country;
         this.description = description;
@@ -34,6 +35,15 @@ public class PointsTree {
         this.title = title;
         this.type_id = type_id;
         this.user_id = user_id;
+        this.created_at = created_at;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String country) {
+        this.created_at = created_at;
     }
 
     public InfoUser getUser_id() {

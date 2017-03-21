@@ -71,7 +71,7 @@ public class AdapterPointUser extends RecyclerView.Adapter<AdapterPointUser.MyVi
 
         holder.title.setText(movie.getTitle());
 
-        holder.description.setText("Demooo");
+        holder.description.setText(movie.getCreated_at());
     }
 
     @Override
