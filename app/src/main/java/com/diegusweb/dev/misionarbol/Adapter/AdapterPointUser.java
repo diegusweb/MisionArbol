@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.PointsTree;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
@@ -54,42 +55,19 @@ public class AdapterPointUser extends RecyclerView.Adapter<AdapterPointUser.MyVi
     public void onBindViewHolder(AdapterPointUser.MyViewHolder holder, int position) {
         PointsTree movie = pointsList.get(position);
 
-        if(movie.getType_id().getId() == 1){
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.id_marker_green)
-                    .centerCrop()
-                    .into(holder.imagen);
+
+        switch (movie.getType_id().getId()) {
+            case 1:  holder.imagen.setImageResource(R.drawable.id_marker_green);
+                break;
+            case 2:  holder.imagen.setImageResource(R.drawable.id_marker_dead);
+                break;
+            case 3:  holder.imagen.setImageResource(R.drawable.id_marker_danger);
+                break;
+            case 4:  holder.imagen.setImageResource(R.drawable.id_marker_plant);
+                break;
+            case 5:  holder.imagen.setImageResource(R.drawable.id_marker_trunk);
+                break;
         }
-
-        if(movie.getType_id().getId() == 2){
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.id_marker_dead)
-                    .centerCrop()
-                    .into(holder.imagen);
-        }
-
-        if(movie.getType_id().getId() == 3){
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.id_marker_danger)
-                    .centerCrop()
-                    .into(holder.imagen);
-        }
-
-        if(movie.getType_id().getId() == 4){
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.id_marker_plant)
-                    .centerCrop()
-                    .into(holder.imagen);
-        }
-
-        if(movie.getType_id().getId() == 5){
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.id_marker_trunk)
-                    .centerCrop()
-                    .into(holder.imagen);
-        }
-
-
 
         holder.title.setText(movie.getTitle());
 
