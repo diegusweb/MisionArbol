@@ -2,17 +2,24 @@ package com.diegusweb.dev.misionarbol.fragments;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
@@ -37,7 +44,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TreeLibraryFragment extends Fragment {
+public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryTextListener {
 
     private RecyclerView reciclador;
     private AdapterTree adaptador;
@@ -155,5 +162,54 @@ public class TreeLibraryFragment extends Fragment {
         movieList.addAll(alTree);
         adaptador.notifyDataSetChanged();
         swipeContainer.setRefreshing(false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        //super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView sv = new SearchView(((MainActivity) getActivity()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(item, sv);
+
+        sv.setOnQueryTextListener(this);
+        sv.setIconifiedByDefault(false);
+        sv.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Diego", "ENTROOOO");
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                Toast.makeText(getActivity(), "Closed", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                Toast.makeText(getActivity(), "Opened", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Log.d("Submitted", query);
+        //seachMapCurrent(query);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Log.d("Changed", newText);
+        return true;
     }
 }

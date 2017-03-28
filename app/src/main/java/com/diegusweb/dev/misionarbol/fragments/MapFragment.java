@@ -1,6 +1,7 @@
 package com.diegusweb.dev.misionarbol.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -10,10 +11,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 import android.Manifest;
@@ -23,6 +30,7 @@ import android.location.Location;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
 import com.diegusweb.dev.misionarbol.activity.report.ReportActivity;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
@@ -48,15 +56,13 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements SearchView.OnQueryTextListener, OnMapReadyCallback {
 
     private MapView mapView;
     private GoogleMap googleMapa;
 
     List<PointsTree> RouteLists = new ArrayList<>();
     private ArrayList<PointsTree> arraylist;
-
-    private static final int MY_LOCATION_REQUEST_CODE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -309,6 +315,54 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
 
         markers.size();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        //super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView sv = new SearchView(((MainActivity) getActivity()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(item, sv);
+        sv.setOnQueryTextListener(this);
+        sv.setIconifiedByDefault(false);
+        sv.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Diego", "ENTROOOO");
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                Toast.makeText(getActivity(), "Closed", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                Toast.makeText(getActivity(), "Opened", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Log.d("Submitted", query);
+        //seachMapCurrent(query);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Log.d("Changed", newText);
+        return true;
     }
 }
 
