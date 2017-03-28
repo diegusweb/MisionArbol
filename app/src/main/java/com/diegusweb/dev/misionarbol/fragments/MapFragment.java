@@ -49,6 +49,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,6 +60,7 @@ import retrofit2.Response;
  */
 public class MapFragment extends Fragment implements SearchView.OnQueryTextListener, OnMapReadyCallback {
 
+    private static final int MY_PERMISO_FINE_LOCATION = 1;
     private MapView mapView;
     private GoogleMap googleMapa;
 
@@ -168,23 +171,48 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para el mapa")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISO_FINE_LOCATION);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISO_FINE_LOCATION);
+            }
+            //return;
+        }
+        else{
+            Location location = locationManager.getLastKnownLocation(bestProvider);
+            if (location != null) {
+                onLocationChanged(location);
+            }
+
+            googleMapa.setMyLocationEnabled(true);
+            getPointsForMap();
         }
 
-        Location location = locationManager.getLastKnownLocation(bestProvider);
-        if (location != null) {
-            onLocationChanged(location);
-        }
 
-        googleMapa.setMyLocationEnabled(true);
-        getPointsForMap();
 
     }
 
