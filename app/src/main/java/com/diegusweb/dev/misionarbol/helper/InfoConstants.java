@@ -11,11 +11,11 @@ import java.util.List;
  */
 
 public class InfoConstants {
-    public static final String BASE_URL = "http://10.0.0.9:8075/2017/laravel/misionarbol/public/api/";
+    public static final String BASE_URL = "http://10.0.0.5:8075/2017/laravel/misionarbol/public/api/";
 
-    public static final String BASE_URL_IMG = "http://10.0.0.9:8075/2017/laravel/misionarbol/public/";
+    public static final String BASE_URL_IMG = "http://10.0.0.5:8075/2017/laravel/misionarbol/public/";
 
-    public static final String BASE_URL_IMG_POINT = "http://10.0.0.9:8075/2017/laravel/misionarbol";
+    public static final String BASE_URL_IMG_POINT = "http://10.0.0.5:8075/2017/laravel/misionarbol";
 
     //public static final String BASE_URL = "http://10.0.0.11:8075/2017/laravel/";
 
@@ -36,7 +36,7 @@ public class InfoConstants {
     public static double latDes = 0;
     public static double lonDes = 0;
 
-    public  static final int zoomMap = 17;
+    public  static final int zoomMap = 19;
 
     public static String CITY = "";
     public static String COUNTRY = "";

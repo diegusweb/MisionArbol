@@ -1,11 +1,13 @@
 package com.diegusweb.dev.misionarbol.activity.report;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +48,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -54,6 +58,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ReportActivity extends AppCompatActivity {
+
 
     ImageView imageView;
     String mediaPath, mediaPath1;
@@ -77,7 +82,11 @@ public class ReportActivity extends AppCompatActivity {
         InfoConstants.latDes = 0;
 
         agregarToolbar();
+
+        //permisoos
         dialogOpen();
+        //----
+
 
         Button boton = (Button) findViewById(R.id.btnUbicaion);
         boton.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +123,7 @@ public class ReportActivity extends AppCompatActivity {
 
         image_ic_ok = (ImageView)findViewById(R.id.image_ic_ok);
         image_ic_ok.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -156,6 +166,7 @@ public class ReportActivity extends AppCompatActivity {
 
     public void dialogOpen(){
 
+
         imageView = (ImageView)findViewById(R.id.imageView);
 
         new AlertDialog.Builder(ReportActivity.this, R.style.Theme_RicoPaRico_Dark_Dialog)
@@ -177,6 +188,7 @@ public class ReportActivity extends AppCompatActivity {
                                 InfoConstants.SELECT_OPTION = 1;
                                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(intent,0);
+
                             }
                         })
                 .setNegativeButton("GALERIA",

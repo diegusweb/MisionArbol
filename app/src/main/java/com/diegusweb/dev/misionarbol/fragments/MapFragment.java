@@ -58,9 +58,14 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements SearchView.OnQueryTextListener, OnMapReadyCallback {
+public class MapFragment extends Fragment implements  OnMapReadyCallback {
 
     private static final int MY_PERMISO_FINE_LOCATION = 1;
+    private static final int MY_PERMISO_COURSE_LOCATION = 2 ;
+    private static final int MY_PERMISO_CAMARA = 3;
+    private static final int MY_PERMISO_STORAGE= 4;
+    private static final int MY_PERMISO_STORAGE_READ = 5;
+    private static final int MY_PERMISO_STORAGE_READ_NET = 6;
     private MapView mapView;
     private GoogleMap googleMapa;
 
@@ -168,6 +173,8 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         Criteria criteria = new Criteria();
         String bestProvider = locationManager.getBestProvider(criteria, true);
 
+
+
         if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -192,6 +199,9 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
                                 sweetAlertDialog.cancel();
                                 ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISO_FINE_LOCATION);
+
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_COARSE_LOCATION},
+                                        MY_PERMISO_COURSE_LOCATION);
                             }
                         }).show();
 
@@ -209,9 +219,122 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
             }
 
             googleMapa.setMyLocationEnabled(true);
+
             getPointsForMap();
         }
 
+
+        //camera
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para la camara")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},
+                                        MY_PERMISO_CAMARA);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},
+                        MY_PERMISO_CAMARA);
+            }
+        }
+        else{
+            //startActivityForResult(intent,0);
+
+        }
+
+        //storage
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para la Storage")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        MY_PERMISO_STORAGE);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISO_STORAGE);
+
+            }
+        }
+        else{
+            //startActivityForResult(intent,0);
+
+        }
+
+        //NETWORK
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED ) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_NETWORK_STATE))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para la Network")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_NETWORK_STATE},
+                                        MY_PERMISO_STORAGE_READ_NET);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_NETWORK_STATE},
+                        MY_PERMISO_STORAGE_READ_NET);
+            }
+        }
+        else{
+            //startActivityForResult(intent,0);
+
+        }
 
 
     }
@@ -219,7 +342,7 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
     public void onLocationChanged(Location location)
     {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f));
+        googleMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
     }
 
     public void getPointsForMap()
@@ -345,52 +468,5 @@ public class MapFragment extends Fragment implements SearchView.OnQueryTextListe
         markers.size();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //super.onCreateOptionsMenu(menu, inflater);
-        MenuItem item = menu.findItem(R.id.action_search);
-        SearchView sv = new SearchView(((MainActivity) getActivity()).getSupportActionBar().getThemedContext());
-        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
-        MenuItemCompat.setActionView(item, sv);
-        sv.setOnQueryTextListener(this);
-        sv.setIconifiedByDefault(false);
-        sv.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Diego", "ENTROOOO");
-            }
-        });
-
-        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                Toast.makeText(getActivity(), "Closed", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-                Toast.makeText(getActivity(), "Opened", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        Log.d("Submitted", query);
-        //seachMapCurrent(query);
-        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        Log.d("Changed", newText);
-        return true;
-    }
 }
 
