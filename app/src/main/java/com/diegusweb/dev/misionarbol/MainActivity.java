@@ -1,18 +1,13 @@
 package com.diegusweb.dev.misionarbol;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,24 +16,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.fragments.BusquedaFragment;
 import com.diegusweb.dev.misionarbol.fragments.InfoFragment;
 import com.diegusweb.dev.misionarbol.fragments.ListFragment;
-import com.diegusweb.dev.misionarbol.fragments.MenuFragment;
 import com.diegusweb.dev.misionarbol.fragments.MyReportFragment;
-import android.Manifest;
-import android.widget.Toast;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
-
-    private static final int MY_PERMISO_FINE_LOCATION = 1;
-    private static final int MY_PERMISO_COURSE_LOCATION = 2 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
-
-        MenuItem search = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
-        search(searchView);
         return true;
     }
 

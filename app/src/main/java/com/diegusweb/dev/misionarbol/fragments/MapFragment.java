@@ -1,11 +1,14 @@
 package com.diegusweb.dev.misionarbol.fragments;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,12 +26,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Location;
-
-import android.util.Log;
 import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
@@ -37,7 +35,6 @@ import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
 import com.diegusweb.dev.misionarbol.models.PointsTree;
-import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,6 +44,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +56,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements  OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback, SearchView.OnQueryTextListener {
 
     private static final int MY_PERMISO_FINE_LOCATION = 1;
     private static final int MY_PERMISO_COURSE_LOCATION = 2 ;
@@ -339,6 +337,13 @@ public class MapFragment extends Fragment implements  OnMapReadyCallback {
 
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        setHasOptionsMenu(true);
+    }
+
     public void onLocationChanged(Location location)
     {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
@@ -354,9 +359,6 @@ public class MapFragment extends Fragment implements  OnMapReadyCallback {
             @Override
             public void onResponse(Call<List<PointsTree>> call, Response<List<PointsTree>> response) {
                 List<PointsTree> demo = response.body();
-
-
-                //Toast.makeText(getActivity(), "Something went wrong "+demo.size(), Toast.LENGTH_LONG).show();
 
                 if(response.isSuccessful()) {
                     setLines(demo);
@@ -468,5 +470,52 @@ public class MapFragment extends Fragment implements  OnMapReadyCallback {
         markers.size();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        //super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView sv = new SearchView(((MainActivity) getActivity()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(item, sv);
+        sv.setOnQueryTextListener(this);
+        sv.setIconifiedByDefault(false);
+        sv.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Diego", "ENTROOOO");
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                Toast.makeText(getActivity(), "Closed", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                Toast.makeText(getActivity(), "Opened", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Log.d("Submitted", query);
+        //seachMapCurrent(query);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Log.d("Changed", newText);
+        return true;
+    }
 }
 

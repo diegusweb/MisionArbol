@@ -29,12 +29,9 @@ import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
 import com.diegusweb.dev.misionarbol.api.ApiClient;
 import com.diegusweb.dev.misionarbol.api.ApiInterface;
 import com.diegusweb.dev.misionarbol.helper.InfoConstants;
-import com.diegusweb.dev.misionarbol.models.PointsTree;
-import com.diegusweb.dev.misionarbol.models.TestItems;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,10 +45,7 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
 
     private RecyclerView reciclador;
     private AdapterTree adaptador;
-    private List<Tree> movieList = new ArrayList<>();
-    private ArrayList<Tree> arraylist;
-
-    private ArrayList<Tree> data;
+    private List<Tree> treesList = new ArrayList<>();
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -63,7 +57,7 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adaptador = new AdapterTree(movieList);
+        adaptador = new AdapterTree(treesList);
 
         getLibraryTreeMap();
     }
@@ -119,7 +113,7 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
         reciclador.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), reciclador, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Tree movie = movieList.get(position);
+                Tree movie = treesList.get(position);
                 InfoConstants.ONE_TREE_LIBRARY = movie;
 
                 int id = movie.getId();
@@ -158,10 +152,18 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
 
     private void setTreeList(List<Tree> alTree)
     {
-        movieList.clear();
-        movieList.addAll(alTree);
+        treesList.clear();
+        treesList.addAll(alTree);
+        adaptador.addListTransport(treesList);
         adaptador.notifyDataSetChanged();
         swipeContainer.setRefreshing(false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -185,6 +187,9 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 Toast.makeText(getActivity(), "Closed", Toast.LENGTH_SHORT).show();
+
+                getLibraryTreeMap();
+
                 return true;
             }
 
@@ -201,7 +206,9 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public boolean onQueryTextSubmit(String query) {
         Log.d("Submitted", query);
-        //seachMapCurrent(query);
+        //adaptador
+        adaptador.filter(query);
+
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         return true;
