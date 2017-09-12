@@ -1,7 +1,6 @@
 package com.diegusweb.dev.misionarbol.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,7 @@ import java.util.Locale;
 public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> {
 
     private List<Tree> treesAllResponse;
-    List<Tree> tranportsLists = new ArrayList<>();
+    List<Tree> newTreeLists = new ArrayList<>();
     private ArrayList<Tree> arraylist;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -85,41 +84,30 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
         this.arraylist = new ArrayList<Tree>();
         this.arraylist.addAll(androidVersionsList);
 
-        this.tranportsLists.clear();
-        Log.d("DiegoResult:", "addAndroidVersions - " + androidVersionsList.size());
-        this.tranportsLists.addAll(androidVersionsList);
+        this.newTreeLists.clear();
+        this.newTreeLists.addAll(androidVersionsList);
         notifyDataSetChanged();
 
-    }
-
-    public void clear(){
-        this.arraylist.clear();
-        notifyDataSetChanged();
     }
 
     public void filter(String charText){
         charText = charText.toLowerCase(Locale.getDefault());
-        Log.d("DiegoResult:", "addAndroidVersions - " + arraylist.size());
+
         treesAllResponse.clear();
         if (charText.length() == 0) {
             treesAllResponse.addAll(arraylist);
         }
         else
         {
-
             for (Tree wp : arraylist)
             {
-
                 if (wp.getTitle().toLowerCase(Locale.getDefault()).contains(charText))
                 {
                     treesAllResponse.add(wp);
-                    Log.d("DiegoResult:", "addAndroidVersions - " + treesAllResponse.size());
                 }
             }
         }
         notifyDataSetChanged();
     }
-
-
 
 }

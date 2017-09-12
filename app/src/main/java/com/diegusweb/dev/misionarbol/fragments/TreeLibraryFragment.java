@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.diegusweb.dev.misionarbol.MainActivity;
 import com.diegusweb.dev.misionarbol.R;
@@ -88,27 +87,21 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
             }
         });
 
-        // Configure the refreshing colors
-
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-        // setDummyContent();
         return root;
     }
 
     public void fetchTimelineAsync(int page) {
         getLibraryTreeMap();
-        //Toast.makeText(getActivity(), " is selected!", Toast.LENGTH_SHORT).show();
-
     }
 
 
     private void setupTreeList(){
         reciclador.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //poniendo adaptador
         reciclador.setAdapter(adaptador);
         reciclador.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), reciclador, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -168,7 +161,6 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //super.onCreateOptionsMenu(menu, inflater);
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView sv = new SearchView(((MainActivity) getActivity()).getSupportActionBar().getThemedContext());
         MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
@@ -179,23 +171,18 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
         sv.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Diego", "ENTROOOO");
             }
         });
 
         MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                Toast.makeText(getActivity(), "Closed", Toast.LENGTH_SHORT).show();
-
                 getLibraryTreeMap();
-
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
-                Toast.makeText(getActivity(), "Opened", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -205,10 +192,7 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        Log.d("Submitted", query);
-        //adaptador
         adaptador.filter(query);
-
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         return true;
@@ -216,7 +200,7 @@ public class TreeLibraryFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        Log.d("Changed", newText);
+        adaptador.filter(newText);
         return true;
     }
 }

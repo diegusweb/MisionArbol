@@ -3,7 +3,6 @@ package com.diegusweb.dev.misionarbol.helper;
 import com.diegusweb.dev.misionarbol.models.PointsTree;
 import com.diegusweb.dev.misionarbol.models.Tree;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 /**
@@ -11,11 +10,11 @@ import java.util.List;
  */
 
 public class InfoConstants {
-    public static final String BASE_URL = "http://10.0.0.5:8075/2017/laravel/misionarbol/public/api/";
+    public static final String BASE_URL = "http://10.0.0.19:8075/2017/laravel/misionarbol/public/api/";
 
-    public static final String BASE_URL_IMG = "http://10.0.0.5:8075/2017/laravel/misionarbol/public/";
+    public static final String BASE_URL_IMG = "http://10.0.0.19:8075/2017/laravel/misionarbol/public/";
 
-    public static final String BASE_URL_IMG_POINT = "http://10.0.0.5:8075/2017/laravel/misionarbol";
+    public static final String BASE_URL_IMG_POINT = "http://10.0.0.19:8075/2017/laravel/misionarbol";
 
     //public static final String BASE_URL = "http://10.0.0.11:8075/2017/laravel/";
 
