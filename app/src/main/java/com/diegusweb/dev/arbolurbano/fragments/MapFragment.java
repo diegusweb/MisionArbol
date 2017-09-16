@@ -1,10 +1,11 @@
-package com.diegusweb.dev.misionarbol.fragments;
+package com.diegusweb.dev.arbolurbano.fragments;
 
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
@@ -28,13 +29,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.diegusweb.dev.misionarbol.MainActivity;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.activity.report.ReportActivity;
-import com.diegusweb.dev.misionarbol.api.ApiClient;
-import com.diegusweb.dev.misionarbol.api.ApiInterface;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
-import com.diegusweb.dev.misionarbol.models.PointsTree;
+import com.diegusweb.dev.arbolurbano.MainActivity;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.activity.report.ReportActivity;
+import com.diegusweb.dev.arbolurbano.api.ApiClient;
+import com.diegusweb.dev.arbolurbano.api.ApiInterface;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.models.PointsTree;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,6 +43,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -170,6 +172,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
         LocationManager locationManager = (LocationManager)getActivity().getSystemService(getActivity().LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String bestProvider = locationManager.getBestProvider(criteria, true);
+
+
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            getActivity(), R.raw.style_json));
+
+            if (!success) {
+                //Log.e(TAG, "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+           // Log.e(TAG, "Can't find style. Error: ", e);
+        }
 
 
 

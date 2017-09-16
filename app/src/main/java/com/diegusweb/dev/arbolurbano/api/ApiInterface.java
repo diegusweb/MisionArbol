@@ -1,27 +1,21 @@
-package com.diegusweb.dev.misionarbol.api;
+package com.diegusweb.dev.arbolurbano.api;
 
-import com.diegusweb.dev.misionarbol.models.GithubUser;
-import com.diegusweb.dev.misionarbol.models.InfoUser;
-import com.diegusweb.dev.misionarbol.models.Login;
-import com.diegusweb.dev.misionarbol.models.PointsTree;
-import com.diegusweb.dev.misionarbol.models.ServerResponse;
-import com.diegusweb.dev.misionarbol.models.TestItems;
-import com.diegusweb.dev.misionarbol.models.Tree;
+import com.diegusweb.dev.arbolurbano.models.GithubUser;
+import com.diegusweb.dev.arbolurbano.models.InfoUser;
+import com.diegusweb.dev.arbolurbano.models.Login;
+import com.diegusweb.dev.arbolurbano.models.PointsTree;
+import com.diegusweb.dev.arbolurbano.models.ServerResponse;
+import com.diegusweb.dev.arbolurbano.models.TestItems;
+import com.diegusweb.dev.arbolurbano.models.Tree;
 
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

@@ -1,9 +1,9 @@
-package com.diegusweb.dev.misionarbol.activity.socialNetwork;
+package com.diegusweb.dev.arbolurbano.activity.socialNetwork;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.arbolurbano.R;
 
 public class SocialNetworkActivity extends AppCompatActivity {
 

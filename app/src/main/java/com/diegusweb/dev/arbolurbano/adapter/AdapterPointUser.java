@@ -1,8 +1,5 @@
-package com.diegusweb.dev.misionarbol.adapter;
+package com.diegusweb.dev.arbolurbano.adapter;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
-import com.diegusweb.dev.misionarbol.models.PointsTree;
-import com.diegusweb.dev.misionarbol.models.Tree;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.models.PointsTree;
 
 import java.util.List;
 

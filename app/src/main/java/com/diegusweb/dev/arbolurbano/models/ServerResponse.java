@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.models;
+package com.diegusweb.dev.arbolurbano.models;
 
 import com.google.gson.annotations.SerializedName;
 

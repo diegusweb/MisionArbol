@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.activity.report;
+package com.diegusweb.dev.arbolurbano.activity.report;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -20,8 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;

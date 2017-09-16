@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.activity.treeLibrary;
+package com.diegusweb.dev.arbolurbano.activity.treeLibrary;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -10,18 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.api.ApiClient;
-import com.diegusweb.dev.misionarbol.api.ApiInterface;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
-import com.diegusweb.dev.misionarbol.models.PointsTree;
-import com.diegusweb.dev.misionarbol.models.Tree;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
 
 /**
  * Created by HP on 03/01/2017.

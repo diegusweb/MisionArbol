@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.db;
+package com.diegusweb.dev.arbolurbano.db;
 
 import com.raizlabs.android.dbflow.annotation.Database;
 

@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.fragments;
+package com.diegusweb.dev.arbolurbano.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.diegusweb.dev.misionarbol.activity.howSlider.InfoActivity;
+import com.diegusweb.dev.arbolurbano.activity.howSlider.InfoActivity;
 
 /**
  * Created by HP on 06/01/2017.

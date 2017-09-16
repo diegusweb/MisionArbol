@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.adapter;
+package com.diegusweb.dev.arbolurbano.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
-import com.diegusweb.dev.misionarbol.models.Tree;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.models.Tree;
 
 import java.util.ArrayList;
 import java.util.List;

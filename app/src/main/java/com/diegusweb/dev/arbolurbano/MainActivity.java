@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol;
+package com.diegusweb.dev.arbolurbano;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -16,10 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.diegusweb.dev.misionarbol.fragments.BusquedaFragment;
-import com.diegusweb.dev.misionarbol.fragments.InfoFragment;
-import com.diegusweb.dev.misionarbol.fragments.ListFragment;
-import com.diegusweb.dev.misionarbol.fragments.MyReportFragment;
+import com.diegusweb.dev.arbolurbano.fragments.BusquedaFragment;
+import com.diegusweb.dev.arbolurbano.fragments.InfoFragment;
+import com.diegusweb.dev.arbolurbano.fragments.ListFragment;
+import com.diegusweb.dev.arbolurbano.fragments.MyReportFragment;
 
 public class MainActivity extends AppCompatActivity {
 

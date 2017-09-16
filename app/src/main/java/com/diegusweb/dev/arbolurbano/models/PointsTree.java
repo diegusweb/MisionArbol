@@ -1,6 +1,4 @@
-package com.diegusweb.dev.misionarbol.models;
-
-import java.lang.reflect.Array;
+package com.diegusweb.dev.arbolurbano.models;
 
 /**
  * Created by HP on 18/02/2017.

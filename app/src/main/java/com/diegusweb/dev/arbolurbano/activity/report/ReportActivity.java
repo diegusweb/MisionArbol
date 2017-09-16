@@ -1,13 +1,10 @@
-package com.diegusweb.dev.misionarbol.activity.report;
+package com.diegusweb.dev.arbolurbano.activity.report;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,9 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,27 +27,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.diegusweb.dev.misionarbol.MainActivity;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.adapter.AdapteTestItems;
-import com.diegusweb.dev.misionarbol.api.ApiClient;
-import com.diegusweb.dev.misionarbol.api.ApiInterface;
-import com.diegusweb.dev.misionarbol.fragments.MyDialogFragment;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
-import com.diegusweb.dev.misionarbol.models.ServerResponse;
-import com.diegusweb.dev.misionarbol.models.TestItems;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.api.ApiClient;
+import com.diegusweb.dev.arbolurbano.api.ApiInterface;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.models.ServerResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

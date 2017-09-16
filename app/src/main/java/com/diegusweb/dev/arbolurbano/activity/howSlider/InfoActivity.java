@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.activity.howSlider;
+package com.diegusweb.dev.arbolurbano.activity.howSlider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +18,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.diegusweb.dev.misionarbol.MainActivity;
-import com.diegusweb.dev.misionarbol.models.PrefManager;
+import com.diegusweb.dev.arbolurbano.MainActivity;
+import com.diegusweb.dev.arbolurbano.models.PrefManager;
 
-import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.arbolurbano.R;
 /**
  * Created by HP on 06/01/2017.
  */

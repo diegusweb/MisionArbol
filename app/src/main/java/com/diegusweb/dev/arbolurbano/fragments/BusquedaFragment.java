@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.fragments;
+package com.diegusweb.dev.arbolurbano.fragments;
 
 
 import android.graphics.Color;
@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.diegusweb.dev.misionarbol.adapter.AdapterSections;
-import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.arbolurbano.adapter.AdapterSections;
+import com.diegusweb.dev.arbolurbano.R;
 
 /**
  * A simple {@link Fragment} subclass.

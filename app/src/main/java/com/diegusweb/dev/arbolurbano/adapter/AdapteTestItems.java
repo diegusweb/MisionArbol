@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.adapter;
+package com.diegusweb.dev.arbolurbano.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.models.TestItems;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.models.TestItems;
 
 import java.util.List;
 

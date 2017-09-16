@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol;
+package com.diegusweb.dev.arbolurbano;
 
 import org.junit.Test;
 

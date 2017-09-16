@@ -1,12 +1,10 @@
-package com.diegusweb.dev.misionarbol.fragments;
+package com.diegusweb.dev.arbolurbano.fragments;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.diegusweb.dev.misionarbol.MainActivity;
 
 /**
  * Created by HP on 06/01/2017.

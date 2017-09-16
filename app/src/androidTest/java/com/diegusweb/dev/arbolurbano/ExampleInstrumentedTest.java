@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol;
+package com.diegusweb.dev.arbolurbano;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

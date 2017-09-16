@@ -1,14 +1,11 @@
-package com.diegusweb.dev.misionarbol.activity.splash;
+package com.diegusweb.dev.arbolurbano.activity.splash;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.arbolurbano.R;
 
-import com.diegusweb.dev.misionarbol.MainActivity;
-import com.diegusweb.dev.misionarbol.activity.login.LoginActivity;
-import com.diegusweb.dev.misionarbol.models.Login;
-import com.raizlabs.android.dbflow.config.FlowManager;
+import com.diegusweb.dev.arbolurbano.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

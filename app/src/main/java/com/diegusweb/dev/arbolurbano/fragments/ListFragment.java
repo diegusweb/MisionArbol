@@ -1,9 +1,7 @@
-package com.diegusweb.dev.misionarbol.fragments;
+package com.diegusweb.dev.arbolurbano.fragments;
 
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,28 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.diegusweb.dev.misionarbol.MainActivity;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.activity.treeLibrary.TreeDetailActivity;
-import com.diegusweb.dev.misionarbol.adapter.AdapteTestItems;
-import com.diegusweb.dev.misionarbol.adapter.AdapterTree;
-import com.diegusweb.dev.misionarbol.api.ApiClient;
-import com.diegusweb.dev.misionarbol.api.ApiInterface;
-import com.diegusweb.dev.misionarbol.models.TestItems;
-import com.diegusweb.dev.misionarbol.models.Tree;
+import com.diegusweb.dev.arbolurbano.MainActivity;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.adapter.AdapteTestItems;
+import com.diegusweb.dev.arbolurbano.api.ApiClient;
+import com.diegusweb.dev.arbolurbano.api.ApiInterface;
+import com.diegusweb.dev.arbolurbano.models.TestItems;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.R.attr.data;
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * A simple {@link Fragment} subclass.

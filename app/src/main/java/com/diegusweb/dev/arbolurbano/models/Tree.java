@@ -1,9 +1,4 @@
-package com.diegusweb.dev.misionarbol.models;
-
-import com.diegusweb.dev.misionarbol.R;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.diegusweb.dev.arbolurbano.models;
 
 /**
  * Created by HP on 05/01/2017.

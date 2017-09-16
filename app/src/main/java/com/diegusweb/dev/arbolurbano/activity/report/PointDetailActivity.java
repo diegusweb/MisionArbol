@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.activity.report;
+package com.diegusweb.dev.arbolurbano.activity.report;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.diegusweb.dev.misionarbol.R;
-import com.diegusweb.dev.misionarbol.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
 
 public class PointDetailActivity extends AppCompatActivity {
 

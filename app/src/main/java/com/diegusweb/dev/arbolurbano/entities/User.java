@@ -1,6 +1,6 @@
-package com.diegusweb.dev.misionarbol.entities;
+package com.diegusweb.dev.arbolurbano.entities;
 
-import com.diegusweb.dev.misionarbol.db.ArbolDatabase;
+import com.diegusweb.dev.arbolurbano.db.ArbolDatabase;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;

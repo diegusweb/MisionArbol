@@ -1,6 +1,6 @@
-package com.diegusweb.dev.misionarbol.models;
+package com.diegusweb.dev.arbolurbano.models;
 
-import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.arbolurbano.R;
 
 import java.util.ArrayList;
 import java.util.List;

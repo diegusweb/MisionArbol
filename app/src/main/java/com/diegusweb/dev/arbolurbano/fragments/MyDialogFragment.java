@@ -1,4 +1,4 @@
-package com.diegusweb.dev.misionarbol.fragments;
+package com.diegusweb.dev.arbolurbano.fragments;
 
 
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.diegusweb.dev.misionarbol.R;
+import com.diegusweb.dev.arbolurbano.R;
 
 /**
  * A simple {@link Fragment} subclass.
