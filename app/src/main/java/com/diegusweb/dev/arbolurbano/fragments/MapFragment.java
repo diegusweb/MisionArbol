@@ -410,30 +410,32 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
 
         for (int i = 0; i < this.arraylist.size(); i++) {
 
+            Log.d("lt", this.arraylist.get(i).getLat()+"  ooo");
+
             LatLng LOWER = new LatLng(this.arraylist.get(i).getLat(), this.arraylist.get(i).getLng());
             //pointsIda.add(LOWER);
 
-            if(this.arraylist.get(i).getType_id().getId() == 1){
+            if(Integer.parseInt(this.arraylist.get(i).getCaption()) == 1){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_green);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .title(this.arraylist.get(i).getCommonName() )
                         .snippet("Population: 4,137,400")
                         .position(LOWER));
 
                 markers.add(marker);
             }
 
-            if(this.arraylist.get(i).getType_id().getId() == 2){
+            if(Integer.parseInt(this.arraylist.get(i).getCaption()) == 2){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_dead);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
-                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .title(this.arraylist.get(i).getCommonName())
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .snippet("Population: 4,137,400")
                         .position(LOWER));
@@ -441,13 +443,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 markers.add(marker);
             }
 
-            if(this.arraylist.get(i).getType_id().getId() == 3){
+            if(Integer.parseInt(this.arraylist.get(i).getCaption()) == 3){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_danger);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
-                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .title(this.arraylist.get(i).getCommonName() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .snippet("Population: 4,137,400")
                         .position(LOWER));
@@ -455,13 +457,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 markers.add(marker);
             }
 
-            if(this.arraylist.get(i).getType_id().getId() == 5){
+            if(Integer.parseInt(this.arraylist.get(i).getCaption()) == 5){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_trunk);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
-                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .title(this.arraylist.get(i).getCommonName() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .snippet("Population: 4,137,400")
                         .position(LOWER));
@@ -469,13 +471,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 markers.add(marker);
             }
 
-            if(this.arraylist.get(i).getType_id().getId() == 4){
+            if(Integer.parseInt(this.arraylist.get(i).getCaption()) == 4){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_plant);
                 Bitmap b = bitmapdraw.getBitmap();
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
-                        .title(this.arraylist.get(i).getType_id().getTitle() )
+                        .title(this.arraylist.get(i).getCommonName() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .snippet("Population: 4,137,400")
                         .position(LOWER));

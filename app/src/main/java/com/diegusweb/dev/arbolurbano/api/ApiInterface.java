@@ -68,7 +68,7 @@ public interface ApiInterface {
     //Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
       //                              @Part("file") RequestBody name);
 
-    @GET("v1/points")
+    @GET("v1/markers")
     Call<List<PointsTree>> getPointTree();
 
     @GET("v1/tree")

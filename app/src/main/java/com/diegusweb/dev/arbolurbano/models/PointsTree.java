@@ -7,73 +7,38 @@ package com.diegusweb.dev.arbolurbano.models;
 public class PointsTree {
 
     private int id;
-    private String name;
-    private InfoUser user_id;
-    private Type type_id;
-    private String title;
-    private String description;
-    private String path;
+    private String email;
+    private String name_user;
+    private String caption;
+    private String file;
+    private String thumb;
+    private String scientificName;
+    private String commonName;
+    private String total_height;
+    private String stem_diameter;
+    private String development_stage;
+    private String status_tree;
     private int status;
-    private double lat;
-    private double lng;
-    private String country;
-    private String city;
-    private String created_at;
+    private double latitude;
+    private double longitude;
 
-    public PointsTree(String city, String country, String description, int id, double lat, double lng, String name, String path, int status, String title, Type type_id, InfoUser user_id, String created_at) {
-        this.city = city;
-        this.country = country;
-        this.description = description;
+
+    public PointsTree(int id, String email, String name_user, String caption, String file, String thumb, String scientificName, String commonName, String total_height, String stem_diameter, String development_stage, String status_tree, int status, double latitude, double longitude) {
         this.id = id;
-        this.lat = lat;
-        this.lng = lng;
-        this.name = name;
-        this.path = path;
+        this.email = email;
+        this.name_user = name_user;
+        this.caption = caption;
+        this.file = file;
+        this.thumb = thumb;
+        this.scientificName = scientificName;
+        this.commonName = commonName;
+        this.total_height = total_height;
+        this.stem_diameter = stem_diameter;
+        this.development_stage = development_stage;
+        this.status_tree = status_tree;
         this.status = status;
-        this.title = title;
-        this.type_id = type_id;
-        this.user_id = user_id;
-        this.created_at = created_at;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String country) {
-        this.created_at = created_at;
-    }
-
-    public InfoUser getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(InfoUser user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
@@ -84,36 +49,92 @@ public class PointsTree {
         this.id = id;
     }
 
-    public double getLat() {
-        return lat;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public double getLng() {
-        return lng;
+    public String getName_user() {
+        return name_user;
     }
 
-    public void setLng(double lng) {
-        this.lng = lng;
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
     }
 
-    public String getName() {
-        return name;
+    public String getCaption() {
+        return caption;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCaption(String caption) {
+        this.caption = caption;
     }
 
-    public String getPath() {
-        return path;
+    public String getFile() {
+        return file;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
+
+    public String getScientificName() {
+        return scientificName;
+    }
+
+    public void setScientificName(String scientificName) {
+        this.scientificName = scientificName;
+    }
+
+    public String getCommonName() {
+        return commonName;
+    }
+
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
+    }
+
+    public String getTotal_height() {
+        return total_height;
+    }
+
+    public void setTotal_height(String total_height) {
+        this.total_height = total_height;
+    }
+
+    public String getStem_diameter() {
+        return stem_diameter;
+    }
+
+    public void setStem_diameter(String stem_diameter) {
+        this.stem_diameter = stem_diameter;
+    }
+
+    public String getDevelopment_stage() {
+        return development_stage;
+    }
+
+    public void setDevelopment_stage(String development_stage) {
+        this.development_stage = development_stage;
+    }
+
+    public String getStatus_tree() {
+        return status_tree;
+    }
+
+    public void setStatus_tree(String status_tree) {
+        this.status_tree = status_tree;
     }
 
     public int getStatus() {
@@ -124,27 +145,21 @@ public class PointsTree {
         this.status = status;
     }
 
-    public String getTitle() {
-        return title;
+    public double getLat() {
+        return latitude;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLat(double lat) {
+        this.latitude = lat;
     }
 
-    public Type getType_id() {
-        return type_id;
+    public double getLng() {
+        return longitude;
     }
 
-    public void setType_id(Type type_id) {
-        this.type_id = type_id;
+    public void setLng(double lng) {
+        this.longitude = lng;
     }
-
-
-
-
-
-
 
 
 }
