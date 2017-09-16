@@ -1,5 +1,7 @@
 package com.diegusweb.dev.arbolurbano.models;
 
+import java.util.List;
+
 /**
  * Created by HP on 05/01/2017.
  */
@@ -8,37 +10,37 @@ public class Tree {
 
     private int id;
     private String title;
-    private String name_scientist;
+    private String otherTitle;
+    private String scientificName;
     private String description;
-    private String description_less;
     private String path;
 
-    public Tree() {
+    private List<Image> slug;
+
+    public Tree(){}
+
+    public String getOtherTitle() {
+        return otherTitle;
     }
 
-    public Tree(int id, String path, int image,String description, String name_scientist, String description_less) {
-        this.description = description;
-        this.id = id;
-        this.title = title;
-        this.path = path;
-        this.name_scientist = name_scientist;
-        this.description_less = description_less;
+    public void setOtherTitle(String otherTitle) {
+        this.otherTitle = otherTitle;
     }
 
-    public String getDescription_less() {
-        return description_less;
+    public List<Image> getListImage() {
+        return slug;
     }
 
-    public void setDescription_less(String description_less) {
-        this.description_less = description_less;
+    public void setListImage(List<Image> listImage) {
+        this.slug = listImage;
     }
 
-    public String getName_scientist() {
-        return name_scientist;
+    public String getScientificName() {
+        return scientificName;
     }
 
-    public void setName_scientist(String name_scientist) {
-        this.name_scientist = name_scientist;
+    public void setScientificName(String scientificName) {
+        this.scientificName = scientificName;
     }
 
     public String getDescription() {

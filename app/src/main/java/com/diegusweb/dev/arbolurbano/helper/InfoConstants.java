@@ -12,7 +12,7 @@ import java.util.List;
 public class InfoConstants {
     public static final String BASE_URL = "http://10.0.0.14:8075/2017/laravel/findtree/public/api/";
 
-    public static final String BASE_URL_IMG = "http://10.0.0.14:8075/2017/laravel/findtree/public/";
+    public static final String BASE_URL_IMG = "http://10.0.0.14:8075/2017/laravel/findtree/public";
 
     public static final String BASE_URL_IMG_POINT = "http://10.0.0.14:8075/2017/laravel/findtree";
 

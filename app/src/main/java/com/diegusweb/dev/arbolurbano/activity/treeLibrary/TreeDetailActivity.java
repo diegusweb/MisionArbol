@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.diegusweb.dev.arbolurbano.R;
 import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.models.Image;
+
+import java.util.List;
 
 /**
  * Created by HP on 03/01/2017.
@@ -54,15 +57,18 @@ public class TreeDetailActivity extends AppCompatActivity {
         descriptionLess = (TextView)findViewById(R.id.text_description_less);
         descriptionMore = (TextView)findViewById(R.id.text_product_description);
 
-        nameScientist.setText(InfoConstants.ONE_TREE_LIBRARY.getName_scientist());
-        descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription_less());
+        nameScientist.setText(InfoConstants.ONE_TREE_LIBRARY.getScientificName());
+        descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
         descriptionMore.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
 
         imageView = (ImageView)findViewById(R.id.bgheader);
 
 
+       // List<Image> demo = InfoConstants.ONE_TREE_LIBRARY.getListImage();
+
+
         Glide.with(this)
-                .load(InfoConstants.BASE_URL_IMG+InfoConstants.ONE_TREE_LIBRARY.getPath())
+                .load(InfoConstants.BASE_URL_IMG+InfoConstants.ONE_TREE_LIBRARY.getListImage().get(0))
                 .into(imageView);
     }
 

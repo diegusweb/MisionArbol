@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.diegusweb.dev.arbolurbano.R;
 import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.models.Image;
 import com.diegusweb.dev.arbolurbano.models.Tree;
 
 import java.util.ArrayList;
@@ -59,14 +60,20 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
     @Override
     public void onBindViewHolder(AdapterTree.MyViewHolder holder, int position) {
         Tree treeInfo = treesAllResponse.get(position);
+
+        List<Image> listImage = treeInfo.getListImage();
+
+
+
+
         Glide.with(holder.itemView.getContext())
-                .load(InfoConstants.BASE_URL_IMG+treeInfo.getPath())
+                .load(InfoConstants.BASE_URL_IMG+treeInfo.getListImage().get(0).getThumb())
                 .centerCrop()
                 .into(holder.imagen);
 
         holder.nombre.setText(treeInfo.getTitle());
 
-        holder.precio.setText("Demooo");
+        holder.precio.setText(treeInfo.getScientificName());
 
     }
 

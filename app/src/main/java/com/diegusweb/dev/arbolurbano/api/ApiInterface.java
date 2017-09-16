@@ -71,7 +71,7 @@ public interface ApiInterface {
     @GET("v1/markers")
     Call<List<PointsTree>> getPointTree();
 
-    @GET("v1/tree")
+    @GET("v1/gallery-products")
     Call<List<Tree>> getTreeLibrary();
 
     @GET("v1/tree/{id}")

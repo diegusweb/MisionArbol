@@ -44,7 +44,7 @@ public class PointDetailActivity extends AppCompatActivity {
     }
 
     private void getTreeDetailId() {
-        nameScientist = (TextView)findViewById(R.id.text_name_scientist);
+       /* nameScientist = (TextView)findViewById(R.id.text_name_scientist);
         descriptionLess = (TextView)findViewById(R.id.text_description);
 
 
@@ -72,11 +72,11 @@ public class PointDetailActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(InfoConstants.BASE_URL_IMG_POINT+InfoConstants.ID_TREE_DETAIL.getPath())
-                .into(imageView);
+                .into(imageView);*/
     }
 
     private void agregarToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(InfoConstants.ID_TREE_DETAIL.getTitle());
         setSupportActionBar(toolbar);
 
@@ -92,6 +92,6 @@ public class PointDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 onBackPressed();
             }
-        });
+        });*/
     }
 }

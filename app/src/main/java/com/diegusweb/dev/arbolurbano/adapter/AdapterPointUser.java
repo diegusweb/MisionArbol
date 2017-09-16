@@ -50,7 +50,7 @@ public class AdapterPointUser extends RecyclerView.Adapter<AdapterPointUser.MyVi
         PointsTree movie = pointsList.get(position);
 
 
-        switch (movie.getType_id().getId()) {
+        switch (Integer.parseInt(movie.getCaption())) {
             case 1:  holder.imagen.setImageResource(R.drawable.id_marker_green);
                 break;
             case 2:  holder.imagen.setImageResource(R.drawable.id_marker_dead);
@@ -63,9 +63,9 @@ public class AdapterPointUser extends RecyclerView.Adapter<AdapterPointUser.MyVi
                 break;
         }
 
-        holder.title.setText(movie.getTitle());
+        holder.title.setText(movie.getCommonName());
 
-        holder.description.setText(movie.getCreated_at());
+        holder.description.setText("sad");
     }
 
     @Override
