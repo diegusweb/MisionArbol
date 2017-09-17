@@ -65,15 +65,7 @@
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:paddingTop="24dp">
-                    <TextView
-                        android:id="@+id/text_name_scientist"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/activity_vertical_margin"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="Nombre del producto"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textColor="@color/black" />
+
                     <!--<TextView
                         android:id="@+id/text_product_price"
                         android:layout_width="match_parent"
@@ -94,15 +86,16 @@
                             android:tint="@color/colorPrimary"
                             app:srcCompat="@drawable/ic_tree_womder" />
                         <TextView
-                            android:id="@+id/text_description_less"
-                            style="@style/TextAppearance.AppCompat.Body1"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/text_name_scientist"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|right"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/image_stock_icon"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:fontFamily="sans-serif-thin"
+                            android:text="Nombre del producto"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="@color/black"
                             android:layout_toRightOf="@+id/image_stock_icon"
-                            android:text="Stock: n unidades disponibles" />
+                            android:layout_toEndOf="@+id/image_stock_icon" />
                     </RelativeLayout>
                     <!-- Divisor horizontal -->
                     <View

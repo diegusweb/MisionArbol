@@ -33,88 +33,169 @@
          tools:context=".MapsActivity"
          android:name="com.google.android.gms.maps.SupportMapFragment" />-->
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="247dp"
-        android:background="@color/aluminum"
-        android:padding="20dp"
-        android:layout_weight="0.07" />
+    <!-- CAmara y galery -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/primary" />
+    <!--  <ImageView
+         android:id="@+id/imageView"
+         android:layout_width="match_parent"
+         android:layout_height="247dp"
+         android:background="@color/aluminum"
+         android:padding="20dp"
+         android:layout_weight="0.07" /> -->
 
-    <RelativeLayout
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_marginBottom="5dp"
+         android:layout_marginTop="5dp"
+         android:background="@color/primary" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:paddingBottom="20dp"
+         android:orientation="horizontal"
+         android:layout_weight="0.11">
+
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             app:srcCompat="@android:drawable/ic_delete"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="18dp"
+             android:layout_marginStart="18dp"
+             android:id="@+id/imageView4" />
+
+         <Button
+             android:id="@+id/btnUbicaion"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="80dp"
+             android:text="Buscar Ubicacion en mapa"
+             android:layout_marginLeft="50dp"
+             android:layout_centerVertical="true"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true" />
+
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             app:srcCompat="@android:drawable/ic_delete"
+             android:layout_marginLeft="16dp"
+             android:layout_marginStart="16dp"
+             android:id="@+id/image_ic_ok"
+             android:layout_alignTop="@+id/imageView4"
+             android:layout_toRightOf="@+id/btnUbicaion"
+             android:layout_toEndOf="@+id/btnUbicaion" />
+
+
+     </RelativeLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:orientation="horizontal"
-        android:layout_weight="0.11">
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_email"
+            app:hintTextAppearance="@style/EditTextHint"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_delete"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:layout_marginStart="18dp"
-            android:id="@+id/imageView4" />
+            android:layout_marginTop="@dimen/form_margin_top"
+            android:hint="@string/email">
 
-        <Button
-            android:id="@+id/btnUbicaion"
-            android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:id="@+id/text_input_layout_pass"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:text="Buscar Ubicacion en mapa"
-            android:layout_marginLeft="50dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            app:hintTextAppearance="@style/EditTextHint"
+            android:hint="asdasdas"
+            android:layout_marginTop="@dimen/form_margin_top">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_delete"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:id="@+id/image_ic_ok"
-            android:layout_alignTop="@+id/imageView4"
-            android:layout_toRightOf="@+id/btnUbicaion"
-            android:layout_toEndOf="@+id/btnUbicaion" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
+        </android.support.design.widget.TextInputLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-
-        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/description"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_width="wrap_content"
+            android:id="@+id/text_view_id"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Comentario" />
-    </RelativeLayout>
+            android:layout_width="wrap_content"
+            android:paddingTop="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp"
+            android:text="Mas Datos del Arbol" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:layout_marginLeft="30dp"
-        android:hint="ponga una descripcion"
-        android:ems="10"
-        android:id="@+id/txtDescription"
-        android:layout_weight="0.05" />
-    <!-- Divisor horizontal -->
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_descrip"
+            app:hintTextAppearance="@style/EditTextHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre Comun Arbol"
+            android:layout_marginTop="@dimen/form_margin_top">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txtcommonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/text_view_id_s"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingTop="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:text="Etapa de desarrollo" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_id_d"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingTop="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:text="Estado fitosanitario del arbol" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+     <!-- Divisor horizontal -->
 
 
 </LinearLayout>

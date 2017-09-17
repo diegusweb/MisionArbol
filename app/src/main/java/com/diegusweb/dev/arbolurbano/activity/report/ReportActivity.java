@@ -22,8 +22,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,8 @@ import com.diegusweb.dev.arbolurbano.models.ServerResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,6 +59,8 @@ public class ReportActivity extends AppCompatActivity {
     ImageView imageView4;
     ImageView image_ic_ok;
 
+    Spinner spinner1, spinner2;
+
 
     File destination;
 
@@ -69,10 +75,11 @@ public class ReportActivity extends AppCompatActivity {
 
         agregarToolbar();
 
-        //permisoos
-        dialogOpen();
+        //permisoos para Galeria y Camera
+       // dialogOpen();
         //----
 
+        addItemsOnSpinner2();
 
         Button boton = (Button) findViewById(R.id.btnUbicaion);
         boton.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +120,32 @@ public class ReportActivity extends AppCompatActivity {
 
     }
 
+    //add items into spinner dynamically
+    public void addItemsOnSpinner2() {
+
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        List<String> list = new ArrayList<String>();
+        list.add("Joven");
+        list.add("Adulto");
+        list.add("Senescente");
+        list.add("Centenario");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(dataAdapter);
+
+
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        List<String> list1 = new ArrayList<String>();
+        list1.add("Se lo ve sano.");
+        list1.add("Tronco ahuecado.");
+        list1.add("Hojas con hongos.");
+        list1.add("Esta plagado de insectos.");
+        list1.add("Se lo ve enfermo pero no sé bien qué tiene.");
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list1);
+        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(dataAdapter1);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -127,10 +160,10 @@ public class ReportActivity extends AppCompatActivity {
 
         if (id == R.id.action_save_report) {
 
-            TextView descr = (TextView)findViewById(R.id.txtDescription);
-            String value = descr.getText().toString();
+            //TextView descr = (TextView)findViewById(R.id.txtDescription);
+            //String value = descr.getText().toString();
 
-            if(InfoConstants.latDes == 0 || InfoConstants.latDes == 0 || value == null){
+            if(InfoConstants.latDes == 0 || InfoConstants.latDes == 0 /*|| value == null*/){
 
                 Snackbar.make(findViewById(android.R.id.content),
                         Html.fromHtml("<font color=\"#FA3E3E\">Campos Vacios</font>")
@@ -139,7 +172,8 @@ public class ReportActivity extends AppCompatActivity {
 
             }
             else{
-                uploadFile();
+                //uploadFile();
+                sendInformationTree();
                 this.finish();
                 return true;
             }
@@ -264,6 +298,50 @@ public class ReportActivity extends AppCompatActivity {
 
     }
 
+    private void sendInformationTree()
+    {
+        //TextView descr = (TextView)findViewById(R.id.txtDescription);
+        //String value = descr.getText().toString();
+
+        TextView email = (TextView)findViewById(R.id.editTextEmail);
+        String emails = email.getText().toString();
+
+        TextView name_user = (TextView)findViewById(R.id.editTextName);
+        String nameuser = name_user.getText().toString();
+
+        TextView commonName = (TextView)findViewById(R.id.txtcommonName);
+        String commonNames = commonName.getText().toString();
+
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+
+        ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
+        Call<ServerResponse> call = getResponse.sendInfoTree(emails, nameuser, InfoConstants.latDes, InfoConstants.lonDes, String.valueOf(InfoConstants.TYPE_SELECT), "",commonNames, 1,  String.valueOf(spinner1.getSelectedItem()),  String.valueOf(spinner2.getSelectedItem()));
+        call.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse serverResponse = response.body();
+                if (serverResponse != null) {
+                    if (serverResponse.getSuccess()) {
+                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    assert serverResponse != null;
+                    Log.v("Response", serverResponse.toString());
+                }
+                // progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
 
     // Uploading Image/Video
     private void uploadFile() {
@@ -281,7 +359,7 @@ public class ReportActivity extends AppCompatActivity {
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
 
-        TextView descr = (TextView)findViewById(R.id.txtDescription);
+       /* TextView descr = (TextView)findViewById(R.id.txtDescription);
         String value = descr.getText().toString();
 
         ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
@@ -307,7 +385,7 @@ public class ReportActivity extends AppCompatActivity {
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
             }
-        });
+        });*/
     }
 
     // Providing Thumbnail For Selected Image

@@ -61,11 +61,6 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
     public void onBindViewHolder(AdapterTree.MyViewHolder holder, int position) {
         Tree treeInfo = treesAllResponse.get(position);
 
-        List<Image> listImage = treeInfo.getListImage();
-
-
-
-
         Glide.with(holder.itemView.getContext())
                 .load(InfoConstants.BASE_URL_IMG+treeInfo.getListImage().get(0).getThumb())
                 .centerCrop()

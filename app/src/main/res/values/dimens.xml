@@ -42,4 +42,6 @@
     <dimen name="desc_padding">40dp</dimen>
 
     <dimen name="logo_w_h">150dp</dimen>
+
+    <dimen name="form_margin_top">14dp</dimen>
 </resources>

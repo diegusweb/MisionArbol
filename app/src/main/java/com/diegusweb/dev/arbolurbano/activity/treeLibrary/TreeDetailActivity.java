@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,21 +55,17 @@ public class TreeDetailActivity extends AppCompatActivity {
     private void getTreeId(int id){
 
         nameScientist = (TextView)findViewById(R.id.text_name_scientist);
-        descriptionLess = (TextView)findViewById(R.id.text_description_less);
+        //descriptionLess = (TextView)findViewById(R.id.text_description_less);
         descriptionMore = (TextView)findViewById(R.id.text_product_description);
 
         nameScientist.setText(InfoConstants.ONE_TREE_LIBRARY.getScientificName());
-        descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
-        descriptionMore.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
+        //descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
+        descriptionMore.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getDescription()+"</div>"));
 
         imageView = (ImageView)findViewById(R.id.bgheader);
 
-
-       // List<Image> demo = InfoConstants.ONE_TREE_LIBRARY.getListImage();
-
-
         Glide.with(this)
-                .load(InfoConstants.BASE_URL_IMG+InfoConstants.ONE_TREE_LIBRARY.getListImage().get(0))
+                .load(InfoConstants.BASE_URL_IMG+InfoConstants.ONE_TREE_LIBRARY.getListImage().get(0).getThumb())
                 .into(imageView);
     }
 

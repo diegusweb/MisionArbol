@@ -92,6 +92,21 @@ public interface ApiInterface {
                                     @Query("city") String city);
 
 
+    @Multipart
+    @POST("v1/points")
+    Call<ServerResponse> sendInfoTree(
+                                    @Query("email") String email,
+                                    @Query("name_user") String name_user,
+                                    @Query("latitude") Double latitude,
+                                    @Query("longitude") Double longitude,
+                                    @Query("caption") String caption,
+                                    @Query("description") String description,
+                                    @Query("commonName") String commonName,
+                                    @Query("status") int status,
+                                    @Query("development_stage") String development_stage,
+                                    @Query("status_tree") String status_tree);
+
+
     //Mis reportes
     @GET("v1/points/{id}")
     Call<List<PointsTree>> getReportPoints(@Path("id") int id);
