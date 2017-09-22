@@ -85,17 +85,17 @@
                             android:layout_marginRight="8dp"
                             android:tint="@color/colorPrimary"
                             app:srcCompat="@drawable/ic_tree_womder" />
+
                         <TextView
                             android:id="@+id/text_name_scientist"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:fontFamily="sans-serif-thin"
-                            android:text="Nombre del producto"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                            android:textColor="@color/black"
+                            android:layout_toEndOf="@+id/image_stock_icon"
                             android:layout_toRightOf="@+id/image_stock_icon"
-                            android:layout_toEndOf="@+id/image_stock_icon" />
+                            android:textSize="30sp"
+                            android:text="Nombre del producto"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
                     </RelativeLayout>
                     <!-- Divisor horizontal -->
                     <View
@@ -104,19 +104,79 @@
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:background="@color/primary" />
-                    <TextView
-                        android:id="@+id/text_label_product_description"
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Description"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        />
-                    <TextView
-                        android:id="@+id/text_product_description"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/image_description_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/ic_tree_womder" />
+
+                        <TextView
+                            android:id="@+id/text_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="Nombre del producto"
+                            android:layout_toRightOf="@+id/image_description_icon"
+                            android:layout_toEndOf="@+id/image_description_icon" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="large_text" />
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/image_flower_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/if_flowers" />
+
+                        <TextView
+                            android:id="@+id/text_flowers_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="Nombre del producto"
+                            android:layout_toRightOf="@+id/image_flower_icon"
+                            android:layout_toEndOf="@+id/image_flower_icon" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/image_location_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/if_location" />
+
+                        <TextView
+                            android:id="@+id/text_location_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="Nombre del producto"
+                            android:layout_toRightOf="@+id/image_location_icon"
+                            android:layout_toEndOf="@+id/image_location_icon" />
+
+
+                    </RelativeLayout>
+
+
+
                 </LinearLayout>
             </FrameLayout>
         </android.support.v4.widget.NestedScrollView>

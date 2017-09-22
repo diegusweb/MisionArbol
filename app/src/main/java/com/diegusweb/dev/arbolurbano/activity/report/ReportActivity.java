@@ -81,6 +81,8 @@ public class ReportActivity extends AppCompatActivity {
 
         addItemsOnSpinner2();
 
+        Log.d("demo", "Reporrrr");
+
         Button boton = (Button) findViewById(R.id.btnUbicaion);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override

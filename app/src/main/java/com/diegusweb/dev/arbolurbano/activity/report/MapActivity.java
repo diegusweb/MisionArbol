@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diegusweb.dev.arbolurbano.R;
@@ -57,12 +58,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        Log.d("demo", "oncreate");
       //  getSupportActionBar().setTitle("Map Location Activity");
 
         agregarToolbar();
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapUbicacion);
         mapFrag.getMapAsync(this);
+
+        Log.d("Actual1", "oncreate");
+       // Toast.makeText(this, "oncreate", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -96,6 +101,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
+        Log.d("demo", "onMapReady");
+        Toast.makeText(this, "onMapReady", Toast.LENGTH_LONG).show();
+
         mGoogleMap=googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
@@ -149,6 +157,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(Location location)
     {
+        Log.d("demo", "onLocationChanged");
+
+
         mLastLocation = location;
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
@@ -187,7 +198,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .build();
         mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        mGoogleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+
+        /*mGoogleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
             @Override
             public void onCameraChange(CameraPosition position) {
                 LatLng centerOfMap = mGoogleMap.getCameraPosition().target;
@@ -199,19 +211,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     InfoConstants.lonDes = centerOfMap.longitude;
 
 
+
+
                     if (addresses.size() > 0) {
                         String address = addresses.get(0).getAddressLine(0);
                         String city = addresses.get(0).getLocality();
                         String state = addresses.get(0).getAdminArea();
                         String country = addresses.get(0).getCountryName();
                         String postalCode = addresses.get(0).getPostalCode();
-                        Log.d("Actual1", address +" / "+city+"/"+country+"/"+state+"/"+postalCode);
+                        Log.d("demo", address +" / "+city+"/"+country+"/"+state+"/"+postalCode);
                         // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
 
                         //String city = addresses.get(0).getLocality();
                         //String country = addresses.get(0).getCountryName();
 
-                        // TextView text = (TextView) getActivity().findViewById(R.id.direccion);
+                        // TextView text = (TextView) getApplicationContext().findViewById(R.id.direccion);
                         // text.setText(address);
 
                         InfoConstants.CITY = city;
@@ -226,12 +240,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 // Update your Marker's position to the center of the Map.
                 mCurrLocationMarker.setPosition(centerOfMap);
             }
-        });
+        });*/
 
         //optionally, stop location updates if only current location is needed
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+
+        Toast.makeText(this, "onLocationChanged "+ InfoConstants.latDes, Toast.LENGTH_LONG).show();
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;

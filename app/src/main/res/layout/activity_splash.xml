@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="MisionArbol"
+        android:text="Arbol Urbano"
         android:textColor="@color/accentColor"
         android:textSize="24dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

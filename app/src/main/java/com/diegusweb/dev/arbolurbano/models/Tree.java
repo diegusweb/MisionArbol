@@ -13,6 +13,8 @@ public class Tree {
     private String otherTitle;
     private String scientificName;
     private String description;
+    private String location;
+    private String flowers;
     private String path;
 
     private List<Image> slug;
@@ -49,6 +51,22 @@ public class Tree {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getFlowers() {
+        return flowers;
+    }
+
+    public void setFlowers(String flowers) {
+        this.flowers = flowers;
     }
 
     public int getId() {
