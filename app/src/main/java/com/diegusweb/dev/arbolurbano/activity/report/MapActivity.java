@@ -38,6 +38,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,22 +53,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker;
+    private LatLng mMovingPosition;
+    private List<android.location.Address> mLocationAddress;
+    TextView displayTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        Log.d("demo", "oncreate");
-      //  getSupportActionBar().setTitle("Map Location Activity");
 
         agregarToolbar();
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapUbicacion);
         mapFrag.getMapAsync(this);
 
-        Log.d("Actual1", "oncreate");
        // Toast.makeText(this, "oncreate", Toast.LENGTH_LONG).show();
+        displayTextView = (TextView)findViewById(R.id.direccion);
+
     }
 
     @Override
@@ -196,51 +200,35 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //.bearing(90)                // Sets the orientation of the camera to east
                 .tilt(20)                   // Sets the tilt of the camera to 30 degrees
                 .build();
-        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        //mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-
-        /*mGoogleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+        mGoogleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
             @Override
-            public void onCameraChange(CameraPosition position) {
-                LatLng centerOfMap = mGoogleMap.getCameraPosition().target;
-                try {
-                    Geocoder gcd = new Geocoder(getApplication(), Locale.getDefault());
-                    List<Address> addresses = gcd.getFromLocation(centerOfMap.latitude, centerOfMap.longitude, 1);
+            public void onCameraMoveStarted(int i) {
+                //mDragTimer.start();
+               // mTimerIsRunning = true;
 
-                    InfoConstants.latDes = centerOfMap.latitude;
-                    InfoConstants.lonDes = centerOfMap.longitude;
+                onDragMove();
+                Log.d("demo", i+" dmmm");
 
+            }
+        });
 
-
-
-                    if (addresses.size() > 0) {
-                        String address = addresses.get(0).getAddressLine(0);
-                        String city = addresses.get(0).getLocality();
-                        String state = addresses.get(0).getAdminArea();
-                        String country = addresses.get(0).getCountryName();
-                        String postalCode = addresses.get(0).getPostalCode();
-                        Log.d("demo", address +" / "+city+"/"+country+"/"+state+"/"+postalCode);
-                        // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-
-                        //String city = addresses.get(0).getLocality();
-                        //String country = addresses.get(0).getCountryName();
-
-                        // TextView text = (TextView) getApplicationContext().findViewById(R.id.direccion);
-                        // text.setText(address);
-
-                        InfoConstants.CITY = city;
-                        InfoConstants.COUNTRY = country;
-
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+        mGoogleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+            @Override
+            public void onCameraIdle() {
+                // Cleaning all the markers.
+                if (mGoogleMap != null) {
+                    mGoogleMap.clear();
                 }
 
-                // Update your Marker's position to the center of the Map.
-                mCurrLocationMarker.setPosition(centerOfMap);
+                Log.d("demo", " sdfsdf  dmmm");
+
             }
-        });*/
+        });
+
+
+
 
         //optionally, stop location updates if only current location is needed
         if (mGoogleApiClient != null) {
@@ -249,6 +237,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         Toast.makeText(this, "onLocationChanged "+ InfoConstants.latDes, Toast.LENGTH_LONG).show();
     }
+
+
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private void checkLocationPermission() {
@@ -285,6 +275,43 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         MY_PERMISSIONS_REQUEST_LOCATION );
             }
         }
+    }
+
+    private void onDragMove(){
+        mMovingPosition = mGoogleMap.getCameraPosition().target;
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mMovingPosition, 17));
+        Runnable backgroundTask = new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Geocoder geocoder = new Geocoder(getApplication(), Locale.ENGLISH);
+                    mLocationAddress = geocoder.getFromLocation(mMovingPosition.latitude, mMovingPosition.longitude, 1);
+
+                    if (mLocationAddress != null && mLocationAddress.size() != 0) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("demo", mLocationAddress.get(0).getAddressLine(0) + ", " + mLocationAddress.get(0).getLatitude());
+
+                                InfoConstants.latDes = mLocationAddress.get(0).getLatitude();
+                                InfoConstants.lonDes = mLocationAddress.get(0).getLongitude();
+
+
+                                displayTextView.setText(mLocationAddress.get(0).getAddressLine(0));
+                            }
+                        });
+                    }
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+
+        };
+
+        new Thread(backgroundTask).start();
+
+
     }
 
     @Override
