@@ -317,8 +317,22 @@ public class ReportActivity extends AppCompatActivity {
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
 
+
+        //Log.d("demo", emails+" - "+nameuser+" - "+InfoConstants.latDes+" - "+InfoConstants.lonDes+" - "+String.valueOf(InfoConstants.TYPE_SELECT)+" - "+"null"+" - "+commonNames+" - "+1+" - "+ String.valueOf(spinner1.getSelectedItem())+" - "+  String.valueOf(spinner2.getSelectedItem()));
+
+
         ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
-        Call<ServerResponse> call = getResponse.sendInfoTree(emails, nameuser, InfoConstants.latDes, InfoConstants.lonDes, String.valueOf(InfoConstants.TYPE_SELECT), "",commonNames, 1,  String.valueOf(spinner1.getSelectedItem()),  String.valueOf(spinner2.getSelectedItem()));
+        Call<ServerResponse> call = getResponse.sendInfoTree(emails,
+                nameuser,
+                InfoConstants.latDes,
+                InfoConstants.lonDes,
+                String.valueOf(InfoConstants.TYPE_SELECT),
+                "",
+                commonNames,
+                1,
+                String.valueOf(spinner1.getSelectedItem()),
+                String.valueOf(spinner2.getSelectedItem()));
+
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -331,7 +345,7 @@ public class ReportActivity extends AppCompatActivity {
                     }
                 } else {
                     assert serverResponse != null;
-                    Log.v("Response", serverResponse.toString());
+                    Log.v("demo", serverResponse.toString());
                 }
                 // progressDialog.dismiss();
             }
