@@ -66,9 +66,9 @@ public class TreeDetailActivity extends AppCompatActivity {
         //descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
         descriptionMore.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getDescription()+"</div>"));
 
-        descriptionLocation.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFlowers()+"</div>"));
+        descriptionLocation.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getLocation()+"</div>"));
 
-        descriptionFlowers.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getLocation()+"</div>"));
+        descriptionFlowers.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFlowers()+"</div>"));
 
 
         imageView = (ImageView)findViewById(R.id.bgheader);
