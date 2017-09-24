@@ -198,7 +198,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
             {
                 new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Atencio!")
+                        .setTitleText("Atencion!")
                         .setContentText("Debes otorgar permisos para el mapa")
                         .setConfirmText("Solicitar Permisos")
                         .setCancelText("Cancelar")
@@ -240,7 +240,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
 
 
         //camera
-        if (ActivityCompat.checkSelfPermission(getActivity(),
+       /* if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA))
@@ -274,10 +274,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
         else{
             //startActivityForResult(intent,0);
 
-        }
+        }*/
 
         //storage
-        if (ActivityCompat.checkSelfPermission(getActivity(),
+       /* if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
@@ -312,7 +312,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
         else{
             //startActivityForResult(intent,0);
 
-        }
+        }*/
 
         //NETWORK
         if (ActivityCompat.checkSelfPermission(getActivity(),

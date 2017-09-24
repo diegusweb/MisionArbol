@@ -105,8 +105,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
-        Log.d("demo", "onMapReady");
-        Toast.makeText(this, "onMapReady", Toast.LENGTH_LONG).show();
+        //Log.d("demo", "onMapReady");
+        //Toast.makeText(this, "onMapReady", Toast.LENGTH_LONG).show();
 
         mGoogleMap=googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -235,7 +235,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
 
-        Toast.makeText(this, "onLocationChanged "+ InfoConstants.latDes, Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, "onLocationChanged "+ InfoConstants.latDes, Toast.LENGTH_LONG).show();
     }
 
 

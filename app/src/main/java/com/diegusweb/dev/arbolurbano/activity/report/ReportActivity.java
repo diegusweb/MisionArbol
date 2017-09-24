@@ -34,11 +34,14 @@ import com.diegusweb.dev.arbolurbano.api.ApiClient;
 import com.diegusweb.dev.arbolurbano.api.ApiInterface;
 import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
 import com.diegusweb.dev.arbolurbano.models.ServerResponse;
+import com.raizlabs.android.dbflow.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -162,8 +165,12 @@ public class ReportActivity extends AppCompatActivity {
 
         if (id == R.id.action_save_report) {
 
-            //TextView descr = (TextView)findViewById(R.id.txtDescription);
-            //String value = descr.getText().toString();
+            TextView email = (TextView)findViewById(R.id.editTextEmail);
+            String emails = email.getText().toString();
+
+            TextView name_user = (TextView)findViewById(R.id.editTextName);
+            String nameUser = name_user.getText().toString();
+
 
             if(InfoConstants.latDes == 0 || InfoConstants.latDes == 0 /*|| value == null*/){
 
@@ -173,9 +180,23 @@ public class ReportActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
             }
+            else if(!isEmailValid(emails)){
+
+                Snackbar.make(findViewById(android.R.id.content),
+                        Html.fromHtml("<font color=\"#FA3E3E\">Email Incorrecto</font>")
+                        , Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+            else if(!StringUtils.isNotNullOrEmpty(nameUser)){
+
+                Snackbar.make(findViewById(android.R.id.content),
+                        Html.fromHtml("<font color=\"#FA3E3E\">Nombre Requerido</font>")
+                        , Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
             else{
                 //uploadFile();
-                sendInformationTree();
+                //sendInformationTree();
                 this.finish();
                 return true;
             }
@@ -186,7 +207,28 @@ public class ReportActivity extends AppCompatActivity {
     }
 
 
-    public void dialogOpen(){
+    public boolean isEmailValid(String email)
+    {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
+  /*  public void dialogOpen(){
 
 
         imageView = (ImageView)findViewById(R.id.imageView);
@@ -223,7 +265,7 @@ public class ReportActivity extends AppCompatActivity {
                                 startActivityForResult(galleryIntent, 0);
                             }
                         }).show();
-    }
+    }*/
 
    /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -300,16 +342,8 @@ public class ReportActivity extends AppCompatActivity {
 
     }
 
-    private void sendInformationTree()
+    private void sendInformationTree(String emails, String nameuser)
     {
-        //TextView descr = (TextView)findViewById(R.id.txtDescription);
-        //String value = descr.getText().toString();
-
-        TextView email = (TextView)findViewById(R.id.editTextEmail);
-        String emails = email.getText().toString();
-
-        TextView name_user = (TextView)findViewById(R.id.editTextName);
-        String nameuser = name_user.getText().toString();
 
         TextView commonName = (TextView)findViewById(R.id.txtcommonName);
         String commonNames = commonName.getText().toString();

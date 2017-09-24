@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/EditTextHint"
-            android:hint="asdasdas"
+            android:hint="Nombre"
             android:layout_marginTop="@dimen/form_margin_top">
 
             <android.support.design.widget.TextInputEditText

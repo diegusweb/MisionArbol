@@ -128,7 +128,9 @@
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:layout_toEndOf="@+id/image_description_icon"
                             android:layout_toRightOf="@+id/image_description_icon"
-                            android:text="Nombre del producto" />
+                            android:paddingTop="10dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
 
 
                     </RelativeLayout>
@@ -153,7 +155,9 @@
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:layout_toEndOf="@+id/image_flower_icon"
                             android:layout_toRightOf="@+id/image_flower_icon"
-                            android:text="Nombre del producto" />
+                            android:paddingTop="10dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
 
 
                     </RelativeLayout>
@@ -177,7 +181,9 @@
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:layout_toEndOf="@+id/image_location_icon"
                             android:layout_toRightOf="@+id/image_location_icon"
-                            android:text="Nombre del producto" />
+                            android:paddingTop="10dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
 
 
                     </RelativeLayout>
