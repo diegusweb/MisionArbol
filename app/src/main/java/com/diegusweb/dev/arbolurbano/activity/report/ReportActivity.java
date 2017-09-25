@@ -196,7 +196,7 @@ public class ReportActivity extends AppCompatActivity {
             }
             else{
                 //uploadFile();
-                //sendInformationTree();
+                sendInformationTree(emails, nameUser);
                 this.finish();
                 return true;
             }

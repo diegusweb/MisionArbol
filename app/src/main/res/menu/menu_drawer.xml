@@ -11,33 +11,13 @@
             android:id="@+id/item_how_work"
             android:icon="@drawable/cuenta"
             android:title="@string/item_how_work" />
-        <item
-            android:id="@+id/item_contact"
-            android:icon="@drawable/categorias"
-            android:title="@string/item_contact" />
+
         <item
             android:id="@+id/item_setting"
             android:icon="@drawable/configuracion"
             android:title="@string/item_setting" />
-        <item
-            android:id="@+id/item_reportes"
-            android:icon="@drawable/configuracion"
-            android:title="@string/item_my_photos" />
+
     </group>
 
-    <item>
-        <menu>
-            <item
-                android:id="@+id/nav_about_us"
-                android:title="@string/nav_recomender" />
-            <item
-                android:id="@+id/nav_privacy_policy"
-                android:title="@string/nav_privacy_policy" />
-
-            <item
-                android:id="@+id/nav_logout"
-                android:title="@string/nav_logout" />
-        </menu>
-    </item>
 
 </menu>

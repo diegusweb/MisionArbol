@@ -41,6 +41,9 @@ public class InfoConstants {
     public static double latDes = 0;
     public static double lonDes = 0;
 
+    public static double latStreet = 0;
+    public static double lonStreet = 0;
+
     public  static final int zoomMap = 19;
 
     public static String CITY = "";

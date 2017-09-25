@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.diegusweb.dev.arbolurbano.MainActivity;
 import com.diegusweb.dev.arbolurbano.R;
 import com.diegusweb.dev.arbolurbano.activity.report.ReportActivity;
+import com.diegusweb.dev.arbolurbano.activity.streetView.StreetActivity;
 import com.diegusweb.dev.arbolurbano.api.ApiClient;
 import com.diegusweb.dev.arbolurbano.api.ApiInterface;
 import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
@@ -58,7 +59,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback, SearchView.OnQueryTextListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, SearchView.OnQueryTextListener {
 
     private static final int MY_PERMISO_FINE_LOCATION = 1;
     private static final int MY_PERMISO_COURSE_LOCATION = 2 ;
@@ -69,6 +70,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
     private MapView mapView;
     private GoogleMap googleMapa;
 
+
+
     List<PointsTree> RouteLists = new ArrayList<>();
     private ArrayList<PointsTree> arraylist;
 
@@ -76,7 +79,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        View overlay = inflater.inflate( R.layout.fragment_map, container, false );
+
+
+        return overlay;
     }
 
     @Override
@@ -236,6 +242,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
             googleMapa.setMyLocationEnabled(true);
 
             getPointsForMap();
+
+
         }
 
 
@@ -410,10 +418,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
 
         for (int i = 0; i < this.arraylist.size(); i++) {
 
-            Log.d("lt", this.arraylist.get(i).getLat()+"  ooo");
-
             LatLng LOWER = new LatLng(this.arraylist.get(i).getLat(), this.arraylist.get(i).getLng());
-            //pointsIda.add(LOWER);
 
             if(Integer.parseInt(this.arraylist.get(i).getCaption()) == 1){
                 BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.id_marker_green);
@@ -422,9 +427,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .title(this.arraylist.get(i).getCommonName() )
-                        .snippet("Population: 4,137,400")
                         .position(LOWER));
+
+
+                googleMapa.setOnMarkerClickListener(this);
+
 
                 markers.add(marker);
             }
@@ -437,8 +444,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getCommonName())
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .snippet("Population: 4,137,400")
                         .position(LOWER));
+
+                googleMapa.setOnMarkerClickListener(this);
 
                 markers.add(marker);
             }
@@ -451,8 +459,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getCommonName() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .snippet("Population: 4,137,400")
                         .position(LOWER));
+
+                googleMapa.setOnMarkerClickListener(this);
 
                 markers.add(marker);
             }
@@ -465,8 +474,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getCommonName() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .snippet("Population: 4,137,400")
                         .position(LOWER));
+
+                googleMapa.setOnMarkerClickListener(this);
 
                 markers.add(marker);
             }
@@ -479,15 +489,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
                         .title(this.arraylist.get(i).getCommonName() )
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-                        .snippet("Population: 4,137,400")
                         .position(LOWER));
+
+                googleMapa.setOnMarkerClickListener(this);
 
                 markers.add(marker);
             }
         }
 
+
         markers.size();
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -524,7 +537,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        Log.d("Submitted", query);
+        //Log.d("Submitted", query);
         //seachMapCurrent(query);
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
@@ -533,8 +546,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SearchV
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        Log.d("Changed", newText);
+        //Log.d("Changed", newText);
         return true;
     }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Toast.makeText(getActivity(), "sssss  has been clicked times.", Toast.LENGTH_SHORT).show();
+
+        InfoConstants.latStreet = marker.getPosition().latitude;
+        InfoConstants.lonStreet = marker.getPosition().longitude;
+
+        Intent i = new Intent(getActivity(), StreetActivity.class);
+        startActivity(i);
+
+        return false;
+    }
+
+
 }
 

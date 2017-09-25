@@ -119,17 +119,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_init:
                 fragmentoGenerico = new BusquedaFragment();
                 break;
-            case R.id.item_contact:
-                fragmentoGenerico = new ListFragment();
-                break;
+
             case R.id.item_how_work:
                 fragmentoGenerico = new InfoFragment();
                 // Fragmento para la sección Categorías
                 break;
-            case R.id.item_reportes:
-                fragmentoGenerico = new MyReportFragment();
-                // Fragmento para la sección Categorías
-                break;
+
             case R.id.item_setting:
                 // Iniciar actividad de configuración
                 break;
