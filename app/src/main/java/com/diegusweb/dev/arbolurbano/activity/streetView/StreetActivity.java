@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.diegusweb.dev.arbolurbano.R;
+import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
 import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
 import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -14,48 +15,33 @@ import com.google.android.gms.maps.SupportStreetViewPanoramaFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 
-public class StreetActivity extends AppCompatActivity implements
-        OnStreetViewPanoramaReadyCallback {  // PanoramaReadyCallback to use StreetViewPanorama.
+public class StreetActivity extends AppCompatActivity  {
 
-    private static final LatLng NY_TIME_SQUARE = new LatLng(40.758952, -73.985174); // sample input.
-    private StreetViewPanorama mStreetViewPanorama; // the object that handle panorama preview.
-    SupportMapFragment mapFrag;
+    // George St, Sydney
+    private static final LatLng SYDNEY = new LatLng(InfoConstants.latStreet, InfoConstants.lonStreet);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_street);
 
-       // mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.streetviewpanorama);
-       // mapFrag.getMapAsync(this);
+        SupportStreetViewPanoramaFragment streetViewPanoramaFragment =
+                (SupportStreetViewPanoramaFragment)
+                        getSupportFragmentManager().findFragmentById(R.id.streetviewpanorama);
+        streetViewPanoramaFragment.getStreetViewPanoramaAsync(
+                new OnStreetViewPanoramaReadyCallback() {
+                    @Override
+                    public void onStreetViewPanoramaReady(StreetViewPanorama panorama) {
+                        // Only set the panorama to SYDNEY on startup (when no panoramas have been
+                        // loaded which is when the savedInstanceState is null).
+                        if (savedInstanceState == null) {
+                            panorama.setPosition(new LatLng(InfoConstants.latStreet, InfoConstants.lonStreet));
+                        }
+                    }
+                });
 
-
-       SupportStreetViewPanoramaFragment panoramaFragment =
-                (SupportStreetViewPanoramaFragment) getSupportFragmentManager()
-                        .findFragmentById(R.id.streetviewpanorama);
-
-        panoramaFragment.getStreetViewPanoramaAsync(this); // call this to use the fragment.
-
-        //agregarToolbar();
+        agregarToolbar();
     }
-
-    /**
-     * after panorama get ready, you can declare the position.
-     */
-    @Override
-    public void onStreetViewPanoramaReady(StreetViewPanorama streetViewPanorama) {
-        mStreetViewPanorama = streetViewPanorama;
-        mStreetViewPanorama.setPosition(NY_TIME_SQUARE); // where the street view will be shown.
-        /** you can control the inputs into street view */
-        mStreetViewPanorama.setUserNavigationEnabled(false);
-        mStreetViewPanorama.setPanningGesturesEnabled(true);
-        mStreetViewPanorama.setZoomGesturesEnabled(true);
-    }
-
-
-
-
-
 
     private void agregarToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,5 +61,4 @@ public class StreetActivity extends AppCompatActivity implements
             }
         });
     }
-
 }
