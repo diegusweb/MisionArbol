@@ -62,10 +62,10 @@ public class Comida {
     public static final List<Comida> PLATILLOS = new ArrayList<>();
 
     static {
-        COMIDAS_POPULARES.add(new Comida(1, 5, "Molle", R.drawable.molle));
-        COMIDAS_POPULARES.add(new Comida(2, 3.2f, "jacaranda", R.drawable.jacaranda));
-        COMIDAS_POPULARES.add(new Comida(3, 12f, "Sauce Lloron", R.drawable.sauce_lloron));
-        COMIDAS_POPULARES.add(new Comida(4, 9, "Eucalipto", R.drawable.eucalipto));
+        //COMIDAS_POPULARES.add(new Comida(1, 5, "Molle", R.drawable.molle));
+        //COMIDAS_POPULARES.add(new Comida(2, 3.2f, "jacaranda", R.drawable.jacaranda));
+        //COMIDAS_POPULARES.add(new Comida(3, 12f, "Sauce Lloron", R.drawable.sauce_lloron));
+        //COMIDAS_POPULARES.add(new Comida(4, 9, "Eucalipto", R.drawable.eucalipto));
         //COMIDAS_POPULARES.add(new Comida(34f, "Lomo De Cerdo Austral", R.drawable.lomo_cerdo));
     }
 

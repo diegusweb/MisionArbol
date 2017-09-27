@@ -426,6 +426,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 Marker marker = googleMapa.addMarker(new MarkerOptions()
+                        .title(this.arraylist.get(i).getCommonName())
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                         .position(LOWER));
 
@@ -552,10 +553,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Toast.makeText(getActivity(), "sssss  has been clicked times.", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "sssss  has been clicked times." + marker.getTitle(), Toast.LENGTH_SHORT).show();
 
         InfoConstants.latStreet = marker.getPosition().latitude;
         InfoConstants.lonStreet = marker.getPosition().longitude;
+
 
         Intent i = new Intent(getActivity(), StreetActivity.class);
         startActivity(i);
