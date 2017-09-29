@@ -355,13 +355,11 @@ public class ReportActivity extends AppCompatActivity {
         //Log.d("demo", emails+" - "+nameuser+" - "+InfoConstants.latDes+" - "+InfoConstants.lonDes+" - "+String.valueOf(InfoConstants.TYPE_SELECT)+" - "+"null"+" - "+commonNames+" - "+1+" - "+ String.valueOf(spinner1.getSelectedItem())+" - "+  String.valueOf(spinner2.getSelectedItem()));
 
 
-        // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(ReportActivity.this);
-        progressDoalog.setMessage("Wait while loading...");
-        progressDoalog.setTitle("Loading");
-        progressDoalog.setCancelable(false);
-        progressDoalog.show();
+        progressDialog = new ProgressDialog(ReportActivity.this);
+        progressDialog.setMessage("Guardando..."); // Setting Message
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);
 
 
         ApiInterface getResponse = ApiClient.getClient().create(ApiInterface.class);
@@ -383,10 +381,10 @@ public class ReportActivity extends AppCompatActivity {
                 if (serverResponse != null) {
                     if (serverResponse.getSuccess()) {
                         //Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
-                       progressDoalog.dismiss();
+                        progressDialog.dismiss();
                     } else {
                         //Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
-                        progressDoalog.dismiss();
+                        progressDialog.dismiss();
                     }
                 } else {
                     assert serverResponse != null;

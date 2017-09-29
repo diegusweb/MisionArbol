@@ -56,6 +56,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private LatLng mMovingPosition;
     private List<android.location.Address> mLocationAddress;
     TextView displayTextView;
+    List<Address> addresses = null;
+    String errorMessage = "";
+    String TAG = "mapReport";
 
 
     @Override
@@ -108,7 +111,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //Log.d("demo", "onMapReady");
         //Toast.makeText(this, "onMapReady", Toast.LENGTH_LONG).show();
 
-        mGoogleMap=googleMap;
+        mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         //Initialize Google Play Services
@@ -193,14 +196,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.id_map_marker))
                 .draggable(true).visible(true));
 
-        // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NYC, 17));
-        final CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)      // Sets the center of the map to Mountain View
-                .zoom(15)                   // Sets the zoom
-                //.bearing(90)                // Sets the orientation of the camera to east
-                .tilt(20)                   // Sets the tilt of the camera to 30 degrees
-                .build();
-        //mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         mGoogleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
             @Override
@@ -209,7 +204,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                // mTimerIsRunning = true;
 
                 onDragMove();
-                Log.d("demo", i+" dmmm");
+               // Log.d("demo", i+" dmmm");
 
             }
         });
@@ -222,7 +217,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     mGoogleMap.clear();
                 }
 
-                Log.d("demo", " sdfsdf  dmmm");
+               // Log.d("demo", " sdfsdf  dmmm");
 
             }
         });
@@ -278,33 +273,54 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void onDragMove(){
+
+
+
         mMovingPosition = mGoogleMap.getCameraPosition().target;
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mMovingPosition, 17));
+
+        Log.e(TAG,mMovingPosition.latitude+" ----- ");
+
+
+
         Runnable backgroundTask = new Runnable() {
             @Override
             public void run() {
 
+
                 try {
-                    Geocoder geocoder = new Geocoder(getApplication(), Locale.ENGLISH);
+                    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.ENGLISH);
                     mLocationAddress = geocoder.getFromLocation(mMovingPosition.latitude, mMovingPosition.longitude, 1);
 
-                    if (mLocationAddress != null && mLocationAddress.size() != 0) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("demo", mLocationAddress.get(0).getAddressLine(0) + ", " + mLocationAddress.get(0).getLatitude());
 
-                                InfoConstants.latDes = mLocationAddress.get(0).getLatitude();
-                                InfoConstants.lonDes = mLocationAddress.get(0).getLongitude();
-
-
-                                displayTextView.setText(mLocationAddress.get(0).getAddressLine(0));
-                            }
-                        });
-                    }
-                }catch(IOException e){
-                    e.printStackTrace();
+                }catch (IOException ioException) {
+                    // Catch network or other I/O problems.
+                    //errorMessage = getString(R.string.service_not_available);
+                    Log.e(TAG, errorMessage, ioException);
+                } catch (IllegalArgumentException illegalArgumentException) {
+                    // Catch invalid latitude or longitude values.
+                    //errorMessage = getString(R.string.invalid_lat_long_used);
+                    Log.e(TAG, errorMessage + ". " +illegalArgumentException );
                 }
+
+                if (mLocationAddress != null && mLocationAddress.size() != 0) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("demo", mLocationAddress.get(0).getAddressLine(0) + ", " + mLocationAddress.get(0).getLatitude());
+
+                            InfoConstants.latDes = mLocationAddress.get(0).getLatitude();
+                            InfoConstants.lonDes = mLocationAddress.get(0).getLongitude();
+
+
+                            displayTextView.setText(mLocationAddress.get(0).getAddressLine(0));
+                        }
+                    });
+                }else{
+                    Log.e(TAG, errorMessage);
+
+                }
+
             }
 
         };

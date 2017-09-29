@@ -2,6 +2,7 @@ package com.diegusweb.dev.arbolurbano.fragments;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -69,7 +70,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private static final int MY_PERMISO_STORAGE_READ_NET = 6;
     private MapView mapView;
     private GoogleMap googleMapa;
-
+    ProgressDialog progressDialog;
 
 
     List<PointsTree> RouteLists = new ArrayList<>();
@@ -171,6 +172,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     }
 
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         googleMapa = googleMap;
@@ -180,21 +183,153 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         String bestProvider = locationManager.getBestProvider(criteria, true);
 
 
+
+        setStyleMap(googleMap);
+
+        //permisos
+        enableMyLocation(locationManager, bestProvider);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        setHasOptionsMenu(true);
+    }
+
+    public void setStyleMap(GoogleMap googleMap)
+    {
         try {
-            // Customise the styling of the base map using a JSON object defined
-            // in a raw resource file.
             boolean success = googleMap.setMapStyle(
                     MapStyleOptions.loadRawResourceStyle(
                             getActivity(), R.raw.style_json));
-
             if (!success) {
                 //Log.e(TAG, "Style parsing failed.");
             }
         } catch (Resources.NotFoundException e) {
-           // Log.e(TAG, "Can't find style. Error: ", e);
+            // Log.e(TAG, "Can't find style. Error: ", e);
         }
+    }
 
+    public void enabledNetwork(){
+        //NETWORK
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED ) {
 
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_NETWORK_STATE))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para la Network")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_NETWORK_STATE},
+                                        MY_PERMISO_STORAGE_READ_NET);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_NETWORK_STATE},
+                        MY_PERMISO_STORAGE_READ_NET);
+            }
+        }
+        else{
+            //startActivityForResult(intent,0);
+
+        }
+    }
+
+    public void enableStorage(){
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para la Storage")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        MY_PERMISO_STORAGE);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISO_STORAGE);
+
+            }
+        }
+        else{
+            //startActivityForResult(intent,0);
+
+        }
+    }
+
+    public void enabledCamera()
+    {
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA))
+            {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Atencio!")
+                        .setContentText("Debes otorgar permisos para la camara")
+                        .setConfirmText("Solicitar Permisos")
+                        .setCancelText("Cancelar")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},
+                                        MY_PERMISO_CAMARA);
+                            }
+                        }).show();
+
+            }
+            else{
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},
+                        MY_PERMISO_CAMARA);
+            }
+        }
+        else{
+            //startActivityForResult(intent,0);
+
+        }
+    }
+
+    public void enableMyLocation(LocationManager locationManager,  String bestProvider){
 
         if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
@@ -245,128 +380,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
 
         }
-
-
-        //camera
-       /* if (ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA))
-            {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Atencio!")
-                        .setContentText("Debes otorgar permisos para la camara")
-                        .setConfirmText("Solicitar Permisos")
-                        .setCancelText("Cancelar")
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                            }
-                        })
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},
-                                        MY_PERMISO_CAMARA);
-                            }
-                        }).show();
-
-            }
-            else{
-                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},
-                        MY_PERMISO_CAMARA);
-            }
-        }
-        else{
-            //startActivityForResult(intent,0);
-
-        }*/
-
-        //storage
-       /* if (ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
-            {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Atencio!")
-                        .setContentText("Debes otorgar permisos para la Storage")
-                        .setConfirmText("Solicitar Permisos")
-                        .setCancelText("Cancelar")
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                            }
-                        })
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        MY_PERMISO_STORAGE);
-                            }
-                        }).show();
-
-            }
-            else{
-                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISO_STORAGE);
-
-            }
-        }
-        else{
-            //startActivityForResult(intent,0);
-
-        }*/
-
-        //NETWORK
-        if (ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED ) {
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_NETWORK_STATE))
-            {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Atencio!")
-                        .setContentText("Debes otorgar permisos para la Network")
-                        .setConfirmText("Solicitar Permisos")
-                        .setCancelText("Cancelar")
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                            }
-                        })
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_NETWORK_STATE},
-                                        MY_PERMISO_STORAGE_READ_NET);
-                            }
-                        }).show();
-
-            }
-            else{
-                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_NETWORK_STATE},
-                        MY_PERMISO_STORAGE_READ_NET);
-            }
-        }
-        else{
-            //startActivityForResult(intent,0);
-
-        }
-
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        setHasOptionsMenu(true);
     }
 
     public void onLocationChanged(Location location)
@@ -377,16 +390,27 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     public void getPointsForMap()
     {
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Cargando...");
+       // progressDialog.setTitle("ProgressDialog");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+
+        //-----------
+
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<List<PointsTree>> call = apiService.getPointTree();
         call.enqueue(new Callback<List<PointsTree>>() {
             @Override
             public void onResponse(Call<List<PointsTree>> call, Response<List<PointsTree>> response) {
-                List<PointsTree> demo = response.body();
+                List<PointsTree> allMarkerServer = response.body();
 
                 if(response.isSuccessful()) {
-                    setLines(demo);
+                    setLines(allMarkerServer);
+                    progressDialog.dismiss();
                 } else {
                     System.out.println(response.errorBody());
                 }

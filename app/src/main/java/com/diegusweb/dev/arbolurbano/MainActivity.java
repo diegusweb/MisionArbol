@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -53,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo == null) {
-            Toast.makeText(this.getApplicationContext(), "No internet !!", Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content),
+                    Html.fromHtml("<font color=\"#FFFFFF\">No tiene Internet</font>")
+                    , Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Action", null).show();
+           // Toast.makeText(this.getApplicationContext(), "No internet !!", Toast.LENGTH_SHORT).show();
             return;
         }
 
