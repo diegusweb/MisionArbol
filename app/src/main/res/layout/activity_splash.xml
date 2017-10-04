@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:src="@drawable/ic_tree_womder_flag"
+        android:src="@drawable/logo"
         android:layout_width="@dimen/logo_w_h"
         android:layout_height="@dimen/logo_w_h"
         android:layout_gravity="center_horizontal"

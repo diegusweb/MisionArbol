@@ -59,18 +59,7 @@
             android:label="Detail"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.RicoPaRico" />
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            tools:replace="android:theme" />
 
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="@string/FACEBOOK_PROVIDER_AUTH"
-            android:exported="true" />
 
         <activity android:name=".activity.socialNetwork.SocialNetworkActivity" />
         <activity

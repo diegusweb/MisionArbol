@@ -68,6 +68,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private static final int MY_PERMISO_STORAGE= 4;
     private static final int MY_PERMISO_STORAGE_READ = 5;
     private static final int MY_PERMISO_STORAGE_READ_NET = 6;
+    private static final int DEFAULT_ZOOM = 15;
     private MapView mapView;
     private GoogleMap googleMapa;
     ProgressDialog progressDialog;
@@ -385,7 +386,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     public void onLocationChanged(Location location)
     {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+        googleMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, DEFAULT_ZOOM));
+
+
     }
 
     public void getPointsForMap()

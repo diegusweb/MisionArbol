@@ -56,19 +56,19 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo == null) {
             Snackbar.make(findViewById(android.R.id.content),
-                    Html.fromHtml("<font color=\"#FFFFFF\">No tiene Internet</font>")
+                    Html.fromHtml("<font color=\"#FFFFFF\">Necesita Internet</font>")
                     , Snackbar.LENGTH_INDEFINITE)
                     .setAction("Action", null).show();
            // Toast.makeText(this.getApplicationContext(), "No internet !!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (networkInfo.getTypeName().equalsIgnoreCase("WIFI"))
+        /*if (networkInfo.getTypeName().equalsIgnoreCase("WIFI"))
             if (networkInfo.isConnected())
                 Toast.makeText(this.getApplicationContext(), "Mobile internet !!", Toast.LENGTH_SHORT).show();
         if (networkInfo.getTypeName().equalsIgnoreCase("MOBILE"))
             if (networkInfo.isConnected())
-                Toast.makeText(this.getApplicationContext(), "Wifi internet !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getApplicationContext(), "Wifi internet !!", Toast.LENGTH_SHORT).show();*/
 
     }
 

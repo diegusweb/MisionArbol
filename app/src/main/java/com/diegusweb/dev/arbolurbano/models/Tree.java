@@ -17,6 +17,9 @@ public class Tree {
     private String flowers;
     private String path;
 
+
+    private String family;
+
     private List<Image> slug;
 
     public Tree(){}
@@ -91,6 +94,15 @@ public class Tree {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
     }
 
 

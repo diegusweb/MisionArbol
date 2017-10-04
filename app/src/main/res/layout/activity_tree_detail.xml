@@ -81,25 +81,86 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/image_stock_icon"
-                            android:layout_width="wrap_content"
+
+                        <TextView
+                            android:id="@+id/text_cientify_label"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:tint="@color/colorPrimary"
-                            app:srcCompat="@drawable/ic_tree_womder" />
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="Nombre Cientifico: "/>
+
 
                         <TextView
                             android:id="@+id/text_name_scientist"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_toEndOf="@+id/image_stock_icon"
-                            android:layout_toRightOf="@+id/image_stock_icon"
-                            android:text="Nombre del producto"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                            android:textSize="30sp" />
+                            android:text="Nombre del nombre"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginLeft="153dp"
+                            android:layout_marginStart="153dp" />
+
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_other_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="Otros Nombres: "/>
+
+
+                        <TextView
+                            android:id="@+id/text_name_other"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nombre del nombre"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginLeft="153dp"
+                            android:layout_marginStart="153dp" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_family_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="Familia: "/>
+
+
+                        <TextView
+                            android:id="@+id/text_name_family"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nombre del nombre"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginLeft="153dp"
+                            android:layout_marginStart="153dp" />
+                    </RelativeLayout>
+
+
                     <!-- Divisor horizontal -->
                     <View
                         android:layout_width="match_parent"

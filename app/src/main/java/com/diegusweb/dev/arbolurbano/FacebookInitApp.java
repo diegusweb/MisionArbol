@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
 
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
+//import com.facebook.FacebookSdk;
+//import com.facebook.login.LoginManager;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
@@ -18,7 +18,7 @@ public class FacebookInitApp extends Application {
     public void onCreate() {
         super.onCreate();
         //initDb();
-        initFacebook();
+       // initFacebook();
 
     }
 
@@ -42,9 +42,9 @@ public class FacebookInitApp extends Application {
         Log.d("Demo","ENTOOOOOOO");
     }
 
-    private void initFacebook() {
-        FacebookSdk.sdkInitialize(this);
-    }
+    //private void initFacebook() {
+      //  FacebookSdk.sdkInitialize(this);
+   // }
 
     
 }

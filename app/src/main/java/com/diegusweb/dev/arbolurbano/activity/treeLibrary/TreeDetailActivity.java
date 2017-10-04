@@ -25,7 +25,7 @@ public class TreeDetailActivity extends AppCompatActivity {
 
     private  int newString;
     ImageView imageView;
-    TextView nameScientist, descriptionLess, descriptionMore, descriptionLocation, descriptionFlowers;
+    TextView nameScientist, descriptionLess, descriptionMore, descriptionLocation, descriptionFlowers, nameOther, family;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,8 @@ public class TreeDetailActivity extends AppCompatActivity {
     private void getTreeId(int id){
 
         nameScientist = (TextView)findViewById(R.id.text_name_scientist);
+        nameOther = (TextView)findViewById(R.id.text_name_other);
+        family = (TextView)findViewById(R.id.text_name_family);
         //descriptionLess = (TextView)findViewById(R.id.text_description_less);
         descriptionMore = (TextView)findViewById(R.id.text_product_description);
 
@@ -70,11 +72,19 @@ public class TreeDetailActivity extends AppCompatActivity {
 
         descriptionFlowers.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFlowers()+"</div>"));
 
+        nameOther.setText(InfoConstants.ONE_TREE_LIBRARY.getOtherTitle());
+        family.setText(InfoConstants.ONE_TREE_LIBRARY.getFamily());
 
         imageView = (ImageView)findViewById(R.id.bgheader);
 
+        String path = "";
+        if(InfoConstants.ONE_TREE_LIBRARY.getListImage().size() == 0)
+            path = InfoConstants.BASE_URL_IMG + "/img/no-featured.jpg";
+        else
+            path = InfoConstants.BASE_URL_IMG + InfoConstants.ONE_TREE_LIBRARY.getListImage().get(0).getThumb();
+
         Glide.with(this)
-                .load(InfoConstants.BASE_URL_IMG+InfoConstants.ONE_TREE_LIBRARY.getListImage().get(0).getThumb())
+                .load(path)
                 .into(imageView);
     }
 
