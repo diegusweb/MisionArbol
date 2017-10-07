@@ -45,7 +45,7 @@ import java.util.Locale;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener{
 
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
@@ -179,7 +179,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         markerOptions.position(latLng);
         markerOptions.title("Current Position");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        //mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         //move map camera
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -201,29 +201,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mGoogleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
             @Override
             public void onCameraMoveStarted(int i) {
-                //mDragTimer.start();
-               // mTimerIsRunning = true;
-
-                onDragMove();
-               // Log.d("demo", i+" dmmm");
-
-            }
-        });
-
-        mGoogleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-            @Override
-            public void onCameraIdle() {
-                // Cleaning all the markers.
                 if (mGoogleMap != null) {
                     mGoogleMap.clear();
                 }
 
-               // Log.d("demo", " sdfsdf  dmmm");
+                onDragMove();
 
             }
         });
-
-
 
 
         //optionally, stop location updates if only current location is needed
@@ -278,56 +263,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMovingPosition = mGoogleMap.getCameraPosition().target;
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mMovingPosition, DEFAULT_ZOOM));
 
-        Log.e(TAG,mMovingPosition.latitude+" ----- ");
-
-
-        try {
-            Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.ENGLISH);
-            mLocationAddress = geocoder.getFromLocation(mMovingPosition.latitude, mMovingPosition.longitude, 1);
-
-
-        }catch (IOException ioException) {
-            // Catch network or other I/O problems.
-            //errorMessage = getString(R.string.service_not_available);
-            Log.e(TAG, errorMessage, ioException);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            // Catch invalid latitude or longitude values.
-            //errorMessage = getString(R.string.invalid_lat_long_used);
-            Log.e(TAG, errorMessage + ". " +illegalArgumentException );
-        }
-
-        if (mLocationAddress != null && mLocationAddress.size() != 0) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //   Log.d("demo", mLocationAddress.get(0).getAddressLine(0) + ", " + mLocationAddress.get(0).getLatitude());
-
-                    InfoConstants.latDes = mLocationAddress.get(0).getLatitude();
-                    InfoConstants.lonDes = mLocationAddress.get(0).getLongitude();
-
-
-                    displayTextView.setText(mLocationAddress.get(0).getAddressLine(0));
-                }
-            });
-        }else{
-            Log.e(TAG, errorMessage);
-
-        }
-
-
         Runnable backgroundTask = new Runnable() {
+
             @Override
             public void run() {
-
-
-
+                if(Double.isNaN(mMovingPosition.latitude))
+                    Log.e(TAG, mMovingPosition.latitude+" ----- "+mMovingPosition.longitude);
+                else{
+                    InfoConstants.latDes = mMovingPosition.latitude;
+                    InfoConstants.lonDes = mMovingPosition.longitude;
+                }
             }
-
         };
 
         new Thread(backgroundTask).start();
-
-
     }
 
     @Override
@@ -383,4 +332,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
     }
+
 }
