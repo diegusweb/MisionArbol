@@ -66,7 +66,9 @@ public class InfoActivity extends AppCompatActivity {
                 R.layout.info_slide1,
                 R.layout.info_slide2,
                 R.layout.info_slide3,
-                R.layout.info_slide4};
+                R.layout.info_slide4,
+                R.layout.info_slide5,
+                R.layout.info_slide6};
 
         // adding bottom dots
         addBottomDots(0);

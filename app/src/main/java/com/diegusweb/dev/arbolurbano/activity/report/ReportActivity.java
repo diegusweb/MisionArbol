@@ -355,10 +355,10 @@ public class ReportActivity extends AppCompatActivity {
         //Log.d("demo", emails+" - "+nameuser+" - "+InfoConstants.latDes+" - "+InfoConstants.lonDes+" - "+String.valueOf(InfoConstants.TYPE_SELECT)+" - "+"null"+" - "+commonNames+" - "+1+" - "+ String.valueOf(spinner1.getSelectedItem())+" - "+  String.valueOf(spinner2.getSelectedItem()));
 
 
-        progressDialog = new ProgressDialog(ReportActivity.this);
+        progressDialog = new ProgressDialog(getApplicationContext());
         progressDialog.setMessage("Guardando..."); // Setting Message
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
-        progressDialog.show(); // Display Progress Dialog
+       // progressDialog.show(); // Display Progress Dialog
         progressDialog.setCancelable(false);
 
 
@@ -381,10 +381,10 @@ public class ReportActivity extends AppCompatActivity {
                 if (serverResponse != null) {
                     if (serverResponse.getSuccess()) {
                         //Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                     } else {
                         //Toast.makeText(getApplicationContext(), serverResponse.getMessage(),Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                     }
                 } else {
                     assert serverResponse != null;

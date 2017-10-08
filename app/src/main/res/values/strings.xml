@@ -12,21 +12,27 @@
     <string name="titulo_tab_list">BIBLIOTECA</string>
 
     <!-- TODO: Slider text -->
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
+    <string name="next">SIGUIENTE</string>
+    <string name="skip">SALTAR</string>
+    <string name="start">IR</string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">SABIAS QUE...</string>
+    <string name="slide_1_desc">Se requieren 22 ARBOLES para SUPLIR la demanda de OXIGENO de 1 PERSONA al dia.</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">SABIAS QUE...</string>
+    <string name="slide_2_desc">La RECUPERACION de valor del PAISAJISMO es de 100 a 200% a la hora de la venta y DE UN AUMENTO del valor de la propiedad de hasta en un 20%</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">SABIAS QUE...</string>
+    <string name="slide_3_desc">1 ARBOL diariamente ABSORBE la contaminacion generada por 100 CARROS</string>
 
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+    <string name="slide_4_title">SABIAS QUE...</string>
+    <string name="slide_4_desc">Cerca a 2.56 TONELADAS de madera se requieren para fabricar UNA TONELADA DE PAPEL. Cada resma de hojas necesita 3.6 kg de madera.</string>
+
+    <string name="slide_5_title">SABIAS QUE...</string>
+    <string name="slide_5_desc">El ARBOL MAS ALTO jamás medido fue un Eucalipto Australiano (Eucalyptus regnans), en Watts River, Victoria, Australia. En el año 1872 se reportó una ALTURA DE 132 METROS.</string>
+
+    <string name="slide_6_title">SABIAS QUE...</string>
+    <string name="slide_6_desc">15.000 millones de árboles se CORTAN CADA AÑO en el planeta.</string>
 
     <!-- TODO: Login text -->
 

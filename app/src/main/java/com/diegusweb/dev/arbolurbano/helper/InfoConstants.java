@@ -10,14 +10,14 @@ import java.util.List;
  */
 
 public class InfoConstants {
-    public static final String BASE_URL = "http://10.0.0.14:8075/2017/laravel/findtree/public/api/";
+    //public static final String BASE_URL = "http://192.168.1.3:8075/2017/laravel/findtree/public/api/";
 
-    public static final String BASE_URL_IMG = "http://10.0.0.14:8075/2017/laravel/findtree/public";
+    //public static final String BASE_URL_IMG = "http://192.168.1.3:8075/2017/laravel/findtree/public";
 
     //staging
-    //public static final String BASE_URL = "http://staging.arbolurbano.com/api/";
+    public static final String BASE_URL = "http://staging.arbolurbano.com/api/";
 
-    //public static final String BASE_URL_IMG = "http://staging.arbolurbano.com";
+    public static final String BASE_URL_IMG = "http://staging.arbolurbano.com";
 
 
     public static final String BASE_URL_IMG_POINT = "http://10.0.0.14:8075/2017/laravel/findtree";

@@ -10,7 +10,7 @@
         <item
             android:id="@+id/item_how_work"
             android:icon="@drawable/cuenta"
-            android:title="@string/item_how_work" />
+            android:title="Sabias Que" />
 
         <item
             android:id="@+id/item_setting"
