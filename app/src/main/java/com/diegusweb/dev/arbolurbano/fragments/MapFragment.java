@@ -37,6 +37,7 @@ import com.diegusweb.dev.arbolurbano.activity.streetView.StreetActivity;
 import com.diegusweb.dev.arbolurbano.api.ApiClient;
 import com.diegusweb.dev.arbolurbano.api.ApiInterface;
 import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
+import com.diegusweb.dev.arbolurbano.helper.Utils;
 import com.diegusweb.dev.arbolurbano.models.PointsTree;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -377,8 +378,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
             googleMapa.setMyLocationEnabled(true);
 
-            getPointsForMap();
-
+            if(!Utils.hasNetworkConnection(getContext())){
+                getPointsForMap();
+            }
 
         }
     }

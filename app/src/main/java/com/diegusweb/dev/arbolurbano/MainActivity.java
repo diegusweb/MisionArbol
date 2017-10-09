@@ -22,6 +22,7 @@ import com.diegusweb.dev.arbolurbano.fragments.BusquedaFragment;
 import com.diegusweb.dev.arbolurbano.fragments.InfoFragment;
 import com.diegusweb.dev.arbolurbano.fragments.ListFragment;
 import com.diegusweb.dev.arbolurbano.fragments.MyReportFragment;
+import com.diegusweb.dev.arbolurbano.helper.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,32 +46,15 @@ public class MainActivity extends AppCompatActivity {
             seleccionarItem(navigationView.getMenu().getItem(0));
         }
 
-        hasNetworkConnection();
-
-    }
-
-    public  void hasNetworkConnection() {
-        ConnectivityManager cm = (ConnectivityManager) this.getApplicationContext()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        if (networkInfo == null) {
+        if(Utils.hasNetworkConnection(MainActivity.this) == true){
             Snackbar.make(findViewById(android.R.id.content),
-                    Html.fromHtml("<font color=\"#FFFFFF\">Necesita Internet</font>")
+                    Html.fromHtml("<font color=\"#FFFFFF\">Lo sentimos, no encontramos una conexion a internet.</font>")
                     , Snackbar.LENGTH_INDEFINITE)
                     .setAction("Action", null).show();
-           // Toast.makeText(this.getApplicationContext(), "No internet !!", Toast.LENGTH_SHORT).show();
-            return;
         }
 
-        /*if (networkInfo.getTypeName().equalsIgnoreCase("WIFI"))
-            if (networkInfo.isConnected())
-                Toast.makeText(this.getApplicationContext(), "Mobile internet !!", Toast.LENGTH_SHORT).show();
-        if (networkInfo.getTypeName().equalsIgnoreCase("MOBILE"))
-            if (networkInfo.isConnected())
-                Toast.makeText(this.getApplicationContext(), "Wifi internet !!", Toast.LENGTH_SHORT).show();*/
-
     }
+
 
     private void agregarToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
