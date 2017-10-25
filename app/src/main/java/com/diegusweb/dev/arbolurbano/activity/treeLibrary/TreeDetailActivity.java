@@ -25,7 +25,12 @@ public class TreeDetailActivity extends AppCompatActivity {
 
     private  int newString;
     ImageView imageView;
-    TextView nameScientist, descriptionLess, descriptionMore, descriptionLocation, descriptionFlowers, nameOther, family;
+    TextView nameScientist,
+            descriptionLess,
+            descriptionMore,
+            location,
+            requirements, flowers, tronco, hojas, follaje, frutos,
+            nameOther, family;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +63,27 @@ public class TreeDetailActivity extends AppCompatActivity {
         nameOther = (TextView)findViewById(R.id.text_name_other);
         family = (TextView)findViewById(R.id.text_name_family);
         //descriptionLess = (TextView)findViewById(R.id.text_description_less);
-        descriptionMore = (TextView)findViewById(R.id.text_product_description);
+        //descriptionMore = (TextView)findViewById(R.id.text_product_description);
 
-        descriptionLocation = (TextView)findViewById(R.id.text_location_description);
+        location = (TextView)findViewById(R.id.text_product_ubicacion);
+        flowers = (TextView)findViewById(R.id.text_product_flowers);
+        requirements = (TextView)findViewById(R.id.text_product_requiremnts);
+        tronco = (TextView)findViewById(R.id.text_product_tronco);
+        follaje = (TextView)findViewById(R.id.text_product_follage);
+        hojas = (TextView)findViewById(R.id.text_product_hojas);
+        frutos = (TextView)findViewById(R.id.text_product_frutos);
 
-        descriptionFlowers = (TextView)findViewById(R.id.text_flowers_description);
+
 
         nameScientist.setText(InfoConstants.ONE_TREE_LIBRARY.getScientificName());
-        //descriptionLess.setText(InfoConstants.ONE_TREE_LIBRARY.getDescription());
-        descriptionMore.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getDescription()+"</div>"));
-
-        descriptionLocation.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getLocation()+"</div>"));
-
-        descriptionFlowers.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFlowers()+"</div>"));
+       // descriptionMore.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getDescription()+"</div>"));
+        location.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getLocation()+"</div>"));
+        flowers.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFlowers()+"</div>"));
+        requirements.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getRequirement()+"</div>"));
+        tronco.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getStem()+"</div>"));
+        follaje.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFoliage()+"</div>"));
+        hojas.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getLeaves()+"</div>"));
+        frutos.setText(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getFruits()+"</div>"));
 
         nameOther.setText(InfoConstants.ONE_TREE_LIBRARY.getOtherTitle());
         family.setText(InfoConstants.ONE_TREE_LIBRARY.getFamily());

@@ -14,6 +14,11 @@ public class Tree {
     private String scientificName;
     private String description;
     private String location;
+    private String requirement;
+    private String stem;
+    private String foliage;
+    private String leaves;
+    private String fruits;
     private String flowers;
     private String path;
 
@@ -23,6 +28,54 @@ public class Tree {
     private List<Image> slug;
 
     public Tree(){}
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
+    public String getStem() {
+        return stem;
+    }
+
+    public void setStem(String stem) {
+        this.stem = stem;
+    }
+
+    public String getFoliage() {
+        return foliage;
+    }
+
+    public void setFoliage(String foliage) {
+        this.foliage = foliage;
+    }
+
+    public String getLeaves() {
+        return leaves;
+    }
+
+    public void setLeaves(String leaves) {
+        this.leaves = leaves;
+    }
+
+    public String getFruits() {
+        return fruits;
+    }
+
+    public void setFruits(String fruits) {
+        this.fruits = fruits;
+    }
+
+    public List<Image> getSlug() {
+        return slug;
+    }
+
+    public void setSlug(List<Image> slug) {
+        this.slug = slug;
+    }
 
     public String getOtherTitle() {
         return otherTitle;

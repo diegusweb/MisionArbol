@@ -169,7 +169,7 @@
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:background="@color/primary" />
 
-                    <RelativeLayout
+                   <!-- <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -193,7 +193,7 @@
                             android:textStyle="bold" />
 
 
-                    </RelativeLayout>
+                    </RelativeLayout>-->
 
 
                     <RelativeLayout
@@ -209,18 +209,220 @@
                             app:srcCompat="@drawable/flower_icon" />
 
                         <TextView
-                            android:id="@+id/text_flowers_description"
+                            android:id="@+id/text_label_flowers"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:layout_toEndOf="@+id/image_flower_icon"
                             android:layout_toRightOf="@+id/image_flower_icon"
-                            android:paddingTop="10dp"
+                            android:paddingTop="0dp"
+                            android:text="Flores"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_flowers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_flower_icon"
+                            android:layout_toRightOf="@+id/image_flower_icon"
+                            android:paddingTop="20dp"
                             android:text="Nombre del producto"
                             android:textStyle="bold" />
 
 
                     </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_requirements_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/requrement" />
+
+                        <TextView
+                            android:id="@+id/text_label_requiremnts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_requirements_icon"
+                            android:layout_toRightOf="@+id/image_requirements_icon"
+                            android:paddingTop="0dp"
+                            android:text="Exigencias"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_requiremnts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_requirements_icon"
+                            android:layout_toRightOf="@+id/image_requirements_icon"
+                            android:paddingTop="20dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_leave_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/leave" />
+
+                        <TextView
+                            android:id="@+id/text_label_leave"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_leave_icon"
+                            android:layout_toRightOf="@+id/image_leave_icon"
+                            android:paddingTop="0dp"
+                            android:text="Hojas"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_hojas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_leave_icon"
+                            android:layout_toRightOf="@+id/image_leave_icon"
+                            android:paddingTop="20dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_foliage_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/foliage" />
+
+                        <TextView
+                            android:id="@+id/text_label_follage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_foliage_icon"
+                            android:layout_toRightOf="@+id/image_foliage_icon"
+                            android:paddingTop="0dp"
+                            android:text="Follage"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_follage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_foliage_icon"
+                            android:layout_toRightOf="@+id/image_foliage_icon"
+                            android:paddingTop="20dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_tronco_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/tree_icon" />
+
+                        <TextView
+                            android:id="@+id/text_label_tronco"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_tronco_icon"
+                            android:layout_toRightOf="@+id/image_tronco_icon"
+                            android:paddingTop="0dp"
+                            android:text="Tronco"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_tronco"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_tronco_icon"
+                            android:layout_toRightOf="@+id/image_tronco_icon"
+                            android:paddingTop="20dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_fruto_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/fruit" />
+
+                        <TextView
+                            android:id="@+id/text_label_fruit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_fruto_icon"
+                            android:layout_toRightOf="@+id/image_fruto_icon"
+                            android:paddingTop="0dp"
+                            android:text="Frutosta"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_frutos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_fruto_icon"
+                            android:layout_toRightOf="@+id/image_fruto_icon"
+                            android:paddingTop="20dp"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -235,13 +437,24 @@
                             app:srcCompat="@drawable/location_icon" />
 
                         <TextView
-                            android:id="@+id/text_location_description"
+                            android:id="@+id/text_label_location"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:layout_toEndOf="@+id/image_location_icon"
                             android:layout_toRightOf="@+id/image_location_icon"
-                            android:paddingTop="10dp"
+                            android:paddingTop="0dp"
+                            android:text="Ubicacion"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_product_ubicacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_toEndOf="@+id/image_location_icon"
+                            android:layout_toRightOf="@+id/image_location_icon"
+                            android:paddingTop="20dp"
                             android:text="Nombre del producto"
                             android:textStyle="bold" />
 

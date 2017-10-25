@@ -1,6 +1,7 @@
 package com.diegusweb.dev.arbolurbano.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
         public MyViewHolder(final View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre_comida);
-            precio = (TextView) itemView.findViewById(R.id.precio_comida);
+            //precio = (TextView) itemView.findViewById(R.id.precio_comida);
             imagen = (ImageView) itemView.findViewById(R.id.miniatura_comida);
         }
 
@@ -73,9 +74,11 @@ public class AdapterTree extends RecyclerView.Adapter<AdapterTree.MyViewHolder> 
                 .centerCrop()
                 .into(holder.imagen);
 
-        holder.nombre.setText(treeInfo.getTitle());
 
-        holder.precio.setText(treeInfo.getScientificName());
+        //(Html.fromHtml("<div style=\"text-align:justify\">"+InfoConstants.ONE_TREE_LIBRARY.getLocation()+"</div>"))
+        holder.nombre.setText(Html.fromHtml("<big>"+treeInfo.getTitle()+"</big><br>"+treeInfo.getScientificName()));
+
+       // holder.precio.setText(treeInfo.getScientificName());
 
     }
 
