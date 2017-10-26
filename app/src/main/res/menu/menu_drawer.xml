@@ -15,7 +15,7 @@
         <item
             android:id="@+id/item_setting"
             android:icon="@drawable/configuracion"
-            android:title="@string/item_setting" />
+            android:title="Sobre Nosotros" />
 
     </group>
 

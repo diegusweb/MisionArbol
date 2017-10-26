@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.diegusweb.dev.arbolurbano.fragments.AboutUsFragment;
 import com.diegusweb.dev.arbolurbano.fragments.BusquedaFragment;
 import com.diegusweb.dev.arbolurbano.fragments.InfoFragment;
 import com.diegusweb.dev.arbolurbano.fragments.ListFragment;
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.item_setting:
+                fragmentoGenerico = new AboutUsFragment();
                 // Iniciar actividad de configuración
                 break;
 
