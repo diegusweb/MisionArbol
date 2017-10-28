@@ -3,6 +3,7 @@ package com.diegusweb.dev.arbolurbano.activity.report;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,6 +35,10 @@ import com.diegusweb.dev.arbolurbano.api.ApiClient;
 import com.diegusweb.dev.arbolurbano.api.ApiInterface;
 import com.diegusweb.dev.arbolurbano.helper.InfoConstants;
 import com.diegusweb.dev.arbolurbano.models.ServerResponse;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.raizlabs.android.dbflow.StringUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -63,7 +68,8 @@ public class ReportActivity extends AppCompatActivity {
     ImageView image_ic_ok;
 
     Spinner spinner1, spinner2;
-
+    int PLACE_PICKER_REQUEST = 1;
+    int SELECTED_PLACE_REQUEST = 2;
 
     File destination;
 
@@ -84,14 +90,19 @@ public class ReportActivity extends AppCompatActivity {
 
         addItemsOnSpinner2();
 
+        final Context context = this;
+
         Log.d("demo", "Reporrrr");
 
         Button boton = (Button) findViewById(R.id.btnUbicaion);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ReportActivity.this, MapActivity.class);
-                startActivity(i);
+               // Intent i = new Intent(ReportActivity.this, MapActivity.class);
+               // startActivity(i);
+
+                displayPlacePicker();
+
             }
         });
 
@@ -123,6 +134,25 @@ public class ReportActivity extends AppCompatActivity {
         image_ic_ok.setVisibility(View.INVISIBLE);
 
 
+    }
+
+    private void displayPlacePicker() {
+
+       // Context context = ReportActivity.this.getApplicationContext();
+
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try
+        {
+            startActivityForResult(builder.build(ReportActivity.this), PLACE_PICKER_REQUEST);
+        }
+        catch (GooglePlayServicesRepairableException e)
+        {
+            e.printStackTrace();
+        }
+        catch (GooglePlayServicesNotAvailableException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     //add items into spinner dynamically
@@ -280,7 +310,19 @@ public class ReportActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         try {
-            // When an Image is picked
+            // When an Image is pickeds
+            Log.v("demo", requestCode+" /// ");
+            if( requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK ){
+                    Place place = PlacePicker.getPlace(data, this);
+                   // String toastMsg = String.format("Place: %s", place.getAddress());
+                   // Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+
+                InfoConstants.latDes = place.getLatLng().latitude;
+                InfoConstants.lonDes = place.getLatLng().longitude;
+
+            }
+
+
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
 
 
@@ -329,11 +371,12 @@ public class ReportActivity extends AppCompatActivity {
                 cursor.close();
 
             } */
+            /*
             else {
                 Snackbar.make(findViewById(android.R.id.content),
                         Html.fromHtml("<font color=\"#FA3E3E\">No has seleccionado Imagen</font>"), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            }
+            }*/
         } catch (Exception e) {
             Snackbar.make(findViewById(android.R.id.content),
                     Html.fromHtml("<font color=\"#FA3E3E\">No has seleccionado Imagen</font>"), Snackbar.LENGTH_LONG)
